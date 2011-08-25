@@ -1,0 +1,490 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="FoursquareNET.Checkins.CheckIn" Collapsed="true">
+    <Position X="9.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAEAAAAgAICAAAQAAQAQAACAECgAACAQIIJAIIAAAAA=</HashCode>
+      <FileName>Checkins\CheckIn.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FoursquareNET.Checkins.GetFriendCheckins" Collapsed="true">
+    <Position X="11.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAgAACAAAQAAAAQAACAACAAAAAAAIAAAAAAAAA=</HashCode>
+      <FileName>Checkins\GetFriendCheckins.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FoursquareNET.Checkins.History" Collapsed="true">
+    <Position X="18.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAgAAAAAQAAAAAAQCAACAAQAAABIAAAAAAAAA=</HashCode>
+      <FileName>Checkins\History.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FoursquareNET.Common" Collapsed="true">
+    <Position X="14.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAAAIAEAAEAAAAAAAAAAAACAAAAAAIAAAA=</HashCode>
+      <FileName>Common.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FoursquareNET.Credential" Collapsed="true">
+    <Position X="16.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Credential.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FoursquareNET.Parameter" Collapsed="true">
+    <Position X="13" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAMAAAQEAAAAAAAAAAAAABAAAAAgAAAAAAA=</HashCode>
+      <FileName>Parameter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FoursquareNET.Exception.FoursquareException" Collapsed="true">
+    <Position X="1.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Exception.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FoursquareNET.Exception.FoursquareWebException" Collapsed="true">
+    <Position X="3" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Exception.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FoursquareNET.Exception.RequiredParameterException" Collapsed="true">
+    <Position X="2.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Exception.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FoursquareNET.Exception.OptionalParameterException" Collapsed="true">
+    <Position X="0.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Exception.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FoursquareNET.Exception.WebException" Collapsed="true">
+    <Position X="0.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Exception.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FoursquareNET.Exception.RateLimitedException" Collapsed="true">
+    <Position X="3" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Exception.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FoursquareNET.Exception.UnauthorizedException" Collapsed="true">
+    <Position X="5.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Exception.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FoursquareNET.Friend.ApproveRequest" Collapsed="true">
+    <Position X="11.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQIAAAAAAiAACAAAAAAAIAAAAAAAAA=</HashCode>
+      <FileName>Friend\ApproveRequest.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FoursquareNET.Friend.DenyRequest" Collapsed="true">
+    <Position X="18.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQIAAAAAAiAACAAAAAAAIAAAAAAAAA=</HashCode>
+      <FileName>Friend\DenyRequest.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FoursquareNET.Friend.FindByName" Collapsed="true">
+    <Position X="7.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAIAAQAAAAAAACAACAAAAgAAIAAAAAAAAA=</HashCode>
+      <FileName>Friend\FindByName.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FoursquareNET.Friend.FindByPhone" Collapsed="true">
+    <Position X="9.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAIAAQAAAAAAACAACAAAAgAAIAAAAAAAAA=</HashCode>
+      <FileName>Friend\FindByPhone.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FoursquareNET.Friend.FindByTwitter" Collapsed="true">
+    <Position X="11.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAIAAQAAAAAAACAACAAAAgAAIAAAAAAAAA=</HashCode>
+      <FileName>Friend\FindByTwitter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FoursquareNET.Friend.GetPending" Collapsed="true">
+    <Position X="16.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAACAACAAAAAAAIAAAAAAAAA=</HashCode>
+      <FileName>Friend\GetPending.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FoursquareNET.Friend.SendRequest" Collapsed="true">
+    <Position X="9.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQIAAAAAAiAACAAAAAAAIAAAAAAAAA=</HashCode>
+      <FileName>Friend\SendRequest.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FoursquareNET.Schema.SchemaDataContext" Collapsed="true">
+    <Position X="18.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABEgpSAEgICDAAgIACIQAAAAADAAMEAAkAggQBAAAiA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FoursquareNET.Schema.Checkin" Collapsed="true">
+    <Position X="7.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAADBAAEAIIAAowIAQgBAUAgABAAAARQICAgJAAEAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FoursquareNET.Schema.User" Collapsed="true">
+    <Position X="18.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAEAEACEQACSYAAMAAEAgAAEAICAAgAJgIkAEAAg=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FoursquareNET.Schema.Venue" Collapsed="true">
+    <Position X="9.5" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ARECCAAgABCAAgQYAAAUKEQAABAAEAACIACAZCAEEAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FoursquareNET.Schema.Mayor" Collapsed="true">
+    <Position X="9.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAIAAAAAQAAQAABAAIAAAAQIAIAAABAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FoursquareNET.Schema.Badge" Collapsed="true">
+    <Position X="13" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAgAAAAAAAAIAQAAAAAAAAEAAAAAAMEAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FoursquareNET.Schema.Score" Collapsed="true">
+    <Position X="20" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAAAAAAAAAABAAAAAAgAAAIAMAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FoursquareNET.Schema.Special" Collapsed="true">
+    <Position X="16.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAIBAAAQAAAAAAAAAABAAAAAAAQAAIAAEBAQ=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FoursquareNET.Schema.Category" Collapsed="true">
+    <Position X="20" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAABACAAAAAwAACAAAAAAAAAAEABAAAAAAAAEAAE=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FoursquareNET.Schema.Settings" Collapsed="true">
+    <Position X="13" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAADAAAAAAAAAIAAAAAQAAAAAAAAAAAAAAACAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FoursquareNET.Schema.UserObj" Collapsed="true">
+    <Position X="20" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FoursquareNET.Schema.CheckinsObj" Collapsed="true">
+    <Position X="13" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAQAAAAAAAAIAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FoursquareNET.Schema.BadgeObj" Collapsed="true">
+    <Position X="14.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAIAAAAQAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FoursquareNET.Schema.CheckinObj" Collapsed="true">
+    <Position X="11.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAIAAAAAAAAAIAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FoursquareNET.Schema.ScoreObj" Collapsed="true">
+    <Position X="7.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAgAAAAAAAAAAAAAAgAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FoursquareNET.Schema.SpecialObj" Collapsed="true">
+    <Position X="18.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FoursquareNET.Schema.Status" Collapsed="true">
+    <Position X="7.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FoursquareNET.Schema.FriendObj" Collapsed="true">
+    <Position X="18.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FoursquareNET.Schema.VenuesObj" Collapsed="true">
+    <Position X="14.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FoursquareNET.Schema.VenueGroup" Collapsed="true">
+    <Position X="11.25" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAAAAAAAAAAAAAAAgAAAAAQAAAAAABAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FoursquareNET.Schema.VenueObj" Collapsed="true">
+    <Position X="13" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FoursquareNET.Schema.CategoriesObj" Collapsed="true">
+    <Position X="18.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAEAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FoursquareNET.Schema.UsersObj" Collapsed="true">
+    <Position X="7.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FoursquareNET.Schema.RequestsObj" Collapsed="true">
+    <Position X="16.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAQ=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FoursquareNET.Schema.Tip" Collapsed="true">
+    <Position X="9.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAADCAAEAIAAAoQAAAgAAAAAAAAAAARAAAAACAAEAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FoursquareNET.Schema.TipsObj" Collapsed="true">
+    <Position X="14.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FoursquareNET.Schema.TipGroup" Collapsed="true">
+    <Position X="11.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAQAAAFAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FoursquareNET.Schema.TipObj" Collapsed="true">
+    <Position X="13" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAACAAAAAAAAACAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FoursquareNET.Schema.Stats" Collapsed="true">
+    <Position X="20" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAAAAAAAAIAAAQAEAAAAAAIAAAEAAggAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FoursquareNET.Schema.BeenHere" Collapsed="true">
+    <Position X="16.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAABAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FoursquareNET.Schema.ErrorObj" Collapsed="true">
+    <Position X="20" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAIQAAAAEAAAAoAAAAQAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FoursquareNET.Schema.SettingsObj" Collapsed="true">
+    <Position X="14.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FoursquareNET.Settings.SetPings" Collapsed="true">
+    <Position X="11.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAIAAEAAAQAQABAAACAACAAAAAAAIAAAAAAAQA=</HashCode>
+      <FileName>Settings\SetPings.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FoursquareNET.Tip.Add" Collapsed="true">
+    <Position X="7.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEACAAgAACAAAQAAAIQAACAACgAAAAAAIAACIAABAA=</HashCode>
+      <FileName>Tip\Add.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FoursquareNET.Tip.GetNearby" Collapsed="true">
+    <Position X="14.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAggACAAAQAAAAQAQCAACAAAAAAAIAAAAAAAAA=</HashCode>
+      <FileName>Tip\GetNearby.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FoursquareNET.Tip.MarkDone" Collapsed="true">
+    <Position X="20" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAAAAAAAQAAAAAAACAACAAAAAAAIAAAAAAAEA=</HashCode>
+      <FileName>Tip\MarkDone.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FoursquareNET.Tip.MarkTodo" Collapsed="true">
+    <Position X="7.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAAAAAAAQAAAAAAACAACAAAAAAAIAAAAAAAEA=</HashCode>
+      <FileName>Tip\MarkTodo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FoursquareNET.Tip.Unmark" Collapsed="true">
+    <Position X="16.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAAAAAAAQAAAAAAACAACAAAAAAAIAAAAAAAEA=</HashCode>
+      <FileName>Tip\Unmark.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FoursquareNET.User.GetDetail" Collapsed="true">
+    <Position X="7.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQIAAQAAAiAACAGAAAAAIAAAAAAAAA=</HashCode>
+      <FileName>User\GetDetail.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FoursquareNET.User.GetFriends" Collapsed="true">
+    <Position X="13" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQIAAAAAAiAACAAAAAAAIAAAAAAAAA=</HashCode>
+      <FileName>User\GetFriends.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FoursquareNET.Venue.Add" Collapsed="true">
+    <Position X="9.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEACAAgAiCAAgQYAAAUKESAACAAAAACAICAJCAAAAA=</HashCode>
+      <FileName>Venue\Add.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FoursquareNET.Venue.FlagClosed" Collapsed="true">
+    <Position X="13" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAACAACgAAAAAAIAAAIAAAAA=</HashCode>
+      <FileName>Venue\FlagClosed.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FoursquareNET.Venue.FlagDuplicate" Collapsed="true">
+    <Position X="14.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAACAACgAAAAAAIAAAIAAAAA=</HashCode>
+      <FileName>Venue\FlagDuplicate.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FoursquareNET.Venue.FlagMislocated" Collapsed="true">
+    <Position X="16.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAACAACgAAAAAAIAAAIAAAAA=</HashCode>
+      <FileName>Venue\FlagMislocated.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FoursquareNET.Venue.GetCategoryList" Collapsed="true">
+    <Position X="20" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAACAACAAAAAAAIAAAAAAAAA=</HashCode>
+      <FileName>Venue\GetCategoryList.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FoursquareNET.Venue.GetDetail">
+    <Position X="9.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAAAAQAAAAAAACAACgAAAAAAIAAAIAAAAA=</HashCode>
+      <FileName>Venue\GetDetail.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FoursquareNET.Venue.NearbyAndSearch" Collapsed="true">
+    <Position X="11.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAggACAAAQAAAAQAQCABCAAAAAIAIAAAAAAAAA=</HashCode>
+      <FileName>Venue\NearbyAndSearch.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FoursquareNET.Venue.ProposeEdit" Collapsed="true">
+    <Position X="14.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEACAAgAACAAgQYAAAUKESAACgAAAACAICAJKAAAAA=</HashCode>
+      <FileName>Venue\ProposeEdit.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="FoursquareNET.Schema.FriendStatus" Collapsed="true">
+    <Position X="7.75" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABAAAAAAAEACAAAAAAAAAAAAAAAAAAIAAgAAAA=</HashCode>
+      <FileName>Schema\FriendStatus.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="FoursquareNET.Schema.Gender" Collapsed="true">
+    <Position X="9.5" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAA=</HashCode>
+      <FileName>Schema\Gender.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="FoursquareNET.Schema.PingStatus" Collapsed="true">
+    <Position X="11.25" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Schema\PingStatus.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="FoursquareNET.Schema.SpecialKind" Collapsed="true">
+    <Position X="13" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAEIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Schema\SpecialKind.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="FoursquareNET.Schema.SpecialType" Collapsed="true">
+    <Position X="14.75" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAABAAAAAAAAAAAAACAAAAAAAQAIAA=</HashCode>
+      <FileName>Schema\SpecialType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="FoursquareNET.Schema.TipType" Collapsed="true">
+    <Position X="16.5" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAIAEAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Schema\TipType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

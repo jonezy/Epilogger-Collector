@@ -1,0 +1,697 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>FoursquareNET</name>
+    </assembly>
+    <members>
+        <member name="M:FoursquareNET.Tip.Unmark.#ctor">
+            <summary>
+            Allows you to unmark a tip (it will revert the previous action, if there was any on the tip). For example, if a tip was on your to-do list, it would be taken off.
+            </summary>
+            <param name="returnFormat"></param>
+        </member>
+        <member name="P:FoursquareNET.Tip.Unmark.TipId">
+            <summary>
+            the tip that you want to mark to-do (required)
+            </summary>
+        </member>
+        <member name="M:FoursquareNET.Friend.SendRequest.#ctor">
+            <summary>
+            Sends a friend request to another user. On success, returns the user object.
+            </summary>
+            <param name="returnFormat"></param>
+        </member>
+        <member name="P:FoursquareNET.Friend.SendRequest.UserId">
+            <summary>
+            the user ID of the user to whom you want to send a friend request
+            </summary>
+        </member>
+        <member name="M:FoursquareNET.Common.FSHelper.GenerateTimeStamp">
+            <summary>
+            GenerateTimeStamp method generates TimeStamp value.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FoursquareNET.Common.FSHelper.GetNonce(System.Int32)">
+            <summary>
+            Nonce is a unique string based value. GetNonce method generates this value
+            </summary>
+            <param name="length"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FoursquareNET.User.GetDetail.#ctor">
+            <summary>
+            Returns profile information (badges, etc) for a given user. If the user has recent check-in data (ie, if the user is self or is a friend of the authenticating user), this data will be returned as well in a checkin block.
+            </summary>
+            <param name="returnFormat"></param>
+        </member>
+        <member name="P:FoursquareNET.User.GetDetail.UserId">
+            <summary>
+            userid for the user whose information you want to retrieve. if you do not specify a 'uid', the authenticated user's profile data will be returned.
+            </summary>
+        </member>
+        <member name="P:FoursquareNET.User.GetDetail.ShowBadges">
+            <summary>
+            (optional, default: false) set to "true" to also show badges for this user. by default, this will show badges earned worldwide.
+            </summary>
+        </member>
+        <member name="P:FoursquareNET.User.GetDetail.ShowMayorships">
+            <summary>
+            (optional, default: false) set to "true" to also show venues for which this user is a mayor. by default, this will show mayorships worldwide.
+            </summary>
+        </member>
+        <member name="M:FoursquareNET.Tip.GetNearby.#ctor">
+            <summary>
+            Returns a list of tips near the area specified. (The distance returned is in meters).
+            </summary>
+            <param name="returnFormat"></param>
+        </member>
+        <member name="P:FoursquareNET.Tip.GetNearby.Geolat">
+            <summary>
+            latitude (required)
+            </summary>
+        </member>
+        <member name="P:FoursquareNET.Tip.GetNearby.Geolong">
+            <summary>
+            longitude (required)
+            </summary>
+        </member>
+        <member name="P:FoursquareNET.Tip.GetNearby.Limit">
+            <summary>
+            limit of results (optional, default 30)
+            </summary>
+        </member>
+        <member name="M:FoursquareNET.Friend.FindByName.#ctor">
+            <summary>
+            When passed a free-form text string, returns a list of matching user objects. The method only returns matches of people with whom you are not already friends.
+            </summary>
+            <param name="returnFormat"></param>
+        </member>
+        <member name="P:FoursquareNET.Friend.FindByName.Query">
+            <summary>
+            the string you want to use to search firstnames and lastnames
+            </summary>
+        </member>
+        <member name="M:FoursquareNET.Checkins.GetFriendCheckins.#ctor">
+            <summary>
+            Returns a list of recent checkins from friends.\n
+            If you pass in a geolat/geolong pair (optional, but recommended), we'll send you back a distance inside each checkin object that you can use to sort your results.
+            </summary>
+            <param name="returnFormat"></param>
+        </member>
+        <member name="P:FoursquareNET.Checkins.GetFriendCheckins.Geolat">
+            <summary>
+            (optional, but recommended)
+            </summary>
+        </member>
+        <member name="P:FoursquareNET.Checkins.GetFriendCheckins.Geolong">
+            <summary>
+            (optional, but recommended)
+            </summary>
+        </member>
+        <member name="M:FoursquareNET.Friend.FindByPhone.#ctor">
+            <summary>
+            When passed phone number(s), returns a list of matching user objects. The method only returns matches of people with whom you are not already friends. You can pass a single number as a parameter, or you can pass multiple numbers separated by commas.
+            </summary>
+            <param name="returnFormat"></param>
+        </member>
+        <member name="P:FoursquareNET.Friend.FindByPhone.Query">
+            <summary>
+            the string you want to use to search for phone numbers
+            </summary>
+        </member>
+        <member name="M:FoursquareNET.Checkins.CheckIn.#ctor">
+            <summary>
+            Allows you to check-in to a place.
+            </summary>
+        </member>
+        <member name="P:FoursquareNET.Checkins.CheckIn.VenueId">
+            <summary>
+            (optional, not necessary if you are 'shouting' or have a venue name). ID of the venue where you want to check-in
+            </summary>
+        </member>
+        <member name="P:FoursquareNET.Checkins.CheckIn.Venue">
+            <summary>
+            (optional, not necessary if you are 'shouting' or have a vid) if you don't have a venue ID or would rather prefer a 'venueless' checkin, pass the venue name as a string using this parameter. it will become an 'orphan' (no address or venueid but with geolat, geolong)
+            </summary>
+        </member>
+        <member name="P:FoursquareNET.Checkins.CheckIn.Shout">
+            <summary>
+            (optional) a message about your check-in. the maximum length of this field is 140 characters
+            </summary>
+        </member>
+        <member name="P:FoursquareNET.Checkins.CheckIn.Private">
+            <summary>
+            (optional). "true" means "don't show your friends". "false" means "show everyone"
+            </summary>
+        </member>
+        <member name="P:FoursquareNET.Checkins.CheckIn.Twitter">
+            <summary>
+            (optional, defaults to the user's setting). "true" means "send to Twitter". "false" means "don't send to Twitter"
+            </summary>
+        </member>
+        <member name="P:FoursquareNET.Checkins.CheckIn.Facebook">
+            <summary>
+            (optional, defaults to the user's setting). "true" means "send to Facebook". "false" means "don't send to Facebook"
+            </summary>
+        </member>
+        <member name="P:FoursquareNET.Checkins.CheckIn.Geolat">
+            <summary>
+            (optional, but recommended)
+            </summary>
+        </member>
+        <member name="P:FoursquareNET.Checkins.CheckIn.Geolong">
+            <summary>
+            (optional, but recommended)
+            </summary>
+        </member>
+        <member name="M:FoursquareNET.Venue.Add.#ctor">
+            <summary>
+            Allows you to add a new venue.
+            </summary>
+            <param name="returnFormat"></param>
+        </member>
+        <member name="P:FoursquareNET.Venue.Add.Name">
+            <summary>
+            the name of the venue
+            </summary>
+        </member>
+        <member name="P:FoursquareNET.Venue.Add.Address">
+            <summary>
+            (optional) the address of the venue (e.g., "202 1st Avenue")
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "P:FoursquareNET.Venue.Add.CrossStreet" -->
+        <member name="P:FoursquareNET.Venue.Add.City">
+            <summary>
+            (optional) the city name where this venue is
+            </summary>
+        </member>
+        <member name="P:FoursquareNET.Venue.Add.State">
+            <summary>
+            (optional) the state where the city is
+            </summary>
+        </member>
+        <member name="P:FoursquareNET.Venue.Add.Zip">
+            <summary>
+            (optional) the ZIP code for the venue
+            </summary>
+        </member>
+        <member name="P:FoursquareNET.Venue.Add.Phone">
+            <summary>
+            (optional) the phone number for the venue
+            </summary>
+        </member>
+        <member name="P:FoursquareNET.Venue.Add.Geolat">
+            <summary>
+            (optional, but recommended)
+            </summary>
+        </member>
+        <member name="P:FoursquareNET.Venue.Add.Geolong">
+            <summary>
+            (optional, but recommended)
+            </summary>
+        </member>
+        <member name="P:FoursquareNET.Venue.Add.PrimaryCategoryId">
+            <summary>
+            (optional) the ID of the category to which you want to assign this venue
+            </summary>
+        </member>
+        <member name="P:FoursquareNET.Venue.FlagClosed.VenueId">
+            <summary>
+            the venue that you want marked closed (required)
+            </summary>
+        </member>
+        <member name="M:FoursquareNET.Tip.MarkTodo.#ctor">
+            <summary>
+            Allows you to mark a tip as a to-do item.
+            </summary>
+            <param name="returnFormat"></param>
+        </member>
+        <member name="P:FoursquareNET.Tip.MarkTodo.TipId">
+            <summary>
+            the tip that you want to mark to-do (required)
+            </summary>
+        </member>
+        <member name="M:FoursquareNET.Friend.GetPending.#ctor">
+            <summary>
+            Allows you to add a new tip or to-do at a venue.
+            </summary>
+            <param name="returnFormat"></param>
+        </member>
+        <member name="M:FoursquareNET.User.GetFriends.#ctor">
+            <summary>
+            Returns a list of friends. If you do not specify uid, the authenticating user's list of friends will be returned. 
+            If the friend has allowed it, you'll also see links to their Twitter and Facebook accounts.
+            </summary>
+            <param name="returnFormat"></param>
+        </member>
+        <member name="P:FoursquareNET.User.GetFriends.UserId">
+            <summary>
+            user id of the person for whom you want to pull a friend graph (optional)
+            </summary>
+        </member>
+        <member name="M:FoursquareNET.Venue.NearbyAndSearch.#ctor">
+            <summary>
+            Returns a list of venues near the area specified or that match the search term. (The distance returned is in meters). 
+            If you authenticate, the method will return venue meta-data related to you and your friends. 
+            If you do not authenticate, you will not get this data.
+            </summary>
+            <param name="returnFormat"></param>
+        </member>
+        <member name="P:FoursquareNET.Venue.NearbyAndSearch.Geolat">
+            <summary>
+            latitude (required)
+            </summary>
+        </member>
+        <member name="P:FoursquareNET.Venue.NearbyAndSearch.Geolong">
+            <summary>
+            longitude (required)
+            </summary>
+        </member>
+        <member name="P:FoursquareNET.Venue.NearbyAndSearch.Limit">
+            <summary>
+            limit of results (optional, default 10, maximum 50)
+            </summary>
+        </member>
+        <member name="P:FoursquareNET.Venue.NearbyAndSearch.SearchTerm">
+            <summary>
+            keyword search (optional)
+            </summary>
+        </member>
+        <member name="P:FoursquareNET.Venue.FlagDuplicate.VenueId">
+            <summary>
+            the venue that you want marked as a duplicate (required)
+            </summary>
+        </member>
+        <member name="P:FoursquareNET.Venue.GetDetail.VenueId">
+            <summary>
+            the ID for the venue for which you want information 
+            </summary>
+        </member>
+        <member name="M:FoursquareNET.Friend.DenyRequest.#ctor">
+            <summary>
+            Denies a pending friend request from another user. On success, returns the user object.
+            </summary>
+            <param name="returnFormat"></param>
+        </member>
+        <member name="P:FoursquareNET.Friend.DenyRequest.UserId">
+            <summary>
+            the user ID of the user who you want to deny
+            </summary>
+        </member>
+        <member name="M:FoursquareNET.Tip.Add.#ctor">
+            <summary>
+            Allows you to add a new tip or to-do at a venue.
+            </summary>
+            <param name="returnFormat"></param>
+        </member>
+        <member name="P:FoursquareNET.Tip.Add.VenueId">
+            <summary>
+            the venue where you want to add this tip (required)
+            </summary>
+        </member>
+        <member name="P:FoursquareNET.Tip.Add.Text">
+            <summary>
+            the text of the tip or to-do item (required)
+            </summary>
+        </member>
+        <member name="P:FoursquareNET.Tip.Add.TipType">
+            <summary>
+            specify one of 'tip' or 'todo' (optional, default: tip)
+            </summary>
+        </member>
+        <member name="P:FoursquareNET.Tip.Add.Geolat">
+            <summary>
+            (optional, but recommended)
+            </summary>
+        </member>
+        <member name="P:FoursquareNET.Tip.Add.Geolong">
+            <summary>
+            (optional, but recommended)
+            </summary>
+        </member>
+        <member name="P:FoursquareNET.Venue.ProposeEdit.VenueId">
+            <summary>
+            (required) the venue for which you want to propose an edit
+            </summary>
+        </member>
+        <member name="P:FoursquareNET.Venue.ProposeEdit.Name">
+            <summary>
+            (required) the name of the venue
+            </summary>
+        </member>
+        <member name="P:FoursquareNET.Venue.ProposeEdit.Address">
+            <summary>
+            (required) the address of the venue (e.g., "202 1st Avenue")
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "P:FoursquareNET.Venue.ProposeEdit.CrossStreet" -->
+        <member name="P:FoursquareNET.Venue.ProposeEdit.City">
+            <summary>
+            (required) the city name where this venue is
+            </summary>
+        </member>
+        <member name="P:FoursquareNET.Venue.ProposeEdit.State">
+            <summary>
+            (required) the state where the city is
+            </summary>
+        </member>
+        <member name="P:FoursquareNET.Venue.ProposeEdit.Zip">
+            <summary>
+            (optional) the ZIP code for the venue
+            </summary>
+        </member>
+        <member name="P:FoursquareNET.Venue.ProposeEdit.Phone">
+            <summary>
+            (optional) the phone number for the venue
+            </summary>
+        </member>
+        <member name="P:FoursquareNET.Venue.ProposeEdit.Geolat">
+            <summary>
+            (required)
+            </summary>
+        </member>
+        <member name="P:FoursquareNET.Venue.ProposeEdit.Geolong">
+            <summary>
+            (required)
+            </summary>
+        </member>
+        <member name="P:FoursquareNET.Venue.FlagMislocated.VenueId">
+            <summary>
+            the venue that you want marked mislocated (required)
+            </summary>
+        </member>
+        <member name="M:FoursquareNET.Checkins.History.#ctor">
+            <summary>
+            Returns a history of checkins for the authenticated user.
+            </summary>
+            <param name="returnFormat"></param>
+        </member>
+        <member name="P:FoursquareNET.Checkins.History.Limit">
+            <summary>
+            limit of results (optional, default: 20, max: 250). number of checkins to return
+            </summary>
+        </member>
+        <member name="P:FoursquareNET.Checkins.History.SinceId">
+            <summary>
+            id to start returning results from (optional, if omitted returns most recent results)
+            </summary>
+        </member>
+        <member name="M:FoursquareNET.Settings.SetPings.#ctor">
+            <summary>
+            Allows you to add a new tip or to-do at a venue.
+            </summary>
+            <param name="returnFormat"></param>
+        </member>
+        <member name="P:FoursquareNET.Settings.SetPings.SelfPingStatus">
+            <summary>
+            the ping status for yourself (globally). possible values are on and off.
+            </summary>
+        </member>
+        <member name="P:FoursquareNET.Settings.SetPings.FriendUserId">
+            <summary>
+            id of a friend to set set the ping status
+            </summary>
+        </member>
+        <member name="P:FoursquareNET.Settings.SetPings.FriendPingStatus">
+            <summary>
+            set the ping status for a friend. possible values are on and off.
+            </summary>
+        </member>
+        <member name="M:FoursquareNET.Friend.FindByTwitter.#ctor">
+             <summary>
+             When passed a Twitter name (user A), returns a list of matching user objects that correspond to user A's friends on Twitter. The method only returns matches of people with whom you are not already friends.
+            
+             If you don't pass in a Twitter name, it will attempt to use the Twitter name associated with the authenticating user.
+             </summary>
+             <param name="returnFormat"></param>
+        </member>
+        <member name="P:FoursquareNET.Friend.FindByTwitter.Query">
+            <summary>
+            (optional) the Twitter name you want to use to search
+            </summary>
+        </member>
+        <member name="T:FoursquareNET.Credential.Basic">
+            <summary>
+            Credential type to use for Basic Authentication
+            </summary>
+        </member>
+        <member name="T:FoursquareNET.Credential.OAuth">
+            <summary>
+            Credential type to use for OAuth
+            </summary>
+        </member>
+        <member name="M:FoursquareNET.Tip.MarkDone.#ctor">
+            <summary>
+            Allows you to mark a tip as done.
+            </summary>
+            <param name="returnFormat"></param>
+        </member>
+        <member name="P:FoursquareNET.Tip.MarkDone.TipId">
+            <summary>
+            the tip that you want to mark to-do (required)
+            </summary>
+        </member>
+        <member name="M:FoursquareNET.Friend.ApproveRequest.#ctor">
+            <summary>
+            Approves a pending friend request from another user. On success, returns the user object.
+            </summary>
+            <param name="returnFormat"></param>
+        </member>
+        <member name="P:FoursquareNET.Friend.ApproveRequest.UserId">
+            <summary>
+            the user ID of the user who you want to approve
+            </summary>
+        </member>
+        <member name="M:FoursquareNET.OAuth.OAuthBase.ComputeHash(System.Security.Cryptography.HashAlgorithm,System.String)">
+            <summary>
+            Helper function to compute a hash value
+            </summary>
+            <param name="hashAlgorithm">The hashing algoirhtm used. If that algorithm needs some initialization, like HMAC and its derivatives, they should be initialized prior to passing it to this function</param>
+            <param name="data">The data to hash</param>
+            <returns>a Base64 string of the hash value</returns>
+        </member>
+        <member name="M:FoursquareNET.OAuth.OAuthBase.GetQueryParameters(System.String)">
+            <summary>
+            Internal function to cut out all non oauth query string parameters (all parameters not begining with "oauth_")
+            </summary>
+            <param name="parameters">The query string part of the Url</param>
+            <returns>A list of QueryParameter each containing the parameter name and value</returns>
+        </member>
+        <member name="M:FoursquareNET.OAuth.OAuthBase.UrlEncode(System.String)">
+            <summary>
+            This is a different Url Encode implementation since the default .NET one outputs the percent encoding in lower case.
+            While this is not a problem with the percent encoding spec, it is used in upper case throughout OAuth
+            </summary>
+            <param name="value">The value to Url encode</param>
+            <returns>Returns a Url encoded string</returns>
+        </member>
+        <member name="M:FoursquareNET.OAuth.OAuthBase.NormalizeRequestParameters(System.Collections.Generic.IList{FoursquareNET.OAuth.OAuthBase.QueryParameter})">
+            <summary>
+            Normalizes the request parameters according to the spec
+            </summary>
+            <param name="parameters">The list of parameters already sorted</param>
+            <returns>a string representing the normalized parameters</returns>
+        </member>
+        <member name="M:FoursquareNET.OAuth.OAuthBase.GenerateSignatureBase(System.Uri,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String@,System.String@)">
+            <summary>
+            Generate the signature base that is used to produce the signature
+            </summary>
+            <param name="url">The full url that needs to be signed including its non OAuth url parameters</param>
+            <param name="consumerKey">The consumer key</param>        
+            <param name="token">The token, if available. If not available pass null or an empty string</param>
+            <param name="tokenSecret">The token secret, if available. If not available pass null or an empty string</param>
+            <param name="httpMethod">The http method used. Must be a valid HTTP method verb (POST,GET,PUT, etc)</param>
+            <param name="signatureType">The signature type. To use the default values use <see cref="T:FoursquareNET.OAuth.OAuthBase.SignatureTypes">OAuthBase.SignatureTypes</see>.</param>
+            <returns>The signature base</returns>
+        </member>
+        <member name="M:FoursquareNET.OAuth.OAuthBase.GenerateSignatureUsingHash(System.String,System.Security.Cryptography.HashAlgorithm)">
+            <summary>
+            Generate the signature value based on the given signature base and hash algorithm
+            </summary>
+            <param name="signatureBase">The signature based as produced by the GenerateSignatureBase method or by any other means</param>
+            <param name="hash">The hash algorithm used to perform the hashing. If the hashing algorithm requires initialization or a key it should be set prior to calling this method</param>
+            <returns>A base64 string of the hash value</returns>
+        </member>
+        <member name="M:FoursquareNET.OAuth.OAuthBase.GenerateSignature(System.Uri,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String@,System.String@)">
+            <summary>
+            Generates a signature using the HMAC-SHA1 algorithm
+            </summary>		
+            <param name="url">The full url that needs to be signed including its non OAuth url parameters</param>
+            <param name="consumerKey">The consumer key</param>
+            <param name="consumerSecret">The consumer seceret</param>
+            <param name="token">The token, if available. If not available pass null or an empty string</param>
+            <param name="tokenSecret">The token secret, if available. If not available pass null or an empty string</param>
+            <param name="httpMethod">The http method used. Must be a valid HTTP method verb (POST,GET,PUT, etc)</param>
+            <returns>A base64 string of the hash value</returns>
+        </member>
+        <member name="M:FoursquareNET.OAuth.OAuthBase.GenerateSignature(System.Uri,System.String,System.String,System.String,System.String,System.String,System.String,System.String,FoursquareNET.OAuth.OAuthBase.SignatureTypes,System.String@,System.String@)">
+            <summary>
+            Generates a signature using the specified signatureType 
+            </summary>		
+            <param name="url">The full url that needs to be signed including its non OAuth url parameters</param>
+            <param name="consumerKey">The consumer key</param>
+            <param name="consumerSecret">The consumer seceret</param>
+            <param name="token">The token, if available. If not available pass null or an empty string</param>
+            <param name="tokenSecret">The token secret, if available. If not available pass null or an empty string</param>
+            <param name="httpMethod">The http method used. Must be a valid HTTP method verb (POST,GET,PUT, etc)</param>
+            <param name="signatureType">The type of signature to use</param>
+            <returns>A base64 string of the hash value</returns>
+        </member>
+        <member name="M:FoursquareNET.OAuth.OAuthBase.GenerateTimeStamp">
+            <summary>
+            Generate the timestamp for the signature        
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FoursquareNET.OAuth.OAuthBase.GenerateNonce">
+            <summary>
+            Generate a nonce
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:FoursquareNET.OAuth.OAuthBase.SignatureTypes">
+            <summary>
+            Provides a predefined set of algorithms that are supported officially by the protocol
+            </summary>
+        </member>
+        <member name="T:FoursquareNET.OAuth.OAuthBase.QueryParameter">
+            <summary>
+            Provides an internal structure to sort the query parameter
+            </summary>
+        </member>
+        <member name="T:FoursquareNET.OAuth.OAuthBase.QueryParameterComparer">
+            <summary>
+            Comparer class used to perform the sorting of the query parameters
+            </summary>
+        </member>
+        <member name="T:FoursquareNET.OAuth.HttpUtility">
+            <summary>Provides methods for encoding and decoding URLs when processing Web requests. This class cannot be inherited.</summary>
+        </member>
+        <member name="M:FoursquareNET.OAuth.HttpUtility.ASCIIGetString(System.Byte[])">
+            <summary>
+            Decodes all the bytes in the specified byte array into a string.
+            </summary>
+            <remarks>
+            Replace the method "System.Text.Encoding.ASCII.GetString(byte[] bytes);" in .Net Framework.
+            </remarks>
+            <param name="bytes">The byte array containing the sequence of bytes to decode.</param>
+            <returns>A String containing the results of decoding the specified sequence of bytes.</returns>
+        </member>
+        <member name="M:FoursquareNET.OAuth.HttpUtility.IntToHex(System.Int32)">
+            <summary>Converts a string that has been HTML-encoded into a decoded string, and sends the decoded string to a <see cref="T:System.IO.TextWriter"></see> output stream.</summary>
+            <param name="s">The string to decode. </param>
+            <param name="output">A <see cref="T:System.IO.TextWriter"></see> stream of output. </param>
+        </member>
+        <member name="M:FoursquareNET.OAuth.HttpUtility.UrlDecode(System.String)">
+            <summary>Converts a string that has been encoded for transmission in a URL into a decoded string.</summary>
+            <returns>A decoded string.</returns>
+            <param name="str">The string to decode. </param>
+        </member>
+        <member name="M:FoursquareNET.OAuth.HttpUtility.UrlDecode(System.Byte[],System.Text.Encoding)">
+            <summary>Converts a URL-encoded byte array into a decoded string using the specified decoding object.</summary>
+            <returns>A decoded string.</returns>
+            <param name="e">The <see cref="T:System.Text.Encoding"></see> that specifies the decoding scheme. </param>
+            <param name="bytes">The array of bytes to decode. </param>
+        </member>
+        <member name="M:FoursquareNET.OAuth.HttpUtility.UrlDecode(System.String,System.Text.Encoding)">
+            <summary>Converts a URL-encoded string into a decoded string, using the specified encoding object.</summary>
+            <returns>A decoded string.</returns>
+            <param name="e">The <see cref="T:System.Text.Encoding"></see> that specifies the decoding scheme. </param>
+            <param name="str">The string to decode. </param>
+        </member>
+        <member name="M:FoursquareNET.OAuth.HttpUtility.UrlDecode(System.Byte[],System.Int32,System.Int32,System.Text.Encoding)">
+            <summary>Converts a URL-encoded byte array into a decoded string using the specified encoding object, starting at the specified position in the array, and continuing for the specified number of bytes.</summary>
+            <returns>A decoded string.</returns>
+            <param name="offset">The position in the byte to begin decoding. </param>
+            <param name="count">The number of bytes to decode. </param>
+            <param name="e">The <see cref="T:System.Text.Encoding"></see> object that specifies the decoding scheme. </param>
+            <param name="bytes">The array of bytes to decode. </param>
+        </member>
+        <member name="M:FoursquareNET.OAuth.HttpUtility.UrlDecodeToBytes(System.Byte[])">
+            <summary>Converts a URL-encoded array of bytes into a decoded array of bytes.</summary>
+            <returns>A decoded array of bytes.</returns>
+            <param name="bytes">The array of bytes to decode. </param>
+        </member>
+        <member name="M:FoursquareNET.OAuth.HttpUtility.UrlDecodeToBytes(System.String)">
+            <summary>Converts a URL-encoded string into a decoded array of bytes.</summary>
+            <returns>A decoded array of bytes.</returns>
+            <param name="str">The string to decode. </param>
+        </member>
+        <member name="M:FoursquareNET.OAuth.HttpUtility.UrlDecodeToBytes(System.String,System.Text.Encoding)">
+            <summary>Converts a URL-encoded string into a decoded array of bytes using the specified decoding object.</summary>
+            <returns>A decoded array of bytes.</returns>
+            <param name="e">The <see cref="T:System.Text.Encoding"></see> object that specifies the decoding scheme. </param>
+            <param name="str">The string to decode. </param>
+        </member>
+        <member name="M:FoursquareNET.OAuth.HttpUtility.UrlDecodeToBytes(System.Byte[],System.Int32,System.Int32)">
+            <summary>Converts a URL-encoded array of bytes into a decoded array of bytes, starting at the specified position in the array and continuing for the specified number of bytes.</summary>
+            <returns>A decoded array of bytes.</returns>
+            <param name="offset">The position in the byte array at which to begin decoding. </param>
+            <param name="count">The number of bytes to decode. </param>
+            <param name="bytes">The array of bytes to decode. </param>
+        </member>
+        <member name="M:FoursquareNET.OAuth.HttpUtility.UrlEncode(System.Byte[])">
+            <summary>Converts a byte array into an encoded URL string.</summary>
+            <returns>An encoded string.</returns>
+            <param name="bytes">The array of bytes to encode. </param>
+        </member>
+        <member name="M:FoursquareNET.OAuth.HttpUtility.UrlEncode(System.String)">
+            <summary>Encodes a URL string.</summary>
+            <returns>An encoded string.</returns>
+            <param name="str">The text to encode. </param>
+        </member>
+        <member name="M:FoursquareNET.OAuth.HttpUtility.UrlEncode(System.String,System.Text.Encoding)">
+            <summary>Encodes a URL string using the specified encoding object.</summary>
+            <returns>An encoded string.</returns>
+            <param name="e">The <see cref="T:System.Text.Encoding"></see> object that specifies the encoding scheme. </param>
+            <param name="str">The text to encode. </param>
+        </member>
+        <member name="M:FoursquareNET.OAuth.HttpUtility.UrlEncode(System.Byte[],System.Int32,System.Int32)">
+            <summary>Converts a byte array into a URL-encoded string, starting at the specified position in the array and continuing for the specified number of bytes.</summary>
+            <returns>An encoded string.</returns>
+            <param name="offset">The position in the byte array at which to begin encoding. </param>
+            <param name="count">The number of bytes to encode. </param>
+            <param name="bytes">The array of bytes to encode. </param>
+        </member>
+        <member name="M:FoursquareNET.OAuth.HttpUtility.UrlEncodeToBytes(System.String)">
+            <summary>Converts a string into a URL-encoded array of bytes.</summary>
+            <returns>An encoded array of bytes.</returns>
+            <param name="str">The string to encode. </param>
+        </member>
+        <member name="M:FoursquareNET.OAuth.HttpUtility.UrlEncodeToBytes(System.Byte[])">
+            <summary>Converts an array of bytes into a URL-encoded array of bytes.</summary>
+            <returns>An encoded array of bytes.</returns>
+            <param name="bytes">The array of bytes to encode. </param>
+        </member>
+        <member name="M:FoursquareNET.OAuth.HttpUtility.UrlEncodeToBytes(System.String,System.Text.Encoding)">
+            <summary>Converts a string into a URL-encoded array of bytes using the specified encoding object.</summary>
+            <returns>An encoded array of bytes.</returns>
+            <param name="e">The <see cref="T:System.Text.Encoding"></see> that specifies the encoding scheme. </param>
+            <param name="str">The string to encode </param>
+        </member>
+        <member name="M:FoursquareNET.OAuth.HttpUtility.UrlEncodeToBytes(System.Byte[],System.Int32,System.Int32)">
+            <summary>Converts an array of bytes into a URL-encoded array of bytes, starting at the specified position in the array and continuing for the specified number of bytes.</summary>
+            <returns>An encoded array of bytes.</returns>
+            <param name="offset">The position in the byte array at which to begin encoding. </param>
+            <param name="count">The number of bytes to encode. </param>
+            <param name="bytes">The array of bytes to encode. </param>
+        </member>
+        <member name="M:FoursquareNET.OAuth.HttpUtility.UrlEncodeUnicode(System.String)">
+            <summary>Converts a string into a Unicode string.</summary>
+            <returns>A Unicode string in %UnicodeValue notation.</returns>
+            <param name="str">The string to convert. </param>
+        </member>
+        <member name="M:FoursquareNET.OAuth.HttpUtility.UrlEncodeUnicodeToBytes(System.String)">
+            <summary>Converts a Unicode string into an array of bytes.</summary>
+            <returns>A byte array.</returns>
+            <param name="str">The string to convert. </param>
+        </member>
+        <member name="M:FoursquareNET.OAuth.HttpUtility.UrlPathEncode(System.String)">
+            <summary>Encodes the path portion of a URL string for reliable HTTP transmission from the Web server to a client.</summary>
+            <returns>The URL-encoded text.</returns>
+            <param name="str">The text to URL-encode. </param>
+        </member>
+    </members>
+</doc>

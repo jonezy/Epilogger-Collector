@@ -1,0 +1,10 @@
+C:\Users\Chris\Desktop\Chris\Projects\Epilogger\Epilogger Service\Trunk\FourSquareAPI\bin\Debug\FourSquareAPI.dll
+C:\Users\Chris\Desktop\Chris\Projects\Epilogger\Epilogger Service\Trunk\FourSquareAPI\bin\Debug\FourSquareAPI.pdb
+C:\Users\Chris\Desktop\Chris\Projects\Epilogger\Epilogger Service\Trunk\FourSquareAPI\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Chris\Desktop\Chris\Projects\Epilogger\Epilogger Service\Trunk\FourSquareAPI\obj\Debug\FourSquareAPI.dll
+C:\Users\Chris\Desktop\Chris\Projects\Epilogger\Epilogger Service\Trunk\FourSquareAPI\obj\Debug\FourSquareAPI.pdb
+Z:\Projects\Epilogger\Epilogger Service\Trunk\FourSquareAPI\bin\Debug\FourSquareAPI.dll
+Z:\Projects\Epilogger\Epilogger Service\Trunk\FourSquareAPI\bin\Debug\FourSquareAPI.pdb
+Z:\Projects\Epilogger\Epilogger Service\Trunk\FourSquareAPI\obj\Debug\ResolveAssemblyReference.cache
+Z:\Projects\Epilogger\Epilogger Service\Trunk\FourSquareAPI\obj\Debug\FourSquareAPI.dll
+Z:\Projects\Epilogger\Epilogger Service\Trunk\FourSquareAPI\obj\Debug\FourSquareAPI.pdb

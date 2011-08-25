@@ -1,0 +1,254 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Class="SchemaDataContext" AccessModifier="Internal" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Table Name="" Member="Checkins">
+    <Type Name="Checkin">
+      <Column Name="Id" Type="System.Int32" CanBeNull="false" />
+      <Column Name="User" Type="Schema.User" CanBeNull="false" />
+      <Column Name="Venue" Type="Schema.Venue" CanBeNull="false" />
+      <Column Name="Distance" Type="System.Int32" CanBeNull="false" />
+      <Column Name="Display" Type="System.String" CanBeNull="false" />
+      <Column Name="Shout" Type="System.String" CanBeNull="false" />
+      <Column Name="Created" Type="System.DateTimeOffset" CanBeNull="false" />
+      <Column Name="Message" Type="System.String" CanBeNull="false" />
+      <Column Name="Mayor" Type="Schema.Mayor" CanBeNull="false" />
+      <Column Name="Badges" Type="List&lt;Schema.Badge&gt;" CanBeNull="true" />
+      <Column Name="Scores" Type="List&lt;Schema.Score&gt;" CanBeNull="false" />
+      <Column Name="Specials" Type="List&lt;Schema.SpecialObj&gt;" CanBeNull="false" />
+      <Column Name="TimeZone" Type="System.String" CanBeNull="false" />
+      <Column Name="IsMayor" Type="bool" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="" Member="Users">
+    <Type Name="User">
+      <Column Name="Id" Type="System.Int32" CanBeNull="false" />
+      <Column Name="FirstName" Type="System.String" CanBeNull="false" />
+      <Column Name="LastName" Type="System.String" CanBeNull="false" />
+      <Column Name="Photo" Type="System.String" CanBeNull="false" />
+      <Column Name="Phone" Type="System.String" CanBeNull="false" />
+      <Column Name="Email" Type="System.String" CanBeNull="false" />
+      <Column Name="Gender" Type="Schema.Gender" CanBeNull="false" />
+      <Column Name="Twitter" Type="System.String" CanBeNull="false" />
+      <Column Name="Facebook" Type="System.Int64" CanBeNull="false" />
+      <Column Name="FriendStatus" Type="Schema.FriendStatus" CanBeNull="false" />
+      <Column Name="Checkin" Type="Schema.Checkin" CanBeNull="false" />
+      <Column Name="Settings" Type="Schema.Settings" CanBeNull="false" />
+      <Column Name="Status" Type="Schema.Status" CanBeNull="false" />
+      <Column Name="Badges" Type="List&lt;Schema.Badge&gt;" CanBeNull="false" />
+      <Column Name="Mayor" Type="List&lt;Schema.Venue&gt;" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="" Member="Venues">
+    <Type Name="Venue">
+      <Column Name="Id" Type="System.Int32" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" CanBeNull="false" />
+      <Column Name="Address" Type="System.String" CanBeNull="false" />
+      <Column Name="CrossStreet" Type="System.String" CanBeNull="false" />
+      <Column Name="Geolat" Type="System.String" CanBeNull="false" />
+      <Column Name="Geolong" Type="System.String" CanBeNull="false" />
+      <Column Name="City" Type="System.String" CanBeNull="false" />
+      <Column Name="State" Type="System.String" CanBeNull="false" />
+      <Column Name="Zip" Type="System.String" CanBeNull="false" />
+      <Column Name="PrimaryCategory" Type="Schema.Category" CanBeNull="false" />
+      <Column Name="Phone" Type="System.String" CanBeNull="false" />
+      <Column Name="Stats" Type="Schema.Stats" CanBeNull="false" />
+      <Column Name="Tips" Type="List&lt;Schema.Tip&gt;" CanBeNull="false" />
+      <Column Name="Categories" Type="List&lt;Schema.Category&gt;" CanBeNull="false" />
+      <Column Name="Specials" Type="List&lt;Schema.Special&gt;" CanBeNull="false" />
+      <Column Member="HereNow" Type="Schema.HereNow" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="" Member="Mayors">
+    <Type Name="Mayor">
+      <Column Name="Type" Type="System.String" CanBeNull="false" />
+      <Column Name="Count" Type="System.Int32" CanBeNull="false" />
+      <Column Name="User" Type="Schema.User" CanBeNull="false" />
+      <Column Name="Message" Type="System.String" CanBeNull="false" />
+      <Column Name="Checkins" Type="System.Int32" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="" Member="Badges">
+    <Type Name="Badge">
+      <Column Name="Id" Type="System.Int32" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" CanBeNull="false" />
+      <Column Name="Icon" Type="System.String" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="" Member="Scores">
+    <Type Name="Score">
+      <Column Name="Points" Type="System.String" CanBeNull="false" />
+      <Column Name="Icon" Type="System.String" CanBeNull="false" />
+      <Column Name="Message" Type="System.String" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="" Member="Specials">
+    <Type Name="Special">
+      <Column Name="Id" Type="System.Int32" CanBeNull="false" />
+      <Column Name="Type" Type="Schema.SpecialType" CanBeNull="false" />
+      <Column Name="Kind" Type="Schema.SpecialKind" CanBeNull="false" />
+      <Column Name="Message" Type="System.String" CanBeNull="false" />
+      <Column Name="Venue" Type="Schema.Venue" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="" Member="Categories">
+    <Type Name="Category">
+      <Column Name="Id" Type="System.Int32" CanBeNull="false" />
+      <Column Name="FullPathName" Type="System.String" CanBeNull="false" />
+      <Column Name="NodeName" Type="System.String" CanBeNull="false" />
+      <Column Name="IconUrl" Type="System.String" CanBeNull="false" />
+      <Column Name="Categories" Type="List&lt;Schema.Category&gt;" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="" Member="Settings">
+    <Type Name="Settings">
+      <Column Name="SendToTwitter" Type="System.Boolean" CanBeNull="false" />
+      <Column Name="SendToFacebook" Type="System.Boolean" CanBeNull="false" />
+      <Column Name="Pings" Type="Schema.PingStatus" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="" Member="UserObjs" AccessModifier="Internal">
+    <Type Name="UserObj" AccessModifier="Internal">
+      <Column Name="User" Type="Schema.User" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="" Member="CheckinsObjs" AccessModifier="Internal">
+    <Type Name="CheckinsObj" AccessModifier="Internal">
+      <Column Name="Checkins" Type="List&lt;Schema.Checkin&gt;" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="" Member="BadgeObjs" AccessModifier="Internal">
+    <Type Name="BadgeObj" AccessModifier="Internal">
+      <Column Name="Badge" Type="Schema.Badge" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="" Member="CheckinObjs" AccessModifier="Internal">
+    <Type Name="CheckinObj" AccessModifier="Internal">
+      <Column Name="Checkin" Type="Schema.Checkin" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="" Member="ScoreObjs" AccessModifier="Internal">
+    <Type Name="ScoreObj" AccessModifier="Internal">
+      <Column Name="Score" Type="Schema.Score" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="" Member="SpecialObjs">
+    <Type Name="SpecialObj">
+      <Column Name="Special" Type="Schema.Special" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="" Member="Status">
+    <Type Name="Status">
+      <Column Name="FriendRequests" Type="System.String" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="" Member="FriendObjs" AccessModifier="Internal">
+    <Type Name="FriendObj" AccessModifier="Internal">
+      <Column Name="Friends" Type="List&lt;Schema.User&gt;" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="" Member="VenuesObjs" AccessModifier="Internal">
+    <Type Name="VenuesObj" AccessModifier="Internal">
+      <Column Name="Groups" Type="List&lt;Schema.VenueGroup&gt;" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="" Member="VenueGroups">
+    <Type Name="VenueGroup">
+      <Column Name="Type" Type="System.String" CanBeNull="false" />
+      <Column Name="Venues" Type="List&lt;Schema.Venue&gt;" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="" Member="VenueObjs" AccessModifier="Internal">
+    <Type Name="VenueObj" AccessModifier="Internal">
+      <Column Name="Venue" Type="Schema.Venue" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="" Member="CategoriesObjs" AccessModifier="Internal">
+    <Type Name="CategoriesObj" AccessModifier="Internal">
+      <Column Name="Categories" Type="List&lt;Schema.Category&gt;" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="" Member="UsersObjs" AccessModifier="Internal">
+    <Type Name="UsersObj" AccessModifier="Internal">
+      <Column Name="Users" Type="List&lt;Schema.User&gt;" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="" Member="RequestsObjs" AccessModifier="Internal">
+    <Type Name="RequestsObj" AccessModifier="Internal">
+      <Column Name="Requests" Type="List&lt;Schema.User&gt;" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="" Member="Tips">
+    <Type Name="Tip">
+      <Column Name="" Member="Id" Type="System.Int32" CanBeNull="false" />
+      <Column Name="Text" Type="System.String" CanBeNull="false" />
+      <Column Name="Distance" Type="System.Int32" CanBeNull="false" />
+      <Column Name="Created" Type="System.DateTimeOffset" CanBeNull="false" />
+      <Column Name="User" Type="Schema.User" CanBeNull="false" />
+      <Column Name="Venue" Type="Schema.Venue" CanBeNull="false" />
+      <Column Name="Status" Type="System.String" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="" Member="TipsObjs" AccessModifier="Internal">
+    <Type Name="TipsObj" AccessModifier="Internal">
+      <Column Name="Groups" Type="List&lt;Schema.TipGroup&gt;" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="" Member="TipGroups">
+    <Type Name="TipGroup">
+      <Column Name="Type" Type="System.String" CanBeNull="false" />
+      <Column Name="Tips" Type="List&lt;Schema.Tip&gt;" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="" Member="TipObjs" AccessModifier="Internal">
+    <Type Name="TipObj" AccessModifier="Internal">
+      <Column Name="Tip" Type="Schema.Tip" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="" Member="Stats">
+    <Type Name="Stats">
+      <Column Name="Checkins" Type="System.Int32" CanBeNull="false" />
+      <Column Name="HereNow" Type="System.Int32" CanBeNull="false" />
+      <Column Name="BeenHere" Type="Schema.BeenHere" CanBeNull="false" />
+      <Column Name="Mayor" Type="Schema.Mayor" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="" Member="BeenHeres">
+    <Type Name="BeenHere">
+      <Column Name="Me" Type="System.Boolean" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="" Member="ErrorObjs">
+    <Type Name="ErrorObj">
+      <Column Name="Error" Type="System.String" CanBeNull="false" />
+      <Column Name="Unauthorized" Type="System.String" CanBeNull="false" />
+      <Column Name="RateLimited" Type="System.String" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="" Member="SettingsObjs">
+    <Type Name="SettingsObj">
+      <Column Name="Settings" Type="Schema.Settings" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="" Member="HereNows">
+    <Type Name="HereNow">
+      <Column Member="Count" Type="System.Int32" CanBeNull="false" />
+      <Column Member="Groups" Type="Schema.Groups" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="" Member="Groups">
+    <Type Name="Groups">
+      <Column Member="Type" Type="System.String" CanBeNull="false" />
+      <Column Member="Name" Type="System.String" CanBeNull="false" />
+      <Column Member="Count" Type="System.Int32" CanBeNull="false" />
+      <Column Member="Items" Type="System.String" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="" Member="Items">
+    <Type Name="Items">
+      <Column Member="ID" Type="System.Int64" CanBeNull="false" />
+      <Column Member="CreatedAt" Type="System.String" CanBeNull="false" />
+      <Column Member="Type" Type="System.String" CanBeNull="false" />
+      <Column Member="TimeZone" Type="System.String" CanBeNull="false" />
+      <Column Member="User" Type="Schema.User" CanBeNull="false" />
+    </Type>
+  </Table>
+</Database>

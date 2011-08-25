@@ -1,0 +1,11 @@
+C:\Projects\DSMLoggingReporting\DSMLoggingReporting\bin\Release\DSMLoggingReporting.dll.config
+C:\Projects\DSMLoggingReporting\DSMLoggingReporting\bin\Release\DSMLoggingReporting.dll
+C:\Projects\DSMLoggingReporting\DSMLoggingReporting\bin\Release\DSMLoggingReporting.pdb
+C:\Projects\DSMLoggingReporting\DSMLoggingReporting\bin\Release\DSMLoggingReporting.xml
+C:\Projects\DSMLoggingReporting\DSMLoggingReporting\obj\Release\ResolveAssemblyReference.cache
+C:\Projects\DSMLoggingReporting\DSMLoggingReporting\obj\Release\DSMLoggingReporting.Resources.resources
+C:\Projects\DSMLoggingReporting\DSMLoggingReporting\obj\Release\ResGen.read.1.tlog
+C:\Projects\DSMLoggingReporting\DSMLoggingReporting\obj\Release\ResGen.write.1.tlog
+C:\Projects\DSMLoggingReporting\DSMLoggingReporting\obj\Release\DSMLoggingReporting.dll
+C:\Projects\DSMLoggingReporting\DSMLoggingReporting\obj\Release\DSMLoggingReporting.xml
+C:\Projects\DSMLoggingReporting\DSMLoggingReporting\obj\Release\DSMLoggingReporting.pdb

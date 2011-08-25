@@ -1,0 +1,15 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="My" GeneratedClassName="MySettings" UseMySettingsClassName="true">
+  <Profiles />
+  <Settings>
+    <Setting Name="ConnectionString" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Server=66.132.221.251; Failover Partner=66.132.221.253; Network=dbmssocn; Persist Security Info=True; User ID=sa;Password=dirkgently; Database=N5R_Dashboardv2;</Value>
+    </Setting>
+    <Setting Name="EmailAddress" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">chris@n5r.com</Value>
+    </Setting>
+    <Setting Name="EmailName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Chris Brooker</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

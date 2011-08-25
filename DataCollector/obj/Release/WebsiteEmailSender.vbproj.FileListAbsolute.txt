@@ -1,0 +1,22 @@
+D:\ProjectsOLD\N5R Technology Suite\N5RWebsiteEmailSuite\N5RWebsiteEmailSendingService\WebsiteEmailSender\bin\Release\WebsiteEmailSender.dll.config
+D:\ProjectsOLD\N5R Technology Suite\N5RWebsiteEmailSuite\N5RWebsiteEmailSendingService\WebsiteEmailSender\bin\Release\WebsiteEmailSender.dll
+D:\ProjectsOLD\N5R Technology Suite\N5RWebsiteEmailSuite\N5RWebsiteEmailSendingService\WebsiteEmailSender\bin\Release\WebsiteEmailSender.pdb
+D:\ProjectsOLD\N5R Technology Suite\N5RWebsiteEmailSuite\N5RWebsiteEmailSendingService\WebsiteEmailSender\bin\Release\WebsiteEmailSender.xml
+D:\ProjectsOLD\N5R Technology Suite\N5RWebsiteEmailSuite\N5RWebsiteEmailSendingService\WebsiteEmailSender\obj\Release\ResolveAssemblyReference.cache
+D:\ProjectsOLD\N5R Technology Suite\N5RWebsiteEmailSuite\N5RWebsiteEmailSendingService\WebsiteEmailSender\obj\Release\WebsiteEmailSender.Resources.resources
+D:\ProjectsOLD\N5R Technology Suite\N5RWebsiteEmailSuite\N5RWebsiteEmailSendingService\WebsiteEmailSender\obj\Release\ResGen.read.1.tlog
+D:\ProjectsOLD\N5R Technology Suite\N5RWebsiteEmailSuite\N5RWebsiteEmailSendingService\WebsiteEmailSender\obj\Release\ResGen.write.1.tlog
+D:\ProjectsOLD\N5R Technology Suite\N5RWebsiteEmailSuite\N5RWebsiteEmailSendingService\WebsiteEmailSender\obj\Release\WebsiteEmailSender.dll
+D:\ProjectsOLD\N5R Technology Suite\N5RWebsiteEmailSuite\N5RWebsiteEmailSendingService\WebsiteEmailSender\obj\Release\WebsiteEmailSender.xml
+D:\ProjectsOLD\N5R Technology Suite\N5RWebsiteEmailSuite\N5RWebsiteEmailSendingService\WebsiteEmailSender\obj\Release\WebsiteEmailSender.pdb
+C:\Projects\NewYorkFries\NYFSalesDataProcessingService\WebsiteEmailSender\bin\Release\WebsiteEmailSender.dll.config
+C:\Projects\NewYorkFries\NYFSalesDataProcessingService\WebsiteEmailSender\bin\Release\WebsiteEmailSender.dll
+C:\Projects\NewYorkFries\NYFSalesDataProcessingService\WebsiteEmailSender\bin\Release\WebsiteEmailSender.pdb
+C:\Projects\NewYorkFries\NYFSalesDataProcessingService\WebsiteEmailSender\bin\Release\WebsiteEmailSender.xml
+C:\Projects\NewYorkFries\NYFSalesDataProcessingService\WebsiteEmailSender\obj\Release\ResolveAssemblyReference.cache
+C:\Projects\NewYorkFries\NYFSalesDataProcessingService\WebsiteEmailSender\obj\Release\WebsiteEmailSender.Resources.resources
+C:\Projects\NewYorkFries\NYFSalesDataProcessingService\WebsiteEmailSender\obj\Release\ResGen.read.1.tlog
+C:\Projects\NewYorkFries\NYFSalesDataProcessingService\WebsiteEmailSender\obj\Release\ResGen.write.1.tlog
+C:\Projects\NewYorkFries\NYFSalesDataProcessingService\WebsiteEmailSender\obj\Release\WebsiteEmailSender.dll
+C:\Projects\NewYorkFries\NYFSalesDataProcessingService\WebsiteEmailSender\obj\Release\WebsiteEmailSender.xml
+C:\Projects\NewYorkFries\NYFSalesDataProcessingService\WebsiteEmailSender\obj\Release\WebsiteEmailSender.pdb

@@ -1,0 +1,13 @@
+C:\Projects\N5RLoggingReporting\N5RLoggingReporting\bin\Debug\N5RLoggingReporting.dll.config
+C:\Projects\N5RLoggingReporting\N5RLoggingReporting\bin\Debug\N5RLoggingReporting.dll
+C:\Projects\N5RLoggingReporting\N5RLoggingReporting\bin\Debug\N5RLoggingReporting.pdb
+C:\Projects\N5RLoggingReporting\N5RLoggingReporting\bin\Debug\N5RLoggingReporting.xml
+C:\Projects\N5RLoggingReporting\N5RLoggingReporting\bin\Debug\N5REmailDeployer.pdb
+C:\Projects\N5RLoggingReporting\N5RLoggingReporting\bin\Debug\N5REmailDeployer.xml
+C:\Projects\N5RLoggingReporting\N5RLoggingReporting\obj\Debug\ResolveAssemblyReference.cache
+C:\Projects\N5RLoggingReporting\N5RLoggingReporting\obj\Debug\N5RLoggingReporting.Resources.resources
+C:\Projects\N5RLoggingReporting\N5RLoggingReporting\obj\Debug\ResGen.read.1.tlog
+C:\Projects\N5RLoggingReporting\N5RLoggingReporting\obj\Debug\ResGen.write.1.tlog
+C:\Projects\N5RLoggingReporting\N5RLoggingReporting\obj\Debug\N5RLoggingReporting.dll
+C:\Projects\N5RLoggingReporting\N5RLoggingReporting\obj\Debug\N5RLoggingReporting.xml
+C:\Projects\N5RLoggingReporting\N5RLoggingReporting\obj\Debug\N5RLoggingReporting.pdb

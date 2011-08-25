@@ -1,0 +1,4 @@
+C:\Users\Brandon Fisch\Desktop\Foursquare\Foursquare\Foursquare.NET\bin\Release\FoursquareNET.XML
+C:\Users\Brandon Fisch\Desktop\Foursquare\Foursquare\Foursquare.NET\bin\Release\FoursquareNET.dll
+C:\Users\Brandon Fisch\Desktop\Foursquare\Foursquare\Foursquare.NET\obj\Release\ResolveAssemblyReference.cache
+C:\Users\Brandon Fisch\Desktop\Foursquare\Foursquare\Foursquare.NET\obj\Release\FoursquareNET.dll

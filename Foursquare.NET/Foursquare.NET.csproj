@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{D574AA4E-A213-4CD2-A3C8-8B9A2D549E31}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>FoursquareNET</RootNamespace>
+    <AssemblyName>FoursquareNET</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>
+    </DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>SecurityRules.ruleset</CodeAnalysisRuleSet>
+    <NoStdLib>false</NoStdLib>
+    <DebugSymbols>false</DebugSymbols>
+    <DocumentationFile>bin\Release\FoursquareNET.XML</DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Checkins\CheckIn.cs" />
+    <Compile Include="Common.cs" />
+    <Compile Include="Credential.cs" />
+    <Compile Include="Exception.cs" />
+    <Compile Include="Friend\ApproveRequest.cs" />
+    <Compile Include="Friend\FindByTwitter.cs" />
+    <Compile Include="Friend\FindByPhone.cs" />
+    <Compile Include="Friend\FindByName.cs" />
+    <Compile Include="Friend\SendRequest.cs" />
+    <Compile Include="Friend\DenyRequest.cs" />
+    <Compile Include="Friend\GetPending.cs" />
+    <Compile Include="OAuth\HttpUtility.cs" />
+    <Compile Include="OAuth\OAuthBase.cs" />
+    <Compile Include="Parameter.cs" />
+    <Compile Include="Schema\PingStatus.cs" />
+    <Compile Include="Schema\SpecialKind.cs" />
+    <Compile Include="Schema\SpecialType.cs" />
+    <Compile Include="Schema\FriendStatus.cs" />
+    <Compile Include="Schema\Gender.cs" />
+    <Compile Include="Schema\Schema.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Schema.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="Settings\SetPings.cs" />
+    <Compile Include="Tip\Add.cs" />
+    <Compile Include="Tip\Unmark.cs" />
+    <Compile Include="Tip\MarkDone.cs" />
+    <Compile Include="Tip\MarkTodo.cs" />
+    <Compile Include="Tip\GetNearby.cs" />
+    <Compile Include="Schema\TipType.cs" />
+    <Compile Include="User\UserObj.cs" />
+    <Compile Include="Venue\GetCategoryList.cs" />
+    <Compile Include="Venue\Add.cs" />
+    <Compile Include="Venue\FlagDuplicate.cs" />
+    <Compile Include="Venue\FlagMislocated.cs" />
+    <Compile Include="Venue\FlagClosed.cs" />
+    <Compile Include="Venue\ProposeEdit.cs" />
+    <Compile Include="Venue\GetDetail.cs" />
+    <Compile Include="Venue\NearbyAndSearch.cs" />
+    <Compile Include="User\GetFriends.cs" />
+    <Compile Include="User\GetDetail.cs" />
+    <Compile Include="Checkins\History.cs" />
+    <Compile Include="Checkins\GetFriendCheckins.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
+    <None Include="Schema\Schema.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>Schema.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Schema\Schema.dbml.layout">
+      <DependentUpon>Schema.dbml</DependentUpon>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

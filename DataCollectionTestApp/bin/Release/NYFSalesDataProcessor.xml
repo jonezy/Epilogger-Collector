@@ -1,0 +1,180 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+NYFSalesDataProcessor
+</name>
+</assembly>
+<members>
+<member name="T:NYFSalesDataProcessor.IncomingDataQueue.IncomingDataQueueDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:NYFSalesDataProcessor.IncomingDataQueue.IncomingDataQueueRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:NYFSalesDataProcessor.IncomingDataQueue.IncomingDataQueueRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:NYFSalesDataProcessor.IncomingDataQueue">
+	<summary>
+Represents a strongly typed in-memory cache of data.
+</summary>
+</member><member name="T:NYFSalesDataProcessor.IncomingDataQueueTableAdapters.IncomingDataQueueTableAdapter">
+	<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member><member name="M:NYFSalesDataProcessor.IncomingDataQueueTableAdapters.TableAdapterManager.UpdateUpdatedRows(NYFSalesDataProcessor.IncomingDataQueue,System.Collections.Generic.List{System.Data.DataRow},System.Collections.Generic.List{System.Data.DataRow})">
+	<summary>
+Update rows in top-down order.
+</summary>
+</member><member name="M:NYFSalesDataProcessor.IncomingDataQueueTableAdapters.TableAdapterManager.UpdateInsertedRows(NYFSalesDataProcessor.IncomingDataQueue,System.Collections.Generic.List{System.Data.DataRow})">
+	<summary>
+Insert rows in top-down order.
+</summary>
+</member><member name="M:NYFSalesDataProcessor.IncomingDataQueueTableAdapters.TableAdapterManager.UpdateDeletedRows(NYFSalesDataProcessor.IncomingDataQueue,System.Collections.Generic.List{System.Data.DataRow})">
+	<summary>
+Delete rows in bottom-up order.
+</summary>
+</member><member name="M:NYFSalesDataProcessor.IncomingDataQueueTableAdapters.TableAdapterManager.GetRealUpdatedRows(System.Data.DataRow[],System.Collections.Generic.List{System.Data.DataRow})">
+	<summary>
+Remove inserted rows that become updated rows after calling TableAdapter.Update(inserted rows) first
+</summary>
+</member><member name="M:NYFSalesDataProcessor.IncomingDataQueueTableAdapters.TableAdapterManager.UpdateAll(NYFSalesDataProcessor.IncomingDataQueue)">
+	<summary>
+Update all changes to the dataset.
+</summary>
+</member><member name="T:NYFSalesDataProcessor.IncomingDataQueueTableAdapters.TableAdapterManager.UpdateOrderOption">
+	<summary>
+Update Order Option
+</summary>
+</member><member name="T:NYFSalesDataProcessor.IncomingDataQueueTableAdapters.TableAdapterManager.SelfReferenceComparer">
+	<summary>
+Used to sort self-referenced table's rows
+</summary>
+</member><member name="T:NYFSalesDataProcessor.IncomingDataQueueTableAdapters.TableAdapterManager">
+	<summary>
+TableAdapterManager is used to coordinate TableAdapters in the dataset to enable Hierarchical Update scenarios
+</summary>
+</member><member name="T:NYFSalesDataProcessor.OrderDetails.OrderDetailsDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:NYFSalesDataProcessor.OrderDetails.OrderDetailsRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:NYFSalesDataProcessor.OrderDetails.OrderDetailsRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:NYFSalesDataProcessor.OrderDetails">
+	<summary>
+Represents a strongly typed in-memory cache of data.
+</summary>
+</member><member name="T:NYFSalesDataProcessor.OrderDetailsTableAdapters.OrderDetailsTableAdapter">
+	<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member><member name="M:NYFSalesDataProcessor.OrderDetailsTableAdapters.TableAdapterManager.UpdateUpdatedRows(NYFSalesDataProcessor.OrderDetails,System.Collections.Generic.List{System.Data.DataRow},System.Collections.Generic.List{System.Data.DataRow})">
+	<summary>
+Update rows in top-down order.
+</summary>
+</member><member name="M:NYFSalesDataProcessor.OrderDetailsTableAdapters.TableAdapterManager.UpdateInsertedRows(NYFSalesDataProcessor.OrderDetails,System.Collections.Generic.List{System.Data.DataRow})">
+	<summary>
+Insert rows in top-down order.
+</summary>
+</member><member name="M:NYFSalesDataProcessor.OrderDetailsTableAdapters.TableAdapterManager.UpdateDeletedRows(NYFSalesDataProcessor.OrderDetails,System.Collections.Generic.List{System.Data.DataRow})">
+	<summary>
+Delete rows in bottom-up order.
+</summary>
+</member><member name="M:NYFSalesDataProcessor.OrderDetailsTableAdapters.TableAdapterManager.GetRealUpdatedRows(System.Data.DataRow[],System.Collections.Generic.List{System.Data.DataRow})">
+	<summary>
+Remove inserted rows that become updated rows after calling TableAdapter.Update(inserted rows) first
+</summary>
+</member><member name="M:NYFSalesDataProcessor.OrderDetailsTableAdapters.TableAdapterManager.UpdateAll(NYFSalesDataProcessor.OrderDetails)">
+	<summary>
+Update all changes to the dataset.
+</summary>
+</member><member name="T:NYFSalesDataProcessor.OrderDetailsTableAdapters.TableAdapterManager.UpdateOrderOption">
+	<summary>
+Update Order Option
+</summary>
+</member><member name="T:NYFSalesDataProcessor.OrderDetailsTableAdapters.TableAdapterManager.SelfReferenceComparer">
+	<summary>
+Used to sort self-referenced table's rows
+</summary>
+</member><member name="T:NYFSalesDataProcessor.OrderDetailsTableAdapters.TableAdapterManager">
+	<summary>
+TableAdapterManager is used to coordinate TableAdapters in the dataset to enable Hierarchical Update scenarios
+</summary>
+</member><member name="P:NYFSalesDataProcessor.My.Resources.Resources.ResourceManager">
+	<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member><member name="P:NYFSalesDataProcessor.My.Resources.Resources.Culture">
+	<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member><member name="T:NYFSalesDataProcessor.My.Resources.Resources">
+	<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member><member name="T:NYFSalesDataProcessor.Orders.OrdersDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:NYFSalesDataProcessor.Orders.OrdersRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:NYFSalesDataProcessor.Orders.OrdersRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:NYFSalesDataProcessor.Orders">
+	<summary>
+Represents a strongly typed in-memory cache of data.
+</summary>
+</member><member name="T:NYFSalesDataProcessor.OrdersTableAdapters.OrdersTableAdapter">
+	<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member><member name="M:NYFSalesDataProcessor.OrdersTableAdapters.TableAdapterManager.UpdateUpdatedRows(NYFSalesDataProcessor.Orders,System.Collections.Generic.List{System.Data.DataRow},System.Collections.Generic.List{System.Data.DataRow})">
+	<summary>
+Update rows in top-down order.
+</summary>
+</member><member name="M:NYFSalesDataProcessor.OrdersTableAdapters.TableAdapterManager.UpdateInsertedRows(NYFSalesDataProcessor.Orders,System.Collections.Generic.List{System.Data.DataRow})">
+	<summary>
+Insert rows in top-down order.
+</summary>
+</member><member name="M:NYFSalesDataProcessor.OrdersTableAdapters.TableAdapterManager.UpdateDeletedRows(NYFSalesDataProcessor.Orders,System.Collections.Generic.List{System.Data.DataRow})">
+	<summary>
+Delete rows in bottom-up order.
+</summary>
+</member><member name="M:NYFSalesDataProcessor.OrdersTableAdapters.TableAdapterManager.GetRealUpdatedRows(System.Data.DataRow[],System.Collections.Generic.List{System.Data.DataRow})">
+	<summary>
+Remove inserted rows that become updated rows after calling TableAdapter.Update(inserted rows) first
+</summary>
+</member><member name="M:NYFSalesDataProcessor.OrdersTableAdapters.TableAdapterManager.UpdateAll(NYFSalesDataProcessor.Orders)">
+	<summary>
+Update all changes to the dataset.
+</summary>
+</member><member name="T:NYFSalesDataProcessor.OrdersTableAdapters.TableAdapterManager.UpdateOrderOption">
+	<summary>
+Update Order Option
+</summary>
+</member><member name="T:NYFSalesDataProcessor.OrdersTableAdapters.TableAdapterManager.SelfReferenceComparer">
+	<summary>
+Used to sort self-referenced table's rows
+</summary>
+</member><member name="T:NYFSalesDataProcessor.OrdersTableAdapters.TableAdapterManager">
+	<summary>
+TableAdapterManager is used to coordinate TableAdapters in the dataset to enable Hierarchical Update scenarios
+</summary>
+</member>
+</members>
+</doc>

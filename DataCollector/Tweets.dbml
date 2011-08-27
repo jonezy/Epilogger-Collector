@@ -1,29 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="EpiloggerV1" Class="TweetsDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Connection Mode="AppSettings" ConnectionString="Data Source=Epilogger.com;Initial Catalog=EpiloggerV1;Persist Security Info=True;User ID=sa" SettingsObjectName="DataCollector.My.MySettings" SettingsPropertyName="EpiloggerConnectionString" Provider="System.Data.SqlClient" />
-  <Table Name="dbo.Tweets" Member="Tweets">
-    <Type Name="Tweet">
-      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="TwitterID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
-      <Column Name="EventID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Text" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
-      <Column Name="TextAsHTML" Type="System.String" DbType="NVarChar(1500)" CanBeNull="true" />
-      <Column Name="Source" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
-      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="ToUserID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
-      <Column Name="FromUserID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
-      <Column Name="FromUserScreenName" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
-      <Column Name="ToUserScreenName" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
-      <Column Name="IsoLanguageCode" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Column Name="ProfileImageURL" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
-      <Column Name="SinceID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
-      <Column Name="Location" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
-      <Column Name="RawSource" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
-      <Column Name="DeleteVoteCount" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Deleted" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Association Name="Tweet_URL" Member="URLs" ThisKey="ID" OtherKey="TweetID" Type="URL" />
-      <Association Name="Event_Tweet" Member="Event" ThisKey="EventID" OtherKey="ID" Type="Event" IsForeignKey="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.URLs" Member="URLs">
     <Type Name="URL">
       <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -35,7 +11,6 @@
       <Column Name="DeleteVoteCount" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Deleted" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Association Name="Tweet_URL" Member="Tweet" ThisKey="TweetID" OtherKey="ID" Type="Tweet" IsForeignKey="true" />
-      <Association Name="Event_URL" Member="Event" ThisKey="EventID" OtherKey="ID" Type="Event" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Venues" Member="Venues">
@@ -65,7 +40,6 @@
       <Column Name="DeleteVoteCount" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Deleted" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Association Name="EpiloggerImage_EpiloggerImageMetaData" Member="EpiloggerImageMetaDatas" Storage="_ImageMetaDatas" ThisKey="ID" OtherKey="ImageID" Type="EpiloggerImageMetaData" />
-      <Association Name="Event_EpiloggerImage" Member="Event" ThisKey="EventID" OtherKey="ID" Type="Event" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.ImageMetaData" Member="EpiloggerImageMetaDatas">
@@ -78,7 +52,6 @@
       <Column Name="TwitterID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
       <Column Name="TwitterName" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
       <Association Name="EpiloggerImage_EpiloggerImageMetaData" Member="EpiloggerImage" ThisKey="ImageID" OtherKey="ID" Type="EpiloggerImage" IsForeignKey="true" />
-      <Association Name="Event_EpiloggerImageMetaData" Member="Event" ThisKey="EventID" OtherKey="ID" Type="Event" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.CheckIns" Member="CheckIns">
@@ -112,13 +85,21 @@
       <Column Name="IsAdult" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="CollectionMode" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="EventStatus" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="LastTweetID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
       <Column Name="IsActive" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Association Name="Event_Tweet" Member="Tweets" ThisKey="ID" OtherKey="EventID" Type="Tweet" />
-      <Association Name="Event_URL" Member="URLs" ThisKey="ID" OtherKey="EventID" Type="URL" />
-      <Association Name="Event_EpiloggerImage" Member="EpiloggerImages" ThisKey="ID" OtherKey="EventID" Type="EpiloggerImage" />
-      <Association Name="Event_EpiloggerImageMetaData" Member="EpiloggerImageMetaDatas" ThisKey="ID" OtherKey="EventID" Type="EpiloggerImageMetaData" />
       <Association Name="Event_CheckIn" Member="CheckIns" ThisKey="ID" OtherKey="EventID" Type="CheckIn" />
+      <Association Name="Event_Tweet" Member="Tweets" ThisKey="ID" OtherKey="EventID" Type="Tweet" />
       <Association Name="Venue_Event" Member="Venue" ThisKey="VenueID" OtherKey="VenueID" Type="Venue" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Tweets" Member="Tweets">
+    <Type Name="Tweet">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TwitterID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="EventID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="Tweet_URL" Member="URLs" ThisKey="ID" OtherKey="TweetID" Type="URL" />
+      <Association Name="Event_Tweet" Member="Event" ThisKey="EventID" OtherKey="ID" Type="Event" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

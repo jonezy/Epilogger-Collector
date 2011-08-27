@@ -2,25 +2,12 @@
 <ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 15.25, 12.75" name="Tweets">
   <DataContextMoniker Name="/TweetsDataContext" />
   <nestedChildShapes>
-    <classShape Id="fc5ab0ed-a456-4b18-bbd9-c98e25cbc154" absoluteBounds="10.875, 1.375, 2, 4.2708154296875">
-      <DataClassMoniker Name="/TweetsDataContext/Tweet" />
-      <nestedChildShapes>
-        <elementListCompartment Id="6ff692e2-10bc-4720-a864-e8392a4b5e70" absoluteBounds="10.89, 1.835, 1.9700000000000002, 3.7108154296875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
     <classShape Id="01c4b7fd-2816-4544-a2f7-6baea515d041" absoluteBounds="9.75, 6.125, 2, 2.3478011067708335">
       <DataClassMoniker Name="/TweetsDataContext/URL" />
       <nestedChildShapes>
         <elementListCompartment Id="359ab036-c07e-45dd-ab3e-4d1219d0536e" absoluteBounds="9.765, 6.585, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(11.3125 : 5.6458154296875); (11.3125 : 6.125)]" fixedFrom="NotFixed" fixedTo="NotFixed">
-      <AssociationMoniker Name="/TweetsDataContext/Tweet/Tweet_URL" />
-      <nodes>
-        <classShapeMoniker Id="fc5ab0ed-a456-4b18-bbd9-c98e25cbc154" />
-        <classShapeMoniker Id="01c4b7fd-2816-4544-a2f7-6baea515d041" />
-      </nodes>
-    </associationConnector>
     <classShape Id="e3f092b2-4fc6-4392-be16-9c5dfffa91d7" absoluteBounds="5.625, 6.125, 2, 2.7324039713541666">
       <DataClassMoniker Name="/TweetsDataContext/Venue" />
       <nestedChildShapes>
@@ -52,52 +39,44 @@
         <elementListCompartment Id="f7f08031-2656-4b27-9c11-f9d1aedb2ff7" absoluteBounds="3.7649999999999997, 1.96, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="621dcc5e-941c-463f-8bdd-577e1bb0d274" absoluteBounds="7.375, 1.125, 2, 4.4631168619791666">
+    <classShape Id="5822fa3b-174d-42b9-8104-cff43e3b4fa4" absoluteBounds="7.625, 0.75, 2, 4.6554182942708326">
       <DataClassMoniker Name="/TweetsDataContext/Event" />
       <nestedChildShapes>
-        <elementListCompartment Id="6048b1c6-0efe-4a1b-a450-35d98e13049e" absoluteBounds="7.39, 1.585, 1.9700000000000002, 3.903116861979167" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="ff274f67-43fc-4f85-80de-e5c1d4be3b80" absoluteBounds="7.6400000000000006, 1.21, 1.9700000000000002, 4.095418294270833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(9.375 : 3.48155843098958); (10.875 : 3.48155843098958)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/TweetsDataContext/Event/Event_Tweet" />
-      <nodes>
-        <classShapeMoniker Id="621dcc5e-941c-463f-8bdd-577e1bb0d274" />
-        <classShapeMoniker Id="fc5ab0ed-a456-4b18-bbd9-c98e25cbc154" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(9.375 : 5.58811686197917); (9.75 : 6.125)]" fixedFrom="NotFixed" fixedTo="NotFixed">
-      <AssociationMoniker Name="/TweetsDataContext/Event/Event_URL" />
-      <nodes>
-        <classShapeMoniker Id="621dcc5e-941c-463f-8bdd-577e1bb0d274" />
-        <classShapeMoniker Id="01c4b7fd-2816-4544-a2f7-6baea515d041" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(8.4999975 : 5.58811686197917); (8.4999975 : 11.2700512695312); (9.75 : 11.2700512695312)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/TweetsDataContext/Event/Event_EpiloggerImage" />
-      <nodes>
-        <classShapeMoniker Id="621dcc5e-941c-463f-8bdd-577e1bb0d274" />
-        <classShapeMoniker Id="f9233e75-8b57-4aa8-90b2-335e1ab4e918" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(9.375 : 1.21875); (14 : 1.21875); (14 : 10)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/TweetsDataContext/Event/Event_EpiloggerImageMetaData" />
-      <nodes>
-        <classShapeMoniker Id="621dcc5e-941c-463f-8bdd-577e1bb0d274" />
-        <classShapeMoniker Id="87ff5d65-cebc-4cbb-8382-991b5aaada50" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(7.375 : 2.48159912109375); (5.75 : 2.48159912109375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(7.625 : 2.48159912109375); (5.75 : 2.48159912109375)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/TweetsDataContext/Event/Event_CheckIn" />
       <nodes>
-        <classShapeMoniker Id="621dcc5e-941c-463f-8bdd-577e1bb0d274" />
+        <classShapeMoniker Id="5822fa3b-174d-42b9-8104-cff43e3b4fa4" />
         <classShapeMoniker Id="beab5114-b831-4727-8d8f-e582c46ade38" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(6.5625 : 6.125); (6.5625 : 4.06610999153646); (7.375 : 4.06610999153646)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(6.6875 : 6.125); (6.6875 : 4.46555826822917); (7.625 : 4.46555826822917)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/TweetsDataContext/Venue/Venue_Event" />
       <nodes>
         <classShapeMoniker Id="e3f092b2-4fc6-4392-be16-9c5dfffa91d7" />
-        <classShapeMoniker Id="621dcc5e-941c-463f-8bdd-577e1bb0d274" />
+        <classShapeMoniker Id="5822fa3b-174d-42b9-8104-cff43e3b4fa4" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="ab645008-e611-4d19-8861-2e973fa43c63" absoluteBounds="10.375, 1, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/TweetsDataContext/Tweet" />
+      <nestedChildShapes>
+        <elementListCompartment Id="97899a99-ec3a-4933-a283-76b9eeee1254" absoluteBounds="10.39, 1.46, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(11.0625 : 2.57859537760417); (11.0625 : 6.125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/TweetsDataContext/Tweet/Tweet_URL" />
+      <nodes>
+        <classShapeMoniker Id="ab645008-e611-4d19-8861-2e973fa43c63" />
+        <classShapeMoniker Id="01c4b7fd-2816-4544-a2f7-6baea515d041" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(9.625 : 1.78929768880208); (10.375 : 1.78929768880208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/TweetsDataContext/Event/Event_Tweet" />
+      <nodes>
+        <classShapeMoniker Id="5822fa3b-174d-42b9-8104-cff43e3b4fa4" />
+        <classShapeMoniker Id="ab645008-e611-4d19-8861-2e973fa43c63" />
       </nodes>
     </associationConnector>
   </nestedChildShapes>

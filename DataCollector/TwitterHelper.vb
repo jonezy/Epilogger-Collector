@@ -104,12 +104,49 @@ Public Class TwitterHelper
         'Get the last TwitterID for the seach. This way we only get new tweets.
         Dim LastTweetID As Long = 0
 
+        
+
+
+        '
+        'Can't use ATS to get the last record inserted. So instead of reversing the row keys (), I'm going to store the LastTwitterID in the Events Table too and query that.
+
+        '
+        'CB June 27, 2011 - This has been commented out as some tweets are going missed. This is to see if they're being missed because this is somehow excluding valid tweets.
+        'FUCK, this isn't going to work either as the tweetIDs are not in order.
+        'Going to have to store a basebones Tweets table to facilite these lookups by Id and CreatedDateTime. Fuck BS.
+
+        '
+        'UNDEPRICATED - CB Aug 26, 2011 - This code is no longer used. Tweets have been moved to Azure Table Storage. All code will now reference that.
         Dim myreader As SqlDataReader
         myreader = ExecQueryReturnDR("Select top 1 TwitterID from Tweets Where EventID=" & EventID & " order by ID Desc", MyConnection)
         While myreader.Read()
             LastTweetID = myreader("TwitterID")
         End While
         myreader.Close()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        '
+        'Get the last TweetID from ATS
+        'Dim TweetQuery As IEnumerable(Of AzureStoreTweet) = AzureTweetStore.QueryEntities(Of AzureStoreTweet)("tweets").Where(Function(t) t.PartitionKey = EventID.ToString)
+
+        'For Each t As AzureStoreTweet In TweetQuery
+        '    Dim test As Integer = t.EventID
+        'Next
 
 
         '
@@ -136,10 +173,6 @@ Public Class TwitterHelper
                 'in TweetSharp
 
                 Dim RelaventTweetResults As TwitterSearchResult
-
-
-                '
-                'CB June 27, 2011 - This has been commented out as some tweets are going missed. This is to see if they're being missed because this is somehow excluding valid tweets.
 
                 '
                 'If this event has a Venue, then we have the 4SQ venue data :), use the Lat, Long to create a tweet zone, pick up more relavent tweets.
@@ -180,21 +213,13 @@ Public Class TwitterHelper
 
                     If ExistsCount = 0 Then
 
+                        '
+                        'Insert twitter stub record
                         Dim LTweet As Tweet
                         LTweet = New Tweet With _
                         {.TwitterID = STweet.Id, _
                         .EventID = EventID, _
-                        .Text = STweet.Text, _
-                        .TextAsHTML = STweet.TextAsHtml, _
-                        .Source = STweet.Source, _
-                        .CreatedDate = STweet.CreatedDate, _
-                        .FromUserScreenName = STweet.FromUserScreenName, _
-                        .ToUserScreenName = STweet.ToUserScreenName, _
-                        .IsoLanguageCode = STweet.IsoLanguageCode, _
-                        .ProfileImageURL = STweet.ProfileImageUrl, _
-                        .SinceID = STweet.SinceId, _
-                        .Location = STweet.Location, _
-                        .RawSource = STweet.RawSource}
+                        .CreatedDate = STweet.CreatedDate}
 
                         db.Tweets.InsertOnSubmit(LTweet)
 
@@ -313,8 +338,8 @@ Public Class TwitterHelper
                                              .EventID = EventID, _
                                              .UserID = System.Guid.Empty, _
                                              .ImageSource = "twitter", _
-                                             .TwitterID = LTweet.TwitterID, _
-                                             .TwitterName = LTweet.FromUserScreenName}
+                                             .TwitterID = STweet.Id, _
+                                             .TwitterName = STweet.FromUserScreenName}
                                             db.EpiloggerImageMetaDatas.InsertOnSubmit(LIMD)
                                         Next
                                     Else
@@ -348,7 +373,7 @@ Public Class TwitterHelper
                                              .UserID = System.Guid.Empty, _
                                              .ImageSource = "twitter", _
                                              .TwitterID = LTweet.TwitterID, _
-                                             .TwitterName = LTweet.FromUserScreenName}
+                                             .TwitterName = STweet.FromUserScreenName}
                                         db.EpiloggerImageMetaDatas.InsertOnSubmit(LIMD)
                                     End If
                                 Else
@@ -356,7 +381,7 @@ Public Class TwitterHelper
                                     'Check if there is a reference to Foursquare in the URL, if there is. It's probably a check in! woohoo.
                                     If UnShortenedURL.ToString.Contains("4sq") Or TheURL.ToString.Contains("4sq") Or _
                                         UnShortenedURL.ToString.Contains("foursquare") Or TheURL.ToString.Contains("foursquare") Then
-                                        If LTweet.Text.Contains("I'm at") Then
+                                        If STweet.Text.Contains("I'm at") Then
                                             '
                                             '4sq check in
                                             Dim LCheckin As New CheckIn With {.CheckInDateTime = LTweet.CreatedDate, .EventID = EventID, .TweetID = LTweet.ID, .FourSquareCheckInURL = UnShortenedURL.ToString}

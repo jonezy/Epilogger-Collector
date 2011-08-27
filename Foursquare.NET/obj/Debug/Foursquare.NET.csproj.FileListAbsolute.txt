@@ -28,3 +28,8 @@ D:\Projects\EpiloggerV0.5\Epilogger Service\Trunk\Foursquare.NET\bin\Debug\Fours
 D:\Projects\EpiloggerV0.5\Epilogger Service\Trunk\Foursquare.NET\obj\Debug\ResolveAssemblyReference.cache
 D:\Projects\EpiloggerV0.5\Epilogger Service\Trunk\Foursquare.NET\obj\Debug\FoursquareNET.dll
 D:\Projects\EpiloggerV0.5\Epilogger Service\Trunk\Foursquare.NET\obj\Debug\FoursquareNET.pdb
+D:\Projects\Epilogger DCS\Foursquare.NET\bin\Debug\FoursquareNET.dll
+D:\Projects\Epilogger DCS\Foursquare.NET\bin\Debug\FoursquareNET.pdb
+D:\Projects\Epilogger DCS\Foursquare.NET\obj\Debug\ResolveAssemblyReference.cache
+D:\Projects\Epilogger DCS\Foursquare.NET\obj\Debug\FoursquareNET.dll
+D:\Projects\Epilogger DCS\Foursquare.NET\obj\Debug\FoursquareNET.pdb

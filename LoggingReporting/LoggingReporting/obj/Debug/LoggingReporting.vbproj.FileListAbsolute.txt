@@ -86,3 +86,14 @@ D:\Projects\EpiloggerV0.5\Epilogger Service\Trunk\LoggingReporting\LoggingReport
 D:\Projects\EpiloggerV0.5\Epilogger Service\Trunk\LoggingReporting\LoggingReporting\obj\Debug\LoggingReporting.dll
 D:\Projects\EpiloggerV0.5\Epilogger Service\Trunk\LoggingReporting\LoggingReporting\obj\Debug\LoggingReporting.xml
 D:\Projects\EpiloggerV0.5\Epilogger Service\Trunk\LoggingReporting\LoggingReporting\obj\Debug\LoggingReporting.pdb
+D:\Projects\Epilogger DCS\LoggingReporting\LoggingReporting\bin\Debug\LoggingReporting.dll.config
+D:\Projects\Epilogger DCS\LoggingReporting\LoggingReporting\bin\Debug\LoggingReporting.dll
+D:\Projects\Epilogger DCS\LoggingReporting\LoggingReporting\bin\Debug\LoggingReporting.pdb
+D:\Projects\Epilogger DCS\LoggingReporting\LoggingReporting\bin\Debug\LoggingReporting.xml
+D:\Projects\Epilogger DCS\LoggingReporting\LoggingReporting\obj\Debug\ResolveAssemblyReference.cache
+D:\Projects\Epilogger DCS\LoggingReporting\LoggingReporting\obj\Debug\LoggingReporting.Resources.resources
+D:\Projects\Epilogger DCS\LoggingReporting\LoggingReporting\obj\Debug\GenerateResource.read.1.tlog
+D:\Projects\Epilogger DCS\LoggingReporting\LoggingReporting\obj\Debug\GenerateResource.write.1.tlog
+D:\Projects\Epilogger DCS\LoggingReporting\LoggingReporting\obj\Debug\LoggingReporting.dll
+D:\Projects\Epilogger DCS\LoggingReporting\LoggingReporting\obj\Debug\LoggingReporting.xml
+D:\Projects\Epilogger DCS\LoggingReporting\LoggingReporting\obj\Debug\LoggingReporting.pdb

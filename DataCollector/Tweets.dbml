@@ -52,6 +52,7 @@
       <Column Name="TwitterID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
       <Column Name="TwitterName" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
       <Association Name="EpiloggerImage_EpiloggerImageMetaData" Member="EpiloggerImage" ThisKey="ImageID" OtherKey="ID" Type="EpiloggerImage" IsForeignKey="true" />
+      <Association Name="Event_EpiloggerImageMetaData" Member="Event" ThisKey="EventID" OtherKey="ID" Type="Event" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.CheckIns" Member="CheckIns">
@@ -63,6 +64,16 @@
       <Column Name="CheckInDateTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="FourSquareCheckInURL" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
       <Association Name="Event_CheckIn" Member="Event" ThisKey="EventID" OtherKey="ID" Type="Event" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Tweets" Member="Tweets">
+    <Type Name="Tweet">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TwitterID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="EventID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="Tweet_URL" Member="URLs" ThisKey="ID" OtherKey="TweetID" Type="URL" />
+      <Association Name="Event_Tweet" Member="Event" ThisKey="EventID" OtherKey="ID" Type="Event" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Events" Member="Events">
@@ -77,6 +88,8 @@
       <Column Name="Cost" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
       <Column Name="StartDateTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="EndDateTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CollectionStartDateTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CollectionEndDateTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="TimeZoneOffset" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="VenueID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
       <Column Name="SearchTerms" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
@@ -87,19 +100,10 @@
       <Column Name="EventStatus" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="LastTweetID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
       <Column Name="IsActive" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="Event_EpiloggerImageMetaData" Member="EpiloggerImageMetaDatas" ThisKey="ID" OtherKey="EventID" Type="EpiloggerImageMetaData" />
       <Association Name="Event_CheckIn" Member="CheckIns" ThisKey="ID" OtherKey="EventID" Type="CheckIn" />
       <Association Name="Event_Tweet" Member="Tweets" ThisKey="ID" OtherKey="EventID" Type="Tweet" />
       <Association Name="Venue_Event" Member="Venue" ThisKey="VenueID" OtherKey="VenueID" Type="Venue" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.Tweets" Member="Tweets">
-    <Type Name="Tweet">
-      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="TwitterID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
-      <Column Name="EventID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Association Name="Tweet_URL" Member="URLs" ThisKey="ID" OtherKey="TweetID" Type="URL" />
-      <Association Name="Event_Tweet" Member="Event" ThisKey="EventID" OtherKey="ID" Type="Event" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

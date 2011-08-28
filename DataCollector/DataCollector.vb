@@ -30,13 +30,13 @@ Public Class DataCollector
         'Verify all the Active Events are in the Right mode. This will ensure they get polled at the right times.
         Dim db As New TweetsDataContext
         Dim Events = From e In db.Events
-                     Where e.IsActive = True
+                     Where e.IsActive = True And e.ID = 186
 
         For Each e As [Event] In Events
 
             Dim ShouldBeInMode As CollectionModes
-            Dim CompareToStart As Integer = Date.Compare(Now(), e.StartDateTime)
-            Dim CompareToEnd As Integer = Date.Compare(Now(), e.EndDateTime)
+            Dim CompareToStart As Integer = Date.Compare(DateTime.UtcNow, e.StartDateTime)
+            Dim CompareToEnd As Integer = Date.Compare(DateTime.UtcNow, e.EndDateTime)
 
             If CompareToStart < 0 Then
                 ShouldBeInMode = CollectionModes.BeforeEvent
@@ -44,10 +44,16 @@ Public Class DataCollector
                 ShouldBeInMode = CollectionModes.ActiveEvent
 
             ElseIf CompareToEnd > 0 Then
-                If DateDiff(DateInterval.Day, CDate(e.StartDateTime), Now()) > 14 Then
-                    ShouldBeInMode = CollectionModes.AfterEventArchived
-                Else
+                'If DateDiff(DateInterval.Day, CDate(e.StartDateTime), Now()) > 14 Then
+                '    ShouldBeInMode = CollectionModes.AfterEventArchived
+                'Else
+                '    ShouldBeInMode = CollectionModes.AfterEventWiki
+                'End If
+
+                If DateDiff(DateInterval.Hour, CDate(e.CollectionEndDateTime), DateTime.UtcNow) <= 0 Then
                     ShouldBeInMode = CollectionModes.AfterEventWiki
+                Else
+                    ShouldBeInMode = CollectionModes.AfterEventArchived
                 End If
 
             End If

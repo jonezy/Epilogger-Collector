@@ -109,14 +109,12 @@ Public Class TwitterHelper
 
         '
         'Can't use ATS to get the last record inserted. So instead of reversing the row keys (), I'm going to store the LastTwitterID in the Events Table too and query that.
-
-        '
-        'CB June 27, 2011 - This has been commented out as some tweets are going missed. This is to see if they're being missed because this is somehow excluding valid tweets.
         'FUCK, this isn't going to work either as the tweetIDs are not in order.
         'Going to have to store a basebones Tweets table to facilite these lookups by Id and CreatedDateTime. Fuck BS.
 
         '
         'UNDEPRICATED - CB Aug 26, 2011 - This code is no longer used. Tweets have been moved to Azure Table Storage. All code will now reference that.
+        'This gets the lsat TwitterID so we only search from there going forward.
         Dim myreader As SqlDataReader
         myreader = ExecQueryReturnDR("Select top 1 TwitterID from Tweets Where EventID=" & EventID & " order by ID Desc", MyConnection)
         While myreader.Read()
@@ -125,42 +123,25 @@ Public Class TwitterHelper
         myreader.Close()
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        '
-        'Get the last TweetID from ATS
-        'Dim TweetQuery As IEnumerable(Of AzureStoreTweet) = AzureTweetStore.QueryEntities(Of AzureStoreTweet)("tweets").Where(Function(t) t.PartitionKey = EventID.ToString)
-
-        'For Each t As AzureStoreTweet In TweetQuery
-        '    Dim test As Integer = t.EventID
-        'Next
-
-
         '
         'If this is the First time we're pulling tweets for an event don't get too many old tweets. This could result in info not for this event. But we do want to get some lead up.
         'If this is the first time pulling tweets for the event and it will be when the event starts. Pull 50 tweets (might need to make this smaller). Else pull 100.
+
+        '--DEPRICATED - CB - Aug 28, 2011 - Now we want to get the max and Date filter it.
+        'Dim NumberOfTweetToPull As Integer
+        'Dim PageMax As Integer
+        'If LastTweetID = 0 Then
+        '    NumberOfTweetToPull = 50
+        '    PageMax = 1
+        'Else
+        '    NumberOfTweetToPull = 100
+        '    PageMax = 50
+        'End If
+
         Dim NumberOfTweetToPull As Integer
         Dim PageMax As Integer
-        If LastTweetID = 0 Then
-            NumberOfTweetToPull = 50
-            PageMax = 1
-        Else
-            NumberOfTweetToPull = 100
-            PageMax = 50
-        End If
+        NumberOfTweetToPull = 100
+        PageMax = 50
 
         '
         'Now loop through all the pages 100 tweets in each.
@@ -175,6 +156,7 @@ Public Class TwitterHelper
                 Dim RelaventTweetResults As TwitterSearchResult
 
                 '
+                'CB June 27, 2011 - This has been commented out as some tweets are going missed. This is to see if they're being missed because this is somehow excluding valid tweets.
                 'If this event has a Venue, then we have the 4SQ venue data :), use the Lat, Long to create a tweet zone, pick up more relavent tweets.
                 'If db.Events.Where(Function(e) e.ID = Me.EventID And e.VenueID > 0).Count > 0 Then
                 '    '
@@ -204,206 +186,195 @@ Public Class TwitterHelper
 
                 '
                 'Store the tweets
+                Dim TheEvent As [Event] = db.Events.Where(Function(e) e.ID = EventID).FirstOrDefault
                 For Each STweet As TweetSharp.TwitterSearchStatus In RelaventTweetResults.Statuses
-
                     '
-                    'Insert the Tweet into the DB - Local SQL
-                    Dim CurrentTweetID As Long = STweet.Id
-                    Dim ExistsCount = Aggregate Tweet In db.Tweets Into Count(Tweet.TwitterID = CurrentTweetID)
-
-                    If ExistsCount = 0 Then
+                    'Check the the tweet CreatedDaet is withint our Collection Start and End Dates.
+                    If STweet.CreatedDate >= TheEvent.CollectionStartDateTime And STweet.CreatedDate <= TheEvent.CollectionEndDateTime Then
 
                         '
-                        'Insert twitter stub record
-                        Dim LTweet As Tweet
-                        LTweet = New Tweet With _
-                        {.TwitterID = STweet.Id, _
-                        .EventID = EventID, _
-                        .CreatedDate = STweet.CreatedDate}
+                        'Insert the Tweet into the DB - Local SQL
+                        Dim CurrentTweetID As Long = STweet.Id
+                        Dim ExistsCount = Aggregate Tweet In db.Tweets Into Count(Tweet.TwitterID = CurrentTweetID)
 
-                        db.Tweets.InsertOnSubmit(LTweet)
-
-                        'Have to submit the changes here so that we have a Tweet Record ID to insert into the Mapping Table.
-                        Try
-                            db.SubmitChanges()
-                        Catch e As Exception
-                            db.SubmitChanges()
-                        End Try
-
-
-
-                        '
-                        'Now also store the Tweets into Azure Table storage, this will aid in transistion
-
-                        'For the purposes of storing tweets for Epilogger, here is what we're going to do;
-                        '- PartitionKey = EventID (From SQL)
-                        '- RowKey = TweetID (From Twitter)
-                        Try
-                            '
-                            'Create the table - Already created, just throws an exception, take out for speed.
-                            'AzureTweetStore.CreateTable("tweets")
+                        If ExistsCount = 0 Then
 
                             '
-                            'Create the Table Service Entity to be stored
-                            Dim AzureTweet As New AzureStoreTweet(EventID, STweet.Id)
-                            AzureTweet.TwitterID = STweet.Id
-                            AzureTweet.EventID = EventID
-                            AzureTweet.Text = STweet.Text
-                            AzureTweet.TextAsHTML = STweet.TextAsHtml
-                            AzureTweet.Source = STweet.Source
-                            AzureTweet.CreatedDate = STweet.CreatedDate
-                            AzureTweet.FromUserScreenName = STweet.FromUserScreenName
-                            AzureTweet.ToUserScreenName = STweet.ToUserScreenName
-                            AzureTweet.IsoLanguageCode = STweet.IsoLanguageCode
-                            AzureTweet.ProfileImageURL = STweet.ProfileImageUrl
-                            AzureTweet.SinceID = STweet.SinceId
-                            AzureTweet.Location = STweet.Location
-                            AzureTweet.RawSource = STweet.RawSource
+                            'Insert twitter stub record
+                            Dim LTweet As Tweet
+                            LTweet = New Tweet With _
+                            {.TwitterID = STweet.Id, _
+                            .EventID = EventID, _
+                            .CreatedDate = STweet.CreatedDate}
 
-                            '
-                            'Insert the entity
-                            AzureTweetStore.InsertEntity("tweets", AzureTweet)
+                            db.Tweets.InsertOnSubmit(LTweet)
 
-
-                            '
-                            'If the entity inserted increment the tweet count in the Events Table.
-                            Dim EventData = From e In db.Events
-                                            Where e.ID = EventID
-                                            Select e
-                            For Each ev As [Event] In EventData
-                                ev.NumberOfTweets += 1
-                            Next
-                            db.SubmitChanges()
-
-                        Catch ex As Exception
-
-                        End Try
-
-
-
-
-                        '
-                        'Pull out the images from the tweets and store URLs
-                        For Each l As TwitterUrl In STweet.Entities.Urls
+                            'Have to submit the changes here so that we have a Tweet Record ID to insert into the Mapping Table.
                             Try
-                                Dim TheURL As Uri
-                                Dim UnShortenedURL As Uri
-                                Dim FullImagesURL As Uri
-                                Dim ThumbImagesURL As Uri
-                                If l.ExpandedValue IsNot Nothing Then
-                                    TheURL = New Uri(l.ExpandedValue)
-                                Else
-                                    TheURL = New Uri(l.Value)
-                                End If
+                                db.SubmitChanges()
+                            Catch e As Exception
+                                db.SubmitChanges()
+                            End Try
+
+
+
+                            '
+                            'Now also store the Tweets into Azure Table storage, this will aid in transistion
+
+                            'For the purposes of storing tweets for Epilogger, here is what we're going to do;
+                            '- PartitionKey = EventID (From SQL)
+                            '- RowKey = TweetID (From Twitter)
+                            Try
+                                '
+                                'Create the table - Already created, just throws an exception, take out for speed.
+                                'AzureTweetStore.CreateTable("tweets")
 
                                 '
-                                'Unshorten the URL so we know what's really in it.
-                                UnShortenedURL = _helpers.UnshortenURL(TheURL)
+                                'Create the Table Service Entity to be stored
+                                Dim AzureTweet As New AzureStoreTweet(EventID, STweet.Id)
+                                AzureTweet.TwitterID = STweet.Id
+                                AzureTweet.EventID = EventID
+                                AzureTweet.Text = STweet.Text
+                                AzureTweet.TextAsHTML = STweet.TextAsHtml
+                                AzureTweet.Source = STweet.Source
+                                AzureTweet.CreatedDate = STweet.CreatedDate
+                                AzureTweet.FromUserScreenName = STweet.FromUserScreenName
+                                AzureTweet.ToUserScreenName = STweet.ToUserScreenName
+                                AzureTweet.IsoLanguageCode = STweet.IsoLanguageCode
+                                AzureTweet.ProfileImageURL = STweet.ProfileImageUrl
+                                AzureTweet.SinceID = STweet.SinceId
+                                AzureTweet.Location = STweet.Location
+                                AzureTweet.RawSource = STweet.RawSource
+
+                                '
+                                'Insert the entity
+                                AzureTweetStore.InsertEntity("tweetsV1", AzureTweet)
 
 
                                 '
-                                'Run the URL through image service detection and get full image URL
+                                'If the entity inserted increment the tweet count in the Events Table.
+                                Dim EventData = From e In db.Events
+                                                Where e.ID = EventID
+                                                Select e
+                                For Each ev As [Event] In EventData
+                                    ev.NumberOfTweets += 1
+                                Next
+                                db.SubmitChanges()
 
-                                '
-                                'Some of the other image services are not as friendly to this pattern, so to better support those I'm changing this.
-                                'If TheURL.Host = "plixi.com" Then
-                                '    FullImagesURL = _helpers.GetImageServiceFullURL(TheURL)
-                                '    ThumbImagesURL = _helpers.GetImageServiceThumbURL(TheURL)
-                                'Else
-                                '    FullImagesURL = _helpers.GetImageServiceFullURL(UnShortenedURL)
-                                '    ThumbImagesURL = _helpers.GetImageServiceThumbURL(UnShortenedURL)
-                                'End If
+                            Catch ex As Exception
 
+                            End Try
 
-                                If TheURL.Host = "plixi.com" Then
-                                    _helpers.GetImageServiceImageURLs(TheURL, FullImagesURL, ThumbImagesURL)
-                                Else
-                                    _helpers.GetImageServiceImageURLs(UnShortenedURL, FullImagesURL, ThumbImagesURL)
-                                End If
+                            '
+                            'Pull out the images from the tweets and store URLs
+                            For Each l As TwitterUrl In STweet.Entities.Urls
+                                Try
+                                    Dim TheURL As Uri
+                                    Dim UnShortenedURL As Uri
+                                    Dim FullImagesURL As Uri
+                                    Dim ThumbImagesURL As Uri
+                                    If l.ExpandedValue IsNot Nothing Then
+                                        TheURL = New Uri(l.ExpandedValue)
+                                    Else
+                                        TheURL = New Uri(l.Value)
+                                    End If
 
-
-
-                                If FullImagesURL IsNot Nothing Then
                                     '
-                                    'Check to see if this image has already been stored, if it has reuse the stored image and add another meta data record to it. 
-                                    'If it hasn't store it.
-                                    Dim PImage As IEnumerable(Of EpiloggerImage) = db.EpiloggerImages.Where(Function(e) e.OriginalImageLink = UnShortenedURL.AbsoluteUri)
+                                    'Unshorten the URL so we know what's really in it.
+                                    UnShortenedURL = _helpers.UnshortenURL(TheURL)
 
-                                    If PImage.Count > 0 Then
-                                        For Each pI As EpiloggerImage In PImage
+
+                                    '
+                                    'Run the URL through image service detection and get full image URL
+                                    If TheURL.Host = "plixi.com" Then
+                                        _helpers.GetImageServiceImageURLs(TheURL, FullImagesURL, ThumbImagesURL)
+                                    Else
+                                        _helpers.GetImageServiceImageURLs(UnShortenedURL, FullImagesURL, ThumbImagesURL)
+                                    End If
+
+
+                                    If FullImagesURL IsNot Nothing Then
+                                        '
+                                        'Check to see if this image has already been stored, if it has reuse the stored image and add another meta data record to it. 
+                                        'If it hasn't store it.
+                                        Dim PImage As IEnumerable(Of EpiloggerImage) = db.EpiloggerImages.Where(Function(e) e.OriginalImageLink = UnShortenedURL.AbsoluteUri)
+
+                                        If PImage.Count > 0 Then
+                                            For Each pI As EpiloggerImage In PImage
+                                                '
+                                                'Insert metadata for image
+                                                Dim LIMD As New EpiloggerImageMetaData With
+                                                {.ImageID = pI.ID, _
+                                                 .EventID = EventID, _
+                                                 .UserID = System.Guid.Empty, _
+                                                 .ImageSource = "twitter", _
+                                                 .TwitterID = STweet.Id, _
+                                                 .TwitterName = STweet.FromUserScreenName}
+                                                db.EpiloggerImageMetaDatas.InsertOnSubmit(LIMD)
+                                            Next
+                                        Else
                                             '
-                                            'Insert metadata for image
+                                            'Insert image
+                                            '
+                                            'Get a MemStream from the Image URL, upload to Azure.
+                                            Dim FullImageStream As New IO.MemoryStream(New System.Net.WebClient().DownloadData(FullImagesURL))
+                                            Dim FullAzureURL As Uri = StoreImage("twitter-" & EventID & "-" & LTweet.ID & ".jpg", "twitterphotos-full", FullImageStream)
+
+                                            Dim ThumbImageStream As New IO.MemoryStream(New System.Net.WebClient().DownloadData(ThumbImagesURL))
+                                            Dim ThumbAzureURL As Uri = StoreImage("twitter-" & EventID & "-" & LTweet.ID & ".jpg", "twitterphotos-thumb", ThumbImageStream)
+
+                                            '
+                                            'Store the Info in the DB
+                                            Dim LImage As New EpiloggerImage With
+                                                {.EventID = EventID, _
+                                                 .AzureContainerPrefix = "twitterphotos", _
+                                                 .Fullsize = FullAzureURL.AbsoluteUri, _
+                                                 .Thumb = ThumbAzureURL.AbsoluteUri, _
+                                                 .OriginalImageLink = UnShortenedURL.AbsoluteUri, _
+                                                 .DateTime = STweet.CreatedDate, _
+                                                 .DeleteVoteCount = 0, _
+                                                 .Deleted = False}
+                                            db.EpiloggerImages.InsertOnSubmit(LImage)
+                                            db.SubmitChanges()
+
                                             Dim LIMD As New EpiloggerImageMetaData With
-                                            {.ImageID = pI.ID, _
-                                             .EventID = EventID, _
-                                             .UserID = System.Guid.Empty, _
-                                             .ImageSource = "twitter", _
-                                             .TwitterID = STweet.Id, _
-                                             .TwitterName = STweet.FromUserScreenName}
+                                                {.ImageID = LImage.ID, _
+                                                 .EventID = EventID, _
+                                                 .UserID = System.Guid.Empty, _
+                                                 .ImageSource = "twitter", _
+                                                 .TwitterID = LTweet.TwitterID, _
+                                                 .TwitterName = STweet.FromUserScreenName}
                                             db.EpiloggerImageMetaDatas.InsertOnSubmit(LIMD)
-                                        Next
+                                        End If
                                     Else
                                         '
-                                        'Insert image
-                                        '
-                                        'Get a MemStream from the Image URL, upload to Azure.
-                                        Dim FullImageStream As New IO.MemoryStream(New System.Net.WebClient().DownloadData(FullImagesURL))
-                                        Dim FullAzureURL As Uri = StoreImage("twitter-" & EventID & "-" & LTweet.ID & ".jpg", "twitterphotos-full", FullImageStream)
-
-                                        Dim ThumbImageStream As New IO.MemoryStream(New System.Net.WebClient().DownloadData(ThumbImagesURL))
-                                        Dim ThumbAzureURL As Uri = StoreImage("twitter-" & EventID & "-" & LTweet.ID & ".jpg", "twitterphotos-thumb", ThumbImageStream)
-
-                                        '
-                                        'Store the Info in the DB
-                                        Dim LImage As New EpiloggerImage With
-                                            {.EventID = EventID, _
-                                             .AzureContainerPrefix = "twitterphotos", _
-                                             .Fullsize = FullAzureURL.AbsoluteUri, _
-                                             .Thumb = ThumbAzureURL.AbsoluteUri, _
-                                             .OriginalImageLink = UnShortenedURL.AbsoluteUri, _
-                                             .DateTime = Now(), _
-                                             .DeleteVoteCount = 0, _
-                                             .Deleted = False}
-                                        db.EpiloggerImages.InsertOnSubmit(LImage)
-                                        db.SubmitChanges()
-
-                                        Dim LIMD As New EpiloggerImageMetaData With
-                                            {.ImageID = LImage.ID, _
-                                             .EventID = EventID, _
-                                             .UserID = System.Guid.Empty, _
-                                             .ImageSource = "twitter", _
-                                             .TwitterID = LTweet.TwitterID, _
-                                             .TwitterName = STweet.FromUserScreenName}
-                                        db.EpiloggerImageMetaDatas.InsertOnSubmit(LIMD)
-                                    End If
-                                Else
-                                    '
-                                    'Check if there is a reference to Foursquare in the URL, if there is. It's probably a check in! woohoo.
-                                    If UnShortenedURL.ToString.Contains("4sq") Or TheURL.ToString.Contains("4sq") Or _
-                                        UnShortenedURL.ToString.Contains("foursquare") Or TheURL.ToString.Contains("foursquare") Then
-                                        If STweet.Text.Contains("I'm at") Then
-                                            '
-                                            '4sq check in
-                                            Dim LCheckin As New CheckIn With {.CheckInDateTime = LTweet.CreatedDate, .EventID = EventID, .TweetID = LTweet.ID, .FourSquareCheckInURL = UnShortenedURL.ToString}
-                                            db.CheckIns.InsertOnSubmit(LCheckin)
+                                        'Check if there is a reference to Foursquare in the URL, if there is. It's probably a check in! woohoo.
+                                        If UnShortenedURL.ToString.Contains("4sq") Or TheURL.ToString.Contains("4sq") Or _
+                                            UnShortenedURL.ToString.Contains("foursquare") Or TheURL.ToString.Contains("foursquare") Then
+                                            If STweet.Text.Contains("I'm at") Then
+                                                '
+                                                '4sq check in
+                                                Dim LCheckin As New CheckIn With {.CheckInDateTime = LTweet.CreatedDate, .EventID = EventID, .TweetID = LTweet.ID, .FourSquareCheckInURL = UnShortenedURL.ToString}
+                                                db.CheckIns.InsertOnSubmit(LCheckin)
+                                            End If
                                         End If
+
+                                        '
+                                        'Just a regular URL, store the url
+                                        Dim LURL As New URL With
+                                            {.TweetID = LTweet.ID, _
+                                                .EventID = EventID, _
+                                                .ShortURL = TheURL.ToString,
+                                                .URL = UnShortenedURL.ToString}
+
+                                        db.URLs.InsertOnSubmit(LURL)
                                     End If
-
-                                    '
-                                    'Just a regular URL, store the url
-                                    Dim LURL As New URL With
-                                        {.TweetID = LTweet.ID, _
-                                            .EventID = EventID, _
-                                            .ShortURL = TheURL.ToString,
-                                            .URL = UnShortenedURL.ToString}
-
-                                    db.URLs.InsertOnSubmit(LURL)
-                                End If
-                                db.SubmitChanges()
-                            Catch ex As Exception
-                                Console.WriteLine(ex)
-                            End Try
-                        Next
+                                    db.SubmitChanges()
+                                Catch ex As Exception
+                                    Console.WriteLine(ex)
+                                End Try
+                            Next
+                        End If
                     End If
                 Next
 

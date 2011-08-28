@@ -61,17 +61,17 @@ Partial Public Class TweetsDataContext
     End Sub
   Partial Private Sub DeleteCheckIn(instance As CheckIn)
     End Sub
-  Partial Private Sub InsertEvent(instance As [Event])
-    End Sub
-  Partial Private Sub UpdateEvent(instance As [Event])
-    End Sub
-  Partial Private Sub DeleteEvent(instance As [Event])
-    End Sub
   Partial Private Sub InsertTweet(instance As Tweet)
     End Sub
   Partial Private Sub UpdateTweet(instance As Tweet)
     End Sub
   Partial Private Sub DeleteTweet(instance As Tweet)
+    End Sub
+  Partial Private Sub InsertEvent(instance As [Event])
+    End Sub
+  Partial Private Sub UpdateEvent(instance As [Event])
+    End Sub
+  Partial Private Sub DeleteEvent(instance As [Event])
     End Sub
   #End Region
 	
@@ -130,15 +130,15 @@ Partial Public Class TweetsDataContext
 		End Get
 	End Property
 	
-	Public ReadOnly Property Events() As System.Data.Linq.Table(Of [Event])
-		Get
-			Return Me.GetTable(Of [Event])
-		End Get
-	End Property
-	
 	Public ReadOnly Property Tweets() As System.Data.Linq.Table(Of Tweet)
 		Get
 			Return Me.GetTable(Of Tweet)
+		End Get
+	End Property
+	
+	Public ReadOnly Property Events() As System.Data.Linq.Table(Of [Event])
+		Get
+			Return Me.GetTable(Of [Event])
 		End Get
 	End Property
 End Class
@@ -964,6 +964,8 @@ Partial Public Class EpiloggerImageMetaData
 	
 	Private _EpiloggerImage As EntityRef(Of EpiloggerImage)
 	
+	Private _Event As EntityRef(Of [Event])
+	
     #Region "Extensibility Method Definitions"
     Partial Private Sub OnLoaded()
     End Sub
@@ -1004,6 +1006,7 @@ Partial Public Class EpiloggerImageMetaData
 	Public Sub New()
 		MyBase.New
 		Me._EpiloggerImage = CType(Nothing, EntityRef(Of EpiloggerImage))
+		Me._Event = CType(Nothing, EntityRef(Of [Event]))
 		OnCreated
 	End Sub
 	
@@ -1052,6 +1055,9 @@ Partial Public Class EpiloggerImageMetaData
 		Set
 			If ((Me._EventID = value)  _
 						= false) Then
+				If Me._Event.HasLoadedOrAssignedValue Then
+					Throw New System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException()
+				End If
 				Me.OnEventIDChanging(value)
 				Me.SendPropertyChanging
 				Me._EventID = value
@@ -1149,6 +1155,34 @@ Partial Public Class EpiloggerImageMetaData
 					Me._ImageID = CType(Nothing, Integer)
 				End If
 				Me.SendPropertyChanged("EpiloggerImage")
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="Event_EpiloggerImageMetaData", Storage:="_Event", ThisKey:="EventID", OtherKey:="ID", IsForeignKey:=true)>  _
+	Public Property [Event]() As [Event]
+		Get
+			Return Me._Event.Entity
+		End Get
+		Set
+			Dim previousValue As [Event] = Me._Event.Entity
+			If ((Object.Equals(previousValue, value) = false)  _
+						OrElse (Me._Event.HasLoadedOrAssignedValue = false)) Then
+				Me.SendPropertyChanging
+				If ((previousValue Is Nothing)  _
+							= false) Then
+					Me._Event.Entity = Nothing
+					previousValue.EpiloggerImageMetaDatas.Remove(Me)
+				End If
+				Me._Event.Entity = value
+				If ((value Is Nothing)  _
+							= false) Then
+					value.EpiloggerImageMetaDatas.Add(Me)
+					Me._EventID = value.ID
+				Else
+					Me._EventID = CType(Nothing, Integer)
+				End If
+				Me.SendPropertyChanged("[Event]")
 			End If
 		End Set
 	End Property
@@ -1380,571 +1414,6 @@ Partial Public Class CheckIn
 	End Sub
 End Class
 
-<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.Events")>  _
-Partial Public Class [Event]
-	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
-	
-	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
-	
-	Private _ID As Integer
-	
-	Private _UserID As System.Nullable(Of System.Guid)
-	
-	Private _Name As String
-	
-	Private _SubTitle As String
-	
-	Private _Description As String
-	
-	Private _CategoryID As Integer
-	
-	Private _WebsiteURL As String
-	
-	Private _Cost As String
-	
-	Private _StartDateTime As System.Nullable(Of Date)
-	
-	Private _EndDateTime As System.Nullable(Of Date)
-	
-	Private _TimeZoneOffset As System.Nullable(Of Integer)
-	
-	Private _VenueID As System.Nullable(Of Long)
-	
-	Private _SearchTerms As String
-	
-	Private _NumberOfTweets As Long
-	
-	Private _IsPrivate As System.Nullable(Of Boolean)
-	
-	Private _IsAdult As System.Nullable(Of Boolean)
-	
-	Private _CollectionMode As Integer
-	
-	Private _EventStatus As String
-	
-	Private _LastTweetID As Long
-	
-	Private _IsActive As Boolean
-	
-	Private _CheckIns As EntitySet(Of CheckIn)
-	
-	Private _Tweets As EntitySet(Of Tweet)
-	
-	Private _Venue As EntityRef(Of Venue)
-	
-    #Region "Extensibility Method Definitions"
-    Partial Private Sub OnLoaded()
-    End Sub
-    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
-    End Sub
-    Partial Private Sub OnCreated()
-    End Sub
-    Partial Private Sub OnIDChanging(value As Integer)
-    End Sub
-    Partial Private Sub OnIDChanged()
-    End Sub
-    Partial Private Sub OnUserIDChanging(value As System.Nullable(Of System.Guid))
-    End Sub
-    Partial Private Sub OnUserIDChanged()
-    End Sub
-    Partial Private Sub OnNameChanging(value As String)
-    End Sub
-    Partial Private Sub OnNameChanged()
-    End Sub
-    Partial Private Sub OnSubTitleChanging(value As String)
-    End Sub
-    Partial Private Sub OnSubTitleChanged()
-    End Sub
-    Partial Private Sub OnDescriptionChanging(value As String)
-    End Sub
-    Partial Private Sub OnDescriptionChanged()
-    End Sub
-    Partial Private Sub OnCategoryIDChanging(value As Integer)
-    End Sub
-    Partial Private Sub OnCategoryIDChanged()
-    End Sub
-    Partial Private Sub OnWebsiteURLChanging(value As String)
-    End Sub
-    Partial Private Sub OnWebsiteURLChanged()
-    End Sub
-    Partial Private Sub OnCostChanging(value As String)
-    End Sub
-    Partial Private Sub OnCostChanged()
-    End Sub
-    Partial Private Sub OnStartDateTimeChanging(value As System.Nullable(Of Date))
-    End Sub
-    Partial Private Sub OnStartDateTimeChanged()
-    End Sub
-    Partial Private Sub OnEndDateTimeChanging(value As System.Nullable(Of Date))
-    End Sub
-    Partial Private Sub OnEndDateTimeChanged()
-    End Sub
-    Partial Private Sub OnTimeZoneOffsetChanging(value As System.Nullable(Of Integer))
-    End Sub
-    Partial Private Sub OnTimeZoneOffsetChanged()
-    End Sub
-    Partial Private Sub OnVenueIDChanging(value As System.Nullable(Of Long))
-    End Sub
-    Partial Private Sub OnVenueIDChanged()
-    End Sub
-    Partial Private Sub OnSearchTermsChanging(value As String)
-    End Sub
-    Partial Private Sub OnSearchTermsChanged()
-    End Sub
-    Partial Private Sub OnNumberOfTweetsChanging(value As Long)
-    End Sub
-    Partial Private Sub OnNumberOfTweetsChanged()
-    End Sub
-    Partial Private Sub OnIsPrivateChanging(value As System.Nullable(Of Boolean))
-    End Sub
-    Partial Private Sub OnIsPrivateChanged()
-    End Sub
-    Partial Private Sub OnIsAdultChanging(value As System.Nullable(Of Boolean))
-    End Sub
-    Partial Private Sub OnIsAdultChanged()
-    End Sub
-    Partial Private Sub OnCollectionModeChanging(value As Integer)
-    End Sub
-    Partial Private Sub OnCollectionModeChanged()
-    End Sub
-    Partial Private Sub OnEventStatusChanging(value As String)
-    End Sub
-    Partial Private Sub OnEventStatusChanged()
-    End Sub
-    Partial Private Sub OnLastTweetIDChanging(value As Long)
-    End Sub
-    Partial Private Sub OnLastTweetIDChanged()
-    End Sub
-    Partial Private Sub OnIsActiveChanging(value As Boolean)
-    End Sub
-    Partial Private Sub OnIsActiveChanged()
-    End Sub
-    #End Region
-	
-	Public Sub New()
-		MyBase.New
-		Me._CheckIns = New EntitySet(Of CheckIn)(AddressOf Me.attach_CheckIns, AddressOf Me.detach_CheckIns)
-		Me._Tweets = New EntitySet(Of Tweet)(AddressOf Me.attach_Tweets, AddressOf Me.detach_Tweets)
-		Me._Venue = CType(Nothing, EntityRef(Of Venue))
-		OnCreated
-	End Sub
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ID", AutoSync:=AutoSync.OnInsert, DbType:="Int NOT NULL IDENTITY", IsPrimaryKey:=true, IsDbGenerated:=true)>  _
-	Public Property ID() As Integer
-		Get
-			Return Me._ID
-		End Get
-		Set
-			If ((Me._ID = value)  _
-						= false) Then
-				Me.OnIDChanging(value)
-				Me.SendPropertyChanging
-				Me._ID = value
-				Me.SendPropertyChanged("ID")
-				Me.OnIDChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_UserID", DbType:="UniqueIdentifier")>  _
-	Public Property UserID() As System.Nullable(Of System.Guid)
-		Get
-			Return Me._UserID
-		End Get
-		Set
-			If (Me._UserID.Equals(value) = false) Then
-				Me.OnUserIDChanging(value)
-				Me.SendPropertyChanging
-				Me._UserID = value
-				Me.SendPropertyChanged("UserID")
-				Me.OnUserIDChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Name", DbType:="NVarChar(100)")>  _
-	Public Property Name() As String
-		Get
-			Return Me._Name
-		End Get
-		Set
-			If (String.Equals(Me._Name, value) = false) Then
-				Me.OnNameChanging(value)
-				Me.SendPropertyChanging
-				Me._Name = value
-				Me.SendPropertyChanged("Name")
-				Me.OnNameChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SubTitle", DbType:="NVarChar(100)")>  _
-	Public Property SubTitle() As String
-		Get
-			Return Me._SubTitle
-		End Get
-		Set
-			If (String.Equals(Me._SubTitle, value) = false) Then
-				Me.OnSubTitleChanging(value)
-				Me.SendPropertyChanging
-				Me._SubTitle = value
-				Me.SendPropertyChanged("SubTitle")
-				Me.OnSubTitleChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Description", DbType:="Text", UpdateCheck:=UpdateCheck.Never)>  _
-	Public Property Description() As String
-		Get
-			Return Me._Description
-		End Get
-		Set
-			If (String.Equals(Me._Description, value) = false) Then
-				Me.OnDescriptionChanging(value)
-				Me.SendPropertyChanging
-				Me._Description = value
-				Me.SendPropertyChanged("Description")
-				Me.OnDescriptionChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CategoryID", DbType:="Int NOT NULL")>  _
-	Public Property CategoryID() As Integer
-		Get
-			Return Me._CategoryID
-		End Get
-		Set
-			If ((Me._CategoryID = value)  _
-						= false) Then
-				Me.OnCategoryIDChanging(value)
-				Me.SendPropertyChanging
-				Me._CategoryID = value
-				Me.SendPropertyChanged("CategoryID")
-				Me.OnCategoryIDChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_WebsiteURL", DbType:="NVarChar(500)")>  _
-	Public Property WebsiteURL() As String
-		Get
-			Return Me._WebsiteURL
-		End Get
-		Set
-			If (String.Equals(Me._WebsiteURL, value) = false) Then
-				Me.OnWebsiteURLChanging(value)
-				Me.SendPropertyChanging
-				Me._WebsiteURL = value
-				Me.SendPropertyChanged("WebsiteURL")
-				Me.OnWebsiteURLChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Cost", DbType:="NVarChar(500)")>  _
-	Public Property Cost() As String
-		Get
-			Return Me._Cost
-		End Get
-		Set
-			If (String.Equals(Me._Cost, value) = false) Then
-				Me.OnCostChanging(value)
-				Me.SendPropertyChanging
-				Me._Cost = value
-				Me.SendPropertyChanged("Cost")
-				Me.OnCostChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_StartDateTime", DbType:="DateTime")>  _
-	Public Property StartDateTime() As System.Nullable(Of Date)
-		Get
-			Return Me._StartDateTime
-		End Get
-		Set
-			If (Me._StartDateTime.Equals(value) = false) Then
-				Me.OnStartDateTimeChanging(value)
-				Me.SendPropertyChanging
-				Me._StartDateTime = value
-				Me.SendPropertyChanged("StartDateTime")
-				Me.OnStartDateTimeChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_EndDateTime", DbType:="DateTime")>  _
-	Public Property EndDateTime() As System.Nullable(Of Date)
-		Get
-			Return Me._EndDateTime
-		End Get
-		Set
-			If (Me._EndDateTime.Equals(value) = false) Then
-				Me.OnEndDateTimeChanging(value)
-				Me.SendPropertyChanging
-				Me._EndDateTime = value
-				Me.SendPropertyChanged("EndDateTime")
-				Me.OnEndDateTimeChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_TimeZoneOffset", DbType:="Int")>  _
-	Public Property TimeZoneOffset() As System.Nullable(Of Integer)
-		Get
-			Return Me._TimeZoneOffset
-		End Get
-		Set
-			If (Me._TimeZoneOffset.Equals(value) = false) Then
-				Me.OnTimeZoneOffsetChanging(value)
-				Me.SendPropertyChanging
-				Me._TimeZoneOffset = value
-				Me.SendPropertyChanged("TimeZoneOffset")
-				Me.OnTimeZoneOffsetChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_VenueID", DbType:="BigInt")>  _
-	Public Property VenueID() As System.Nullable(Of Long)
-		Get
-			Return Me._VenueID
-		End Get
-		Set
-			If (Me._VenueID.Equals(value) = false) Then
-				If Me._Venue.HasLoadedOrAssignedValue Then
-					Throw New System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException()
-				End If
-				Me.OnVenueIDChanging(value)
-				Me.SendPropertyChanging
-				Me._VenueID = value
-				Me.SendPropertyChanged("VenueID")
-				Me.OnVenueIDChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SearchTerms", DbType:="NVarChar(255)")>  _
-	Public Property SearchTerms() As String
-		Get
-			Return Me._SearchTerms
-		End Get
-		Set
-			If (String.Equals(Me._SearchTerms, value) = false) Then
-				Me.OnSearchTermsChanging(value)
-				Me.SendPropertyChanging
-				Me._SearchTerms = value
-				Me.SendPropertyChanged("SearchTerms")
-				Me.OnSearchTermsChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_NumberOfTweets", DbType:="BigInt NOT NULL")>  _
-	Public Property NumberOfTweets() As Long
-		Get
-			Return Me._NumberOfTweets
-		End Get
-		Set
-			If ((Me._NumberOfTweets = value)  _
-						= false) Then
-				Me.OnNumberOfTweetsChanging(value)
-				Me.SendPropertyChanging
-				Me._NumberOfTweets = value
-				Me.SendPropertyChanged("NumberOfTweets")
-				Me.OnNumberOfTweetsChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_IsPrivate", DbType:="Bit")>  _
-	Public Property IsPrivate() As System.Nullable(Of Boolean)
-		Get
-			Return Me._IsPrivate
-		End Get
-		Set
-			If (Me._IsPrivate.Equals(value) = false) Then
-				Me.OnIsPrivateChanging(value)
-				Me.SendPropertyChanging
-				Me._IsPrivate = value
-				Me.SendPropertyChanged("IsPrivate")
-				Me.OnIsPrivateChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_IsAdult", DbType:="Bit")>  _
-	Public Property IsAdult() As System.Nullable(Of Boolean)
-		Get
-			Return Me._IsAdult
-		End Get
-		Set
-			If (Me._IsAdult.Equals(value) = false) Then
-				Me.OnIsAdultChanging(value)
-				Me.SendPropertyChanging
-				Me._IsAdult = value
-				Me.SendPropertyChanged("IsAdult")
-				Me.OnIsAdultChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CollectionMode", DbType:="Int NOT NULL")>  _
-	Public Property CollectionMode() As Integer
-		Get
-			Return Me._CollectionMode
-		End Get
-		Set
-			If ((Me._CollectionMode = value)  _
-						= false) Then
-				Me.OnCollectionModeChanging(value)
-				Me.SendPropertyChanging
-				Me._CollectionMode = value
-				Me.SendPropertyChanged("CollectionMode")
-				Me.OnCollectionModeChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_EventStatus", DbType:="NVarChar(50)")>  _
-	Public Property EventStatus() As String
-		Get
-			Return Me._EventStatus
-		End Get
-		Set
-			If (String.Equals(Me._EventStatus, value) = false) Then
-				Me.OnEventStatusChanging(value)
-				Me.SendPropertyChanging
-				Me._EventStatus = value
-				Me.SendPropertyChanged("EventStatus")
-				Me.OnEventStatusChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_LastTweetID", DbType:="BigInt NOT NULL")>  _
-	Public Property LastTweetID() As Long
-		Get
-			Return Me._LastTweetID
-		End Get
-		Set
-			If ((Me._LastTweetID = value)  _
-						= false) Then
-				Me.OnLastTweetIDChanging(value)
-				Me.SendPropertyChanging
-				Me._LastTweetID = value
-				Me.SendPropertyChanged("LastTweetID")
-				Me.OnLastTweetIDChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_IsActive", DbType:="Bit NOT NULL")>  _
-	Public Property IsActive() As Boolean
-		Get
-			Return Me._IsActive
-		End Get
-		Set
-			If ((Me._IsActive = value)  _
-						= false) Then
-				Me.OnIsActiveChanging(value)
-				Me.SendPropertyChanging
-				Me._IsActive = value
-				Me.SendPropertyChanged("IsActive")
-				Me.OnIsActiveChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="Event_CheckIn", Storage:="_CheckIns", ThisKey:="ID", OtherKey:="EventID")>  _
-	Public Property CheckIns() As EntitySet(Of CheckIn)
-		Get
-			Return Me._CheckIns
-		End Get
-		Set
-			Me._CheckIns.Assign(value)
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="Event_Tweet", Storage:="_Tweets", ThisKey:="ID", OtherKey:="EventID")>  _
-	Public Property Tweets() As EntitySet(Of Tweet)
-		Get
-			Return Me._Tweets
-		End Get
-		Set
-			Me._Tweets.Assign(value)
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="Venue_Event", Storage:="_Venue", ThisKey:="VenueID", OtherKey:="VenueID", IsForeignKey:=true)>  _
-	Public Property Venue() As Venue
-		Get
-			Return Me._Venue.Entity
-		End Get
-		Set
-			Dim previousValue As Venue = Me._Venue.Entity
-			If ((Object.Equals(previousValue, value) = false)  _
-						OrElse (Me._Venue.HasLoadedOrAssignedValue = false)) Then
-				Me.SendPropertyChanging
-				If ((previousValue Is Nothing)  _
-							= false) Then
-					Me._Venue.Entity = Nothing
-					previousValue.Events.Remove(Me)
-				End If
-				Me._Venue.Entity = value
-				If ((value Is Nothing)  _
-							= false) Then
-					value.Events.Add(Me)
-					Me._VenueID = value.VenueID
-				Else
-					Me._VenueID = CType(Nothing, Nullable(Of Long))
-				End If
-				Me.SendPropertyChanged("Venue")
-			End If
-		End Set
-	End Property
-	
-	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
-	
-	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
-	
-	Protected Overridable Sub SendPropertyChanging()
-		If ((Me.PropertyChangingEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
-		End If
-	End Sub
-	
-	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
-		If ((Me.PropertyChangedEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
-		End If
-	End Sub
-	
-	Private Sub attach_CheckIns(ByVal entity As CheckIn)
-		Me.SendPropertyChanging
-		entity.[Event] = Me
-	End Sub
-	
-	Private Sub detach_CheckIns(ByVal entity As CheckIn)
-		Me.SendPropertyChanging
-		entity.[Event] = Nothing
-	End Sub
-	
-	Private Sub attach_Tweets(ByVal entity As Tweet)
-		Me.SendPropertyChanging
-		entity.[Event] = Me
-	End Sub
-	
-	Private Sub detach_Tweets(ByVal entity As Tweet)
-		Me.SendPropertyChanging
-		entity.[Event] = Nothing
-	End Sub
-End Class
-
 <Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.Tweets")>  _
 Partial Public Class Tweet
 	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
@@ -2128,5 +1597,637 @@ Partial Public Class Tweet
 	Private Sub detach_URLs(ByVal entity As URL)
 		Me.SendPropertyChanging
 		entity.Tweet = Nothing
+	End Sub
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.Events")>  _
+Partial Public Class [Event]
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _ID As Integer
+	
+	Private _UserID As System.Nullable(Of System.Guid)
+	
+	Private _Name As String
+	
+	Private _SubTitle As String
+	
+	Private _Description As String
+	
+	Private _CategoryID As Integer
+	
+	Private _WebsiteURL As String
+	
+	Private _Cost As String
+	
+	Private _StartDateTime As System.Nullable(Of Date)
+	
+	Private _EndDateTime As System.Nullable(Of Date)
+	
+	Private _CollectionStartDateTime As System.Nullable(Of Date)
+	
+	Private _CollectionEndDateTime As System.Nullable(Of Date)
+	
+	Private _TimeZoneOffset As System.Nullable(Of Integer)
+	
+	Private _VenueID As System.Nullable(Of Long)
+	
+	Private _SearchTerms As String
+	
+	Private _NumberOfTweets As Long
+	
+	Private _IsPrivate As System.Nullable(Of Boolean)
+	
+	Private _IsAdult As System.Nullable(Of Boolean)
+	
+	Private _CollectionMode As Integer
+	
+	Private _EventStatus As String
+	
+	Private _LastTweetID As Long
+	
+	Private _IsActive As Boolean
+	
+	Private _EpiloggerImageMetaDatas As EntitySet(Of EpiloggerImageMetaData)
+	
+	Private _CheckIns As EntitySet(Of CheckIn)
+	
+	Private _Tweets As EntitySet(Of Tweet)
+	
+	Private _Venue As EntityRef(Of Venue)
+	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnIDChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnIDChanged()
+    End Sub
+    Partial Private Sub OnUserIDChanging(value As System.Nullable(Of System.Guid))
+    End Sub
+    Partial Private Sub OnUserIDChanged()
+    End Sub
+    Partial Private Sub OnNameChanging(value As String)
+    End Sub
+    Partial Private Sub OnNameChanged()
+    End Sub
+    Partial Private Sub OnSubTitleChanging(value As String)
+    End Sub
+    Partial Private Sub OnSubTitleChanged()
+    End Sub
+    Partial Private Sub OnDescriptionChanging(value As String)
+    End Sub
+    Partial Private Sub OnDescriptionChanged()
+    End Sub
+    Partial Private Sub OnCategoryIDChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnCategoryIDChanged()
+    End Sub
+    Partial Private Sub OnWebsiteURLChanging(value As String)
+    End Sub
+    Partial Private Sub OnWebsiteURLChanged()
+    End Sub
+    Partial Private Sub OnCostChanging(value As String)
+    End Sub
+    Partial Private Sub OnCostChanged()
+    End Sub
+    Partial Private Sub OnStartDateTimeChanging(value As System.Nullable(Of Date))
+    End Sub
+    Partial Private Sub OnStartDateTimeChanged()
+    End Sub
+    Partial Private Sub OnEndDateTimeChanging(value As System.Nullable(Of Date))
+    End Sub
+    Partial Private Sub OnEndDateTimeChanged()
+    End Sub
+    Partial Private Sub OnCollectionStartDateTimeChanging(value As System.Nullable(Of Date))
+    End Sub
+    Partial Private Sub OnCollectionStartDateTimeChanged()
+    End Sub
+    Partial Private Sub OnCollectionEndDateTimeChanging(value As System.Nullable(Of Date))
+    End Sub
+    Partial Private Sub OnCollectionEndDateTimeChanged()
+    End Sub
+    Partial Private Sub OnTimeZoneOffsetChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnTimeZoneOffsetChanged()
+    End Sub
+    Partial Private Sub OnVenueIDChanging(value As System.Nullable(Of Long))
+    End Sub
+    Partial Private Sub OnVenueIDChanged()
+    End Sub
+    Partial Private Sub OnSearchTermsChanging(value As String)
+    End Sub
+    Partial Private Sub OnSearchTermsChanged()
+    End Sub
+    Partial Private Sub OnNumberOfTweetsChanging(value As Long)
+    End Sub
+    Partial Private Sub OnNumberOfTweetsChanged()
+    End Sub
+    Partial Private Sub OnIsPrivateChanging(value As System.Nullable(Of Boolean))
+    End Sub
+    Partial Private Sub OnIsPrivateChanged()
+    End Sub
+    Partial Private Sub OnIsAdultChanging(value As System.Nullable(Of Boolean))
+    End Sub
+    Partial Private Sub OnIsAdultChanged()
+    End Sub
+    Partial Private Sub OnCollectionModeChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnCollectionModeChanged()
+    End Sub
+    Partial Private Sub OnEventStatusChanging(value As String)
+    End Sub
+    Partial Private Sub OnEventStatusChanged()
+    End Sub
+    Partial Private Sub OnLastTweetIDChanging(value As Long)
+    End Sub
+    Partial Private Sub OnLastTweetIDChanged()
+    End Sub
+    Partial Private Sub OnIsActiveChanging(value As Boolean)
+    End Sub
+    Partial Private Sub OnIsActiveChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		Me._EpiloggerImageMetaDatas = New EntitySet(Of EpiloggerImageMetaData)(AddressOf Me.attach_EpiloggerImageMetaDatas, AddressOf Me.detach_EpiloggerImageMetaDatas)
+		Me._CheckIns = New EntitySet(Of CheckIn)(AddressOf Me.attach_CheckIns, AddressOf Me.detach_CheckIns)
+		Me._Tweets = New EntitySet(Of Tweet)(AddressOf Me.attach_Tweets, AddressOf Me.detach_Tweets)
+		Me._Venue = CType(Nothing, EntityRef(Of Venue))
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ID", AutoSync:=AutoSync.OnInsert, DbType:="Int NOT NULL IDENTITY", IsPrimaryKey:=true, IsDbGenerated:=true)>  _
+	Public Property ID() As Integer
+		Get
+			Return Me._ID
+		End Get
+		Set
+			If ((Me._ID = value)  _
+						= false) Then
+				Me.OnIDChanging(value)
+				Me.SendPropertyChanging
+				Me._ID = value
+				Me.SendPropertyChanged("ID")
+				Me.OnIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_UserID", DbType:="UniqueIdentifier")>  _
+	Public Property UserID() As System.Nullable(Of System.Guid)
+		Get
+			Return Me._UserID
+		End Get
+		Set
+			If (Me._UserID.Equals(value) = false) Then
+				Me.OnUserIDChanging(value)
+				Me.SendPropertyChanging
+				Me._UserID = value
+				Me.SendPropertyChanged("UserID")
+				Me.OnUserIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Name", DbType:="NVarChar(100)")>  _
+	Public Property Name() As String
+		Get
+			Return Me._Name
+		End Get
+		Set
+			If (String.Equals(Me._Name, value) = false) Then
+				Me.OnNameChanging(value)
+				Me.SendPropertyChanging
+				Me._Name = value
+				Me.SendPropertyChanged("Name")
+				Me.OnNameChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SubTitle", DbType:="NVarChar(100)")>  _
+	Public Property SubTitle() As String
+		Get
+			Return Me._SubTitle
+		End Get
+		Set
+			If (String.Equals(Me._SubTitle, value) = false) Then
+				Me.OnSubTitleChanging(value)
+				Me.SendPropertyChanging
+				Me._SubTitle = value
+				Me.SendPropertyChanged("SubTitle")
+				Me.OnSubTitleChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Description", DbType:="Text", UpdateCheck:=UpdateCheck.Never)>  _
+	Public Property Description() As String
+		Get
+			Return Me._Description
+		End Get
+		Set
+			If (String.Equals(Me._Description, value) = false) Then
+				Me.OnDescriptionChanging(value)
+				Me.SendPropertyChanging
+				Me._Description = value
+				Me.SendPropertyChanged("Description")
+				Me.OnDescriptionChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CategoryID", DbType:="Int NOT NULL")>  _
+	Public Property CategoryID() As Integer
+		Get
+			Return Me._CategoryID
+		End Get
+		Set
+			If ((Me._CategoryID = value)  _
+						= false) Then
+				Me.OnCategoryIDChanging(value)
+				Me.SendPropertyChanging
+				Me._CategoryID = value
+				Me.SendPropertyChanged("CategoryID")
+				Me.OnCategoryIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_WebsiteURL", DbType:="NVarChar(500)")>  _
+	Public Property WebsiteURL() As String
+		Get
+			Return Me._WebsiteURL
+		End Get
+		Set
+			If (String.Equals(Me._WebsiteURL, value) = false) Then
+				Me.OnWebsiteURLChanging(value)
+				Me.SendPropertyChanging
+				Me._WebsiteURL = value
+				Me.SendPropertyChanged("WebsiteURL")
+				Me.OnWebsiteURLChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Cost", DbType:="NVarChar(500)")>  _
+	Public Property Cost() As String
+		Get
+			Return Me._Cost
+		End Get
+		Set
+			If (String.Equals(Me._Cost, value) = false) Then
+				Me.OnCostChanging(value)
+				Me.SendPropertyChanging
+				Me._Cost = value
+				Me.SendPropertyChanged("Cost")
+				Me.OnCostChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_StartDateTime", DbType:="DateTime")>  _
+	Public Property StartDateTime() As System.Nullable(Of Date)
+		Get
+			Return Me._StartDateTime
+		End Get
+		Set
+			If (Me._StartDateTime.Equals(value) = false) Then
+				Me.OnStartDateTimeChanging(value)
+				Me.SendPropertyChanging
+				Me._StartDateTime = value
+				Me.SendPropertyChanged("StartDateTime")
+				Me.OnStartDateTimeChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_EndDateTime", DbType:="DateTime")>  _
+	Public Property EndDateTime() As System.Nullable(Of Date)
+		Get
+			Return Me._EndDateTime
+		End Get
+		Set
+			If (Me._EndDateTime.Equals(value) = false) Then
+				Me.OnEndDateTimeChanging(value)
+				Me.SendPropertyChanging
+				Me._EndDateTime = value
+				Me.SendPropertyChanged("EndDateTime")
+				Me.OnEndDateTimeChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CollectionStartDateTime", DbType:="DateTime")>  _
+	Public Property CollectionStartDateTime() As System.Nullable(Of Date)
+		Get
+			Return Me._CollectionStartDateTime
+		End Get
+		Set
+			If (Me._CollectionStartDateTime.Equals(value) = false) Then
+				Me.OnCollectionStartDateTimeChanging(value)
+				Me.SendPropertyChanging
+				Me._CollectionStartDateTime = value
+				Me.SendPropertyChanged("CollectionStartDateTime")
+				Me.OnCollectionStartDateTimeChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CollectionEndDateTime", DbType:="DateTime")>  _
+	Public Property CollectionEndDateTime() As System.Nullable(Of Date)
+		Get
+			Return Me._CollectionEndDateTime
+		End Get
+		Set
+			If (Me._CollectionEndDateTime.Equals(value) = false) Then
+				Me.OnCollectionEndDateTimeChanging(value)
+				Me.SendPropertyChanging
+				Me._CollectionEndDateTime = value
+				Me.SendPropertyChanged("CollectionEndDateTime")
+				Me.OnCollectionEndDateTimeChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_TimeZoneOffset", DbType:="Int")>  _
+	Public Property TimeZoneOffset() As System.Nullable(Of Integer)
+		Get
+			Return Me._TimeZoneOffset
+		End Get
+		Set
+			If (Me._TimeZoneOffset.Equals(value) = false) Then
+				Me.OnTimeZoneOffsetChanging(value)
+				Me.SendPropertyChanging
+				Me._TimeZoneOffset = value
+				Me.SendPropertyChanged("TimeZoneOffset")
+				Me.OnTimeZoneOffsetChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_VenueID", DbType:="BigInt")>  _
+	Public Property VenueID() As System.Nullable(Of Long)
+		Get
+			Return Me._VenueID
+		End Get
+		Set
+			If (Me._VenueID.Equals(value) = false) Then
+				If Me._Venue.HasLoadedOrAssignedValue Then
+					Throw New System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException()
+				End If
+				Me.OnVenueIDChanging(value)
+				Me.SendPropertyChanging
+				Me._VenueID = value
+				Me.SendPropertyChanged("VenueID")
+				Me.OnVenueIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SearchTerms", DbType:="NVarChar(255)")>  _
+	Public Property SearchTerms() As String
+		Get
+			Return Me._SearchTerms
+		End Get
+		Set
+			If (String.Equals(Me._SearchTerms, value) = false) Then
+				Me.OnSearchTermsChanging(value)
+				Me.SendPropertyChanging
+				Me._SearchTerms = value
+				Me.SendPropertyChanged("SearchTerms")
+				Me.OnSearchTermsChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_NumberOfTweets", DbType:="BigInt NOT NULL")>  _
+	Public Property NumberOfTweets() As Long
+		Get
+			Return Me._NumberOfTweets
+		End Get
+		Set
+			If ((Me._NumberOfTweets = value)  _
+						= false) Then
+				Me.OnNumberOfTweetsChanging(value)
+				Me.SendPropertyChanging
+				Me._NumberOfTweets = value
+				Me.SendPropertyChanged("NumberOfTweets")
+				Me.OnNumberOfTweetsChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_IsPrivate", DbType:="Bit")>  _
+	Public Property IsPrivate() As System.Nullable(Of Boolean)
+		Get
+			Return Me._IsPrivate
+		End Get
+		Set
+			If (Me._IsPrivate.Equals(value) = false) Then
+				Me.OnIsPrivateChanging(value)
+				Me.SendPropertyChanging
+				Me._IsPrivate = value
+				Me.SendPropertyChanged("IsPrivate")
+				Me.OnIsPrivateChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_IsAdult", DbType:="Bit")>  _
+	Public Property IsAdult() As System.Nullable(Of Boolean)
+		Get
+			Return Me._IsAdult
+		End Get
+		Set
+			If (Me._IsAdult.Equals(value) = false) Then
+				Me.OnIsAdultChanging(value)
+				Me.SendPropertyChanging
+				Me._IsAdult = value
+				Me.SendPropertyChanged("IsAdult")
+				Me.OnIsAdultChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CollectionMode", DbType:="Int NOT NULL")>  _
+	Public Property CollectionMode() As Integer
+		Get
+			Return Me._CollectionMode
+		End Get
+		Set
+			If ((Me._CollectionMode = value)  _
+						= false) Then
+				Me.OnCollectionModeChanging(value)
+				Me.SendPropertyChanging
+				Me._CollectionMode = value
+				Me.SendPropertyChanged("CollectionMode")
+				Me.OnCollectionModeChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_EventStatus", DbType:="NVarChar(50)")>  _
+	Public Property EventStatus() As String
+		Get
+			Return Me._EventStatus
+		End Get
+		Set
+			If (String.Equals(Me._EventStatus, value) = false) Then
+				Me.OnEventStatusChanging(value)
+				Me.SendPropertyChanging
+				Me._EventStatus = value
+				Me.SendPropertyChanged("EventStatus")
+				Me.OnEventStatusChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_LastTweetID", DbType:="BigInt NOT NULL")>  _
+	Public Property LastTweetID() As Long
+		Get
+			Return Me._LastTweetID
+		End Get
+		Set
+			If ((Me._LastTweetID = value)  _
+						= false) Then
+				Me.OnLastTweetIDChanging(value)
+				Me.SendPropertyChanging
+				Me._LastTweetID = value
+				Me.SendPropertyChanged("LastTweetID")
+				Me.OnLastTweetIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_IsActive", DbType:="Bit NOT NULL")>  _
+	Public Property IsActive() As Boolean
+		Get
+			Return Me._IsActive
+		End Get
+		Set
+			If ((Me._IsActive = value)  _
+						= false) Then
+				Me.OnIsActiveChanging(value)
+				Me.SendPropertyChanging
+				Me._IsActive = value
+				Me.SendPropertyChanged("IsActive")
+				Me.OnIsActiveChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="Event_EpiloggerImageMetaData", Storage:="_EpiloggerImageMetaDatas", ThisKey:="ID", OtherKey:="EventID")>  _
+	Public Property EpiloggerImageMetaDatas() As EntitySet(Of EpiloggerImageMetaData)
+		Get
+			Return Me._EpiloggerImageMetaDatas
+		End Get
+		Set
+			Me._EpiloggerImageMetaDatas.Assign(value)
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="Event_CheckIn", Storage:="_CheckIns", ThisKey:="ID", OtherKey:="EventID")>  _
+	Public Property CheckIns() As EntitySet(Of CheckIn)
+		Get
+			Return Me._CheckIns
+		End Get
+		Set
+			Me._CheckIns.Assign(value)
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="Event_Tweet", Storage:="_Tweets", ThisKey:="ID", OtherKey:="EventID")>  _
+	Public Property Tweets() As EntitySet(Of Tweet)
+		Get
+			Return Me._Tweets
+		End Get
+		Set
+			Me._Tweets.Assign(value)
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="Venue_Event", Storage:="_Venue", ThisKey:="VenueID", OtherKey:="VenueID", IsForeignKey:=true)>  _
+	Public Property Venue() As Venue
+		Get
+			Return Me._Venue.Entity
+		End Get
+		Set
+			Dim previousValue As Venue = Me._Venue.Entity
+			If ((Object.Equals(previousValue, value) = false)  _
+						OrElse (Me._Venue.HasLoadedOrAssignedValue = false)) Then
+				Me.SendPropertyChanging
+				If ((previousValue Is Nothing)  _
+							= false) Then
+					Me._Venue.Entity = Nothing
+					previousValue.Events.Remove(Me)
+				End If
+				Me._Venue.Entity = value
+				If ((value Is Nothing)  _
+							= false) Then
+					value.Events.Add(Me)
+					Me._VenueID = value.VenueID
+				Else
+					Me._VenueID = CType(Nothing, Nullable(Of Long))
+				End If
+				Me.SendPropertyChanged("Venue")
+			End If
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+	
+	Private Sub attach_EpiloggerImageMetaDatas(ByVal entity As EpiloggerImageMetaData)
+		Me.SendPropertyChanging
+		entity.[Event] = Me
+	End Sub
+	
+	Private Sub detach_EpiloggerImageMetaDatas(ByVal entity As EpiloggerImageMetaData)
+		Me.SendPropertyChanging
+		entity.[Event] = Nothing
+	End Sub
+	
+	Private Sub attach_CheckIns(ByVal entity As CheckIn)
+		Me.SendPropertyChanging
+		entity.[Event] = Me
+	End Sub
+	
+	Private Sub detach_CheckIns(ByVal entity As CheckIn)
+		Me.SendPropertyChanging
+		entity.[Event] = Nothing
+	End Sub
+	
+	Private Sub attach_Tweets(ByVal entity As Tweet)
+		Me.SendPropertyChanging
+		entity.[Event] = Me
+	End Sub
+	
+	Private Sub detach_Tweets(ByVal entity As Tweet)
+		Me.SendPropertyChanging
+		entity.[Event] = Nothing
 	End Sub
 End Class

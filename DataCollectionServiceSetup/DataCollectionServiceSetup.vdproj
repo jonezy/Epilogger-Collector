@@ -142,49 +142,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_A5313FD61754492CB2D22CCE3FE84460"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_BF16AC4CA051C19AD978E2BE89BD2A40"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_23E32C423520F7823AB39ADBC363F6AB"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_0E689AAB122400E6F180BB3B6C499871"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_8D5C1AFC8F01D615DC65C9694AEDBA37"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_3278CF6B2AF9FAB7B7C1F0C14DBEA434"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_00DF8E65E5C358D7C861566BDF4E45C5"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_8401E1C523E9B80E7D08890A55299DF9"
+        "OwnerKey" = "8:_C5583AA916A15F5AE07E4E9C0291BF45"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -196,7 +154,49 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_C5583AA916A15F5AE07E4E9C0291BF45"
+        "OwnerKey" = "8:_8401E1C523E9B80E7D08890A55299DF9"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_00DF8E65E5C358D7C861566BDF4E45C5"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_3278CF6B2AF9FAB7B7C1F0C14DBEA434"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_8D5C1AFC8F01D615DC65C9694AEDBA37"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_0E689AAB122400E6F180BB3B6C499871"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_23E32C423520F7823AB39ADBC363F6AB"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_BF16AC4CA051C19AD978E2BE89BD2A40"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_A5313FD61754492CB2D22CCE3FE84460"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -276,7 +276,7 @@
     {
         "CustomAction"
         {
-            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_2F027C45DC46423B92CB7DE84E11996D"
+            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_274A656E985B46D394131D8B4F227F69"
             {
             "Name" = "8:Primary output from DataCollectionService (Active)"
             "Condition" = "8:"
@@ -286,7 +286,7 @@
             "Arguments" = "8:"
             "EntryPoint" = "8:"
             "Sequence" = "3:1"
-            "Identifier" = "8:_A5D0775E_BF64_4F23_8C90_CB86C75F29B4"
+            "Identifier" = "8:_590B2548_E084_4769_8B76_4799928E0D90"
             "InstallerClass" = "11:TRUE"
             "CustomActionData" = "8:"
             }
@@ -362,11 +362,6 @@
             "AssemblyAsmDisplayName" = "8:SharpSquare, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_00DF8E65E5C358D7C861566BDF4E45C5"
-                    {
-                    "Name" = "8:SharpSquare.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:SharpSquare.dll"
             "TargetName" = "8:"
@@ -393,11 +388,6 @@
             "AssemblyAsmDisplayName" = "8:FlickrNet, Version=3.1.4000.0, Culture=neutral, PublicKeyToken=2491df59efa5d132, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_0CBDE529BE300F50CB1E2A77E213FAB6"
-                    {
-                    "Name" = "8:FlickrNet.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:FlickrNet.dll"
             "TargetName" = "8:"
@@ -424,11 +414,6 @@
             "AssemblyAsmDisplayName" = "8:TweetSharp, Version=2.0.0.0, Culture=neutral, PublicKeyToken=c148cfba29ed1a4d, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_0E689AAB122400E6F180BB3B6C499871"
-                    {
-                    "Name" = "8:TweetSharp.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:TweetSharp.dll"
             "TargetName" = "8:"
@@ -455,11 +440,6 @@
             "AssemblyAsmDisplayName" = "8:LoggingReporting, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_23E32C423520F7823AB39ADBC363F6AB"
-                    {
-                    "Name" = "8:LoggingReporting.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:LoggingReporting.dll"
             "TargetName" = "8:"
@@ -486,11 +466,6 @@
             "AssemblyAsmDisplayName" = "8:Hammock.ClientProfile, Version=1.0.0.0, Culture=neutral, PublicKeyToken=c148cfba29ed1a4d, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_3278CF6B2AF9FAB7B7C1F0C14DBEA434"
-                    {
-                    "Name" = "8:Hammock.ClientProfile.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:Hammock.ClientProfile.dll"
             "TargetName" = "8:"
@@ -517,11 +492,6 @@
             "AssemblyAsmDisplayName" = "8:Microsoft.WindowsAzure.StorageClient, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_8401E1C523E9B80E7D08890A55299DF9"
-                    {
-                    "Name" = "8:Microsoft.WindowsAzure.StorageClient.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:Microsoft.WindowsAzure.StorageClient.dll"
             "TargetName" = "8:"
@@ -548,11 +518,6 @@
             "AssemblyAsmDisplayName" = "8:Newtonsoft.Json, Version=4.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_8D5C1AFC8F01D615DC65C9694AEDBA37"
-                    {
-                    "Name" = "8:Newtonsoft.Json.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:Newtonsoft.Json.dll"
             "TargetName" = "8:"
@@ -579,11 +544,6 @@
             "AssemblyAsmDisplayName" = "8:DataCollector, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_BF16AC4CA051C19AD978E2BE89BD2A40"
-                    {
-                    "Name" = "8:DataCollector.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:DataCollector.dll"
             "TargetName" = "8:"
@@ -610,11 +570,6 @@
             "AssemblyAsmDisplayName" = "8:Microsoft.WindowsAzure.ServiceRuntime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_C5583AA916A15F5AE07E4E9C0291BF45"
-                    {
-                    "Name" = "8:Microsoft.WindowsAzure.ServiceRuntime.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:Microsoft.WindowsAzure.ServiceRuntime.dll"
             "TargetName" = "8:"

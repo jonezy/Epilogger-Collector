@@ -61,17 +61,17 @@ Partial Public Class TweetsDataContext
     End Sub
   Partial Private Sub DeleteCheckIn(instance As CheckIn)
     End Sub
-  Partial Private Sub InsertTweet(instance As Tweet)
-    End Sub
-  Partial Private Sub UpdateTweet(instance As Tweet)
-    End Sub
-  Partial Private Sub DeleteTweet(instance As Tweet)
-    End Sub
   Partial Private Sub InsertEvent(instance As [Event])
     End Sub
   Partial Private Sub UpdateEvent(instance As [Event])
     End Sub
   Partial Private Sub DeleteEvent(instance As [Event])
+    End Sub
+  Partial Private Sub InsertTweet(instance As Tweet)
+    End Sub
+  Partial Private Sub UpdateTweet(instance As Tweet)
+    End Sub
+  Partial Private Sub DeleteTweet(instance As Tweet)
     End Sub
   #End Region
 	
@@ -130,15 +130,15 @@ Partial Public Class TweetsDataContext
 		End Get
 	End Property
 	
-	Public ReadOnly Property Tweets() As System.Data.Linq.Table(Of Tweet)
-		Get
-			Return Me.GetTable(Of Tweet)
-		End Get
-	End Property
-	
 	Public ReadOnly Property Events() As System.Data.Linq.Table(Of [Event])
 		Get
 			Return Me.GetTable(Of [Event])
+		End Get
+	End Property
+	
+	Public ReadOnly Property Tweets() As System.Data.Linq.Table(Of Tweet)
+		Get
+			Return Me.GetTable(Of Tweet)
 		End Get
 	End Property
 End Class
@@ -1226,6 +1226,8 @@ Partial Public Class CheckIn
 	
 	Private _Event As EntityRef(Of [Event])
 	
+	Private _Tweet As EntityRef(Of Tweet)
+	
     #Region "Extensibility Method Definitions"
     Partial Private Sub OnLoaded()
     End Sub
@@ -1262,6 +1264,7 @@ Partial Public Class CheckIn
 	Public Sub New()
 		MyBase.New
 		Me._Event = CType(Nothing, EntityRef(Of [Event]))
+		Me._Tweet = CType(Nothing, EntityRef(Of Tweet))
 		OnCreated
 	End Sub
 	
@@ -1309,6 +1312,9 @@ Partial Public Class CheckIn
 		End Get
 		Set
 			If (Me._TweetID.Equals(value) = false) Then
+				If Me._Tweet.HasLoadedOrAssignedValue Then
+					Throw New System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException()
+				End If
 				Me.OnTweetIDChanging(value)
 				Me.SendPropertyChanging
 				Me._TweetID = value
@@ -1395,178 +1401,30 @@ Partial Public Class CheckIn
 		End Set
 	End Property
 	
-	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
-	
-	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
-	
-	Protected Overridable Sub SendPropertyChanging()
-		If ((Me.PropertyChangingEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
-		End If
-	End Sub
-	
-	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
-		If ((Me.PropertyChangedEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
-		End If
-	End Sub
-End Class
-
-<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.Tweets")>  _
-Partial Public Class Tweet
-	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
-	
-	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
-	
-	Private _ID As Long
-	
-	Private _TwitterID As Long
-	
-	Private _EventID As System.Nullable(Of Integer)
-	
-	Private _CreatedDate As System.Nullable(Of Date)
-	
-	Private _URLs As EntitySet(Of URL)
-	
-	Private _Event As EntityRef(Of [Event])
-	
-    #Region "Extensibility Method Definitions"
-    Partial Private Sub OnLoaded()
-    End Sub
-    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
-    End Sub
-    Partial Private Sub OnCreated()
-    End Sub
-    Partial Private Sub OnIDChanging(value As Long)
-    End Sub
-    Partial Private Sub OnIDChanged()
-    End Sub
-    Partial Private Sub OnTwitterIDChanging(value As Long)
-    End Sub
-    Partial Private Sub OnTwitterIDChanged()
-    End Sub
-    Partial Private Sub OnEventIDChanging(value As System.Nullable(Of Integer))
-    End Sub
-    Partial Private Sub OnEventIDChanged()
-    End Sub
-    Partial Private Sub OnCreatedDateChanging(value As System.Nullable(Of Date))
-    End Sub
-    Partial Private Sub OnCreatedDateChanged()
-    End Sub
-    #End Region
-	
-	Public Sub New()
-		MyBase.New
-		Me._URLs = New EntitySet(Of URL)(AddressOf Me.attach_URLs, AddressOf Me.detach_URLs)
-		Me._Event = CType(Nothing, EntityRef(Of [Event]))
-		OnCreated
-	End Sub
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ID", AutoSync:=AutoSync.OnInsert, DbType:="BigInt NOT NULL IDENTITY", IsPrimaryKey:=true, IsDbGenerated:=true)>  _
-	Public Property ID() As Long
+	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="Tweet_CheckIn", Storage:="_Tweet", ThisKey:="TweetID", OtherKey:="ID", IsForeignKey:=true)>  _
+	Public Property Tweet() As Tweet
 		Get
-			Return Me._ID
+			Return Me._Tweet.Entity
 		End Get
 		Set
-			If ((Me._ID = value)  _
-						= false) Then
-				Me.OnIDChanging(value)
-				Me.SendPropertyChanging
-				Me._ID = value
-				Me.SendPropertyChanged("ID")
-				Me.OnIDChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_TwitterID", DbType:="BigInt NOT NULL")>  _
-	Public Property TwitterID() As Long
-		Get
-			Return Me._TwitterID
-		End Get
-		Set
-			If ((Me._TwitterID = value)  _
-						= false) Then
-				Me.OnTwitterIDChanging(value)
-				Me.SendPropertyChanging
-				Me._TwitterID = value
-				Me.SendPropertyChanged("TwitterID")
-				Me.OnTwitterIDChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_EventID", DbType:="Int")>  _
-	Public Property EventID() As System.Nullable(Of Integer)
-		Get
-			Return Me._EventID
-		End Get
-		Set
-			If (Me._EventID.Equals(value) = false) Then
-				If Me._Event.HasLoadedOrAssignedValue Then
-					Throw New System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException()
-				End If
-				Me.OnEventIDChanging(value)
-				Me.SendPropertyChanging
-				Me._EventID = value
-				Me.SendPropertyChanged("EventID")
-				Me.OnEventIDChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CreatedDate", DbType:="DateTime")>  _
-	Public Property CreatedDate() As System.Nullable(Of Date)
-		Get
-			Return Me._CreatedDate
-		End Get
-		Set
-			If (Me._CreatedDate.Equals(value) = false) Then
-				Me.OnCreatedDateChanging(value)
-				Me.SendPropertyChanging
-				Me._CreatedDate = value
-				Me.SendPropertyChanged("CreatedDate")
-				Me.OnCreatedDateChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="Tweet_URL", Storage:="_URLs", ThisKey:="ID", OtherKey:="TweetID")>  _
-	Public Property URLs() As EntitySet(Of URL)
-		Get
-			Return Me._URLs
-		End Get
-		Set
-			Me._URLs.Assign(value)
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="Event_Tweet", Storage:="_Event", ThisKey:="EventID", OtherKey:="ID", IsForeignKey:=true)>  _
-	Public Property [Event]() As [Event]
-		Get
-			Return Me._Event.Entity
-		End Get
-		Set
-			Dim previousValue As [Event] = Me._Event.Entity
+			Dim previousValue As Tweet = Me._Tweet.Entity
 			If ((Object.Equals(previousValue, value) = false)  _
-						OrElse (Me._Event.HasLoadedOrAssignedValue = false)) Then
+						OrElse (Me._Tweet.HasLoadedOrAssignedValue = false)) Then
 				Me.SendPropertyChanging
 				If ((previousValue Is Nothing)  _
 							= false) Then
-					Me._Event.Entity = Nothing
-					previousValue.Tweets.Remove(Me)
+					Me._Tweet.Entity = Nothing
+					previousValue.CheckIns.Remove(Me)
 				End If
-				Me._Event.Entity = value
+				Me._Tweet.Entity = value
 				If ((value Is Nothing)  _
 							= false) Then
-					value.Tweets.Add(Me)
-					Me._EventID = value.ID
+					value.CheckIns.Add(Me)
+					Me._TweetID = value.ID
 				Else
-					Me._EventID = CType(Nothing, Nullable(Of Integer))
+					Me._TweetID = CType(Nothing, Nullable(Of Long))
 				End If
-				Me.SendPropertyChanged("[Event]")
+				Me.SendPropertyChanged("Tweet")
 			End If
 		End Set
 	End Property
@@ -1587,16 +1445,6 @@ Partial Public Class Tweet
 					= false) Then
 			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
 		End If
-	End Sub
-	
-	Private Sub attach_URLs(ByVal entity As URL)
-		Me.SendPropertyChanging
-		entity.Tweet = Me
-	End Sub
-	
-	Private Sub detach_URLs(ByVal entity As URL)
-		Me.SendPropertyChanging
-		entity.Tweet = Nothing
 	End Sub
 End Class
 
@@ -2229,5 +2077,522 @@ Partial Public Class [Event]
 	Private Sub detach_Tweets(ByVal entity As Tweet)
 		Me.SendPropertyChanging
 		entity.[Event] = Nothing
+	End Sub
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.Tweets")>  _
+Partial Public Class Tweet
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _ID As Long
+	
+	Private _TwitterID As Long
+	
+	Private _EventID As System.Nullable(Of Integer)
+	
+	Private _Text As String
+	
+	Private _TextAsHTML As String
+	
+	Private _Source As String
+	
+	Private _CreatedDate As System.Nullable(Of Date)
+	
+	Private _ToUserID As System.Nullable(Of Long)
+	
+	Private _FromUserID As System.Nullable(Of Long)
+	
+	Private _FromUserScreenName As String
+	
+	Private _ToUserScreenName As String
+	
+	Private _IsoLanguageCode As String
+	
+	Private _ProfileImageURL As String
+	
+	Private _SinceID As System.Nullable(Of Long)
+	
+	Private _Location As String
+	
+	Private _RawSource As String
+	
+	Private _DeleteVoteCount As System.Nullable(Of Integer)
+	
+	Private _Deleted As System.Nullable(Of Boolean)
+	
+	Private _URLs As EntitySet(Of URL)
+	
+	Private _CheckIns As EntitySet(Of CheckIn)
+	
+	Private _Event As EntityRef(Of [Event])
+	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnIDChanging(value As Long)
+    End Sub
+    Partial Private Sub OnIDChanged()
+    End Sub
+    Partial Private Sub OnTwitterIDChanging(value As Long)
+    End Sub
+    Partial Private Sub OnTwitterIDChanged()
+    End Sub
+    Partial Private Sub OnEventIDChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnEventIDChanged()
+    End Sub
+    Partial Private Sub OnTextChanging(value As String)
+    End Sub
+    Partial Private Sub OnTextChanged()
+    End Sub
+    Partial Private Sub OnTextAsHTMLChanging(value As String)
+    End Sub
+    Partial Private Sub OnTextAsHTMLChanged()
+    End Sub
+    Partial Private Sub OnSourceChanging(value As String)
+    End Sub
+    Partial Private Sub OnSourceChanged()
+    End Sub
+    Partial Private Sub OnCreatedDateChanging(value As System.Nullable(Of Date))
+    End Sub
+    Partial Private Sub OnCreatedDateChanged()
+    End Sub
+    Partial Private Sub OnToUserIDChanging(value As System.Nullable(Of Long))
+    End Sub
+    Partial Private Sub OnToUserIDChanged()
+    End Sub
+    Partial Private Sub OnFromUserIDChanging(value As System.Nullable(Of Long))
+    End Sub
+    Partial Private Sub OnFromUserIDChanged()
+    End Sub
+    Partial Private Sub OnFromUserScreenNameChanging(value As String)
+    End Sub
+    Partial Private Sub OnFromUserScreenNameChanged()
+    End Sub
+    Partial Private Sub OnToUserScreenNameChanging(value As String)
+    End Sub
+    Partial Private Sub OnToUserScreenNameChanged()
+    End Sub
+    Partial Private Sub OnIsoLanguageCodeChanging(value As String)
+    End Sub
+    Partial Private Sub OnIsoLanguageCodeChanged()
+    End Sub
+    Partial Private Sub OnProfileImageURLChanging(value As String)
+    End Sub
+    Partial Private Sub OnProfileImageURLChanged()
+    End Sub
+    Partial Private Sub OnSinceIDChanging(value As System.Nullable(Of Long))
+    End Sub
+    Partial Private Sub OnSinceIDChanged()
+    End Sub
+    Partial Private Sub OnLocationChanging(value As String)
+    End Sub
+    Partial Private Sub OnLocationChanged()
+    End Sub
+    Partial Private Sub OnRawSourceChanging(value As String)
+    End Sub
+    Partial Private Sub OnRawSourceChanged()
+    End Sub
+    Partial Private Sub OnDeleteVoteCountChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnDeleteVoteCountChanged()
+    End Sub
+    Partial Private Sub OnDeletedChanging(value As System.Nullable(Of Boolean))
+    End Sub
+    Partial Private Sub OnDeletedChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		Me._URLs = New EntitySet(Of URL)(AddressOf Me.attach_URLs, AddressOf Me.detach_URLs)
+		Me._CheckIns = New EntitySet(Of CheckIn)(AddressOf Me.attach_CheckIns, AddressOf Me.detach_CheckIns)
+		Me._Event = CType(Nothing, EntityRef(Of [Event]))
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ID", AutoSync:=AutoSync.OnInsert, DbType:="BigInt NOT NULL IDENTITY", IsPrimaryKey:=true, IsDbGenerated:=true)>  _
+	Public Property ID() As Long
+		Get
+			Return Me._ID
+		End Get
+		Set
+			If ((Me._ID = value)  _
+						= false) Then
+				Me.OnIDChanging(value)
+				Me.SendPropertyChanging
+				Me._ID = value
+				Me.SendPropertyChanged("ID")
+				Me.OnIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_TwitterID", DbType:="BigInt NOT NULL")>  _
+	Public Property TwitterID() As Long
+		Get
+			Return Me._TwitterID
+		End Get
+		Set
+			If ((Me._TwitterID = value)  _
+						= false) Then
+				Me.OnTwitterIDChanging(value)
+				Me.SendPropertyChanging
+				Me._TwitterID = value
+				Me.SendPropertyChanged("TwitterID")
+				Me.OnTwitterIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_EventID", DbType:="Int")>  _
+	Public Property EventID() As System.Nullable(Of Integer)
+		Get
+			Return Me._EventID
+		End Get
+		Set
+			If (Me._EventID.Equals(value) = false) Then
+				If Me._Event.HasLoadedOrAssignedValue Then
+					Throw New System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException()
+				End If
+				Me.OnEventIDChanging(value)
+				Me.SendPropertyChanging
+				Me._EventID = value
+				Me.SendPropertyChanged("EventID")
+				Me.OnEventIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Text", DbType:="NVarChar(1000)")>  _
+	Public Property Text() As String
+		Get
+			Return Me._Text
+		End Get
+		Set
+			If (String.Equals(Me._Text, value) = false) Then
+				Me.OnTextChanging(value)
+				Me.SendPropertyChanging
+				Me._Text = value
+				Me.SendPropertyChanged("Text")
+				Me.OnTextChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_TextAsHTML", DbType:="NVarChar(1500)")>  _
+	Public Property TextAsHTML() As String
+		Get
+			Return Me._TextAsHTML
+		End Get
+		Set
+			If (String.Equals(Me._TextAsHTML, value) = false) Then
+				Me.OnTextAsHTMLChanging(value)
+				Me.SendPropertyChanging
+				Me._TextAsHTML = value
+				Me.SendPropertyChanged("TextAsHTML")
+				Me.OnTextAsHTMLChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Source", DbType:="NVarChar(500)")>  _
+	Public Property Source() As String
+		Get
+			Return Me._Source
+		End Get
+		Set
+			If (String.Equals(Me._Source, value) = false) Then
+				Me.OnSourceChanging(value)
+				Me.SendPropertyChanging
+				Me._Source = value
+				Me.SendPropertyChanged("Source")
+				Me.OnSourceChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CreatedDate", DbType:="DateTime")>  _
+	Public Property CreatedDate() As System.Nullable(Of Date)
+		Get
+			Return Me._CreatedDate
+		End Get
+		Set
+			If (Me._CreatedDate.Equals(value) = false) Then
+				Me.OnCreatedDateChanging(value)
+				Me.SendPropertyChanging
+				Me._CreatedDate = value
+				Me.SendPropertyChanged("CreatedDate")
+				Me.OnCreatedDateChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ToUserID", DbType:="BigInt")>  _
+	Public Property ToUserID() As System.Nullable(Of Long)
+		Get
+			Return Me._ToUserID
+		End Get
+		Set
+			If (Me._ToUserID.Equals(value) = false) Then
+				Me.OnToUserIDChanging(value)
+				Me.SendPropertyChanging
+				Me._ToUserID = value
+				Me.SendPropertyChanged("ToUserID")
+				Me.OnToUserIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_FromUserID", DbType:="BigInt")>  _
+	Public Property FromUserID() As System.Nullable(Of Long)
+		Get
+			Return Me._FromUserID
+		End Get
+		Set
+			If (Me._FromUserID.Equals(value) = false) Then
+				Me.OnFromUserIDChanging(value)
+				Me.SendPropertyChanging
+				Me._FromUserID = value
+				Me.SendPropertyChanged("FromUserID")
+				Me.OnFromUserIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_FromUserScreenName", DbType:="NVarChar(500)")>  _
+	Public Property FromUserScreenName() As String
+		Get
+			Return Me._FromUserScreenName
+		End Get
+		Set
+			If (String.Equals(Me._FromUserScreenName, value) = false) Then
+				Me.OnFromUserScreenNameChanging(value)
+				Me.SendPropertyChanging
+				Me._FromUserScreenName = value
+				Me.SendPropertyChanged("FromUserScreenName")
+				Me.OnFromUserScreenNameChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ToUserScreenName", DbType:="NVarChar(500)")>  _
+	Public Property ToUserScreenName() As String
+		Get
+			Return Me._ToUserScreenName
+		End Get
+		Set
+			If (String.Equals(Me._ToUserScreenName, value) = false) Then
+				Me.OnToUserScreenNameChanging(value)
+				Me.SendPropertyChanging
+				Me._ToUserScreenName = value
+				Me.SendPropertyChanged("ToUserScreenName")
+				Me.OnToUserScreenNameChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_IsoLanguageCode", DbType:="NVarChar(100)")>  _
+	Public Property IsoLanguageCode() As String
+		Get
+			Return Me._IsoLanguageCode
+		End Get
+		Set
+			If (String.Equals(Me._IsoLanguageCode, value) = false) Then
+				Me.OnIsoLanguageCodeChanging(value)
+				Me.SendPropertyChanging
+				Me._IsoLanguageCode = value
+				Me.SendPropertyChanged("IsoLanguageCode")
+				Me.OnIsoLanguageCodeChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ProfileImageURL", DbType:="NVarChar(500)")>  _
+	Public Property ProfileImageURL() As String
+		Get
+			Return Me._ProfileImageURL
+		End Get
+		Set
+			If (String.Equals(Me._ProfileImageURL, value) = false) Then
+				Me.OnProfileImageURLChanging(value)
+				Me.SendPropertyChanging
+				Me._ProfileImageURL = value
+				Me.SendPropertyChanged("ProfileImageURL")
+				Me.OnProfileImageURLChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SinceID", DbType:="BigInt")>  _
+	Public Property SinceID() As System.Nullable(Of Long)
+		Get
+			Return Me._SinceID
+		End Get
+		Set
+			If (Me._SinceID.Equals(value) = false) Then
+				Me.OnSinceIDChanging(value)
+				Me.SendPropertyChanging
+				Me._SinceID = value
+				Me.SendPropertyChanged("SinceID")
+				Me.OnSinceIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Location", DbType:="NVarChar(500)")>  _
+	Public Property Location() As String
+		Get
+			Return Me._Location
+		End Get
+		Set
+			If (String.Equals(Me._Location, value) = false) Then
+				Me.OnLocationChanging(value)
+				Me.SendPropertyChanging
+				Me._Location = value
+				Me.SendPropertyChanged("Location")
+				Me.OnLocationChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_RawSource", DbType:="NVarChar(1000)")>  _
+	Public Property RawSource() As String
+		Get
+			Return Me._RawSource
+		End Get
+		Set
+			If (String.Equals(Me._RawSource, value) = false) Then
+				Me.OnRawSourceChanging(value)
+				Me.SendPropertyChanging
+				Me._RawSource = value
+				Me.SendPropertyChanged("RawSource")
+				Me.OnRawSourceChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_DeleteVoteCount", DbType:="Int")>  _
+	Public Property DeleteVoteCount() As System.Nullable(Of Integer)
+		Get
+			Return Me._DeleteVoteCount
+		End Get
+		Set
+			If (Me._DeleteVoteCount.Equals(value) = false) Then
+				Me.OnDeleteVoteCountChanging(value)
+				Me.SendPropertyChanging
+				Me._DeleteVoteCount = value
+				Me.SendPropertyChanged("DeleteVoteCount")
+				Me.OnDeleteVoteCountChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Deleted", DbType:="Bit")>  _
+	Public Property Deleted() As System.Nullable(Of Boolean)
+		Get
+			Return Me._Deleted
+		End Get
+		Set
+			If (Me._Deleted.Equals(value) = false) Then
+				Me.OnDeletedChanging(value)
+				Me.SendPropertyChanging
+				Me._Deleted = value
+				Me.SendPropertyChanged("Deleted")
+				Me.OnDeletedChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="Tweet_URL", Storage:="_URLs", ThisKey:="ID", OtherKey:="TweetID")>  _
+	Public Property URLs() As EntitySet(Of URL)
+		Get
+			Return Me._URLs
+		End Get
+		Set
+			Me._URLs.Assign(value)
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="Tweet_CheckIn", Storage:="_CheckIns", ThisKey:="ID", OtherKey:="TweetID")>  _
+	Public Property CheckIns() As EntitySet(Of CheckIn)
+		Get
+			Return Me._CheckIns
+		End Get
+		Set
+			Me._CheckIns.Assign(value)
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="Event_Tweet", Storage:="_Event", ThisKey:="EventID", OtherKey:="ID", IsForeignKey:=true)>  _
+	Public Property [Event]() As [Event]
+		Get
+			Return Me._Event.Entity
+		End Get
+		Set
+			Dim previousValue As [Event] = Me._Event.Entity
+			If ((Object.Equals(previousValue, value) = false)  _
+						OrElse (Me._Event.HasLoadedOrAssignedValue = false)) Then
+				Me.SendPropertyChanging
+				If ((previousValue Is Nothing)  _
+							= false) Then
+					Me._Event.Entity = Nothing
+					previousValue.Tweets.Remove(Me)
+				End If
+				Me._Event.Entity = value
+				If ((value Is Nothing)  _
+							= false) Then
+					value.Tweets.Add(Me)
+					Me._EventID = value.ID
+				Else
+					Me._EventID = CType(Nothing, Nullable(Of Integer))
+				End If
+				Me.SendPropertyChanged("[Event]")
+			End If
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+	
+	Private Sub attach_URLs(ByVal entity As URL)
+		Me.SendPropertyChanging
+		entity.Tweet = Me
+	End Sub
+	
+	Private Sub detach_URLs(ByVal entity As URL)
+		Me.SendPropertyChanging
+		entity.Tweet = Nothing
+	End Sub
+	
+	Private Sub attach_CheckIns(ByVal entity As CheckIn)
+		Me.SendPropertyChanging
+		entity.Tweet = Me
+	End Sub
+	
+	Private Sub detach_CheckIns(ByVal entity As CheckIn)
+		Me.SendPropertyChanging
+		entity.Tweet = Nothing
 	End Sub
 End Class

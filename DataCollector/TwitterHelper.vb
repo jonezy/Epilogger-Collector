@@ -98,7 +98,7 @@ Public Class TwitterHelper
 
         Dim db As New TweetsDataContext
         Dim service As New TwitterService()
-        Dim AzureTweetStore As New AzureTableHelper(My.Settings.AzureTableStorageConnectionString, False)
+        'Dim AzureTweetStore As New AzureTableHelper(My.Settings.AzureTableStorageConnectionString, False)
 
         '
         'Get the last TwitterID for the seach. This way we only get new tweets.
@@ -205,7 +205,17 @@ Public Class TwitterHelper
                             LTweet = New Tweet With _
                             {.TwitterID = STweet.Id, _
                             .EventID = EventID, _
-                            .CreatedDate = STweet.CreatedDate}
+                            .Text = STweet.Text, _
+                            .TextAsHTML = STweet.TextAsHtml, _
+                            .Source = STweet.Source, _
+                            .CreatedDate = STweet.CreatedDate, _
+                            .FromUserScreenName = STweet.FromUserScreenName, _
+                            .ToUserScreenName = STweet.ToUserScreenName, _
+                            .IsoLanguageCode = STweet.IsoLanguageCode, _
+                            .ProfileImageURL = STweet.ProfileImageUrl, _
+                            .SinceID = STweet.SinceId, _
+                            .Location = STweet.Location, _
+                            .RawSource = STweet.RawSource}
 
                             db.Tweets.InsertOnSubmit(LTweet)
 
@@ -224,46 +234,46 @@ Public Class TwitterHelper
                             'For the purposes of storing tweets for Epilogger, here is what we're going to do;
                             '- PartitionKey = EventID (From SQL)
                             '- RowKey = TweetID (From Twitter)
-                            Try
-                                '
-                                'Create the table - Already created, just throws an exception, take out for speed.
-                                'AzureTweetStore.CreateTable("tweets")
+                            'Try
+                            '    '
+                            '    'Create the table - Already created, just throws an exception, take out for speed.
+                            '    'AzureTweetStore.CreateTable("tweets")
 
-                                '
-                                'Create the Table Service Entity to be stored
-                                Dim AzureTweet As New AzureStoreTweet(EventID, STweet.Id)
-                                AzureTweet.TwitterID = STweet.Id
-                                AzureTweet.EventID = EventID
-                                AzureTweet.Text = STweet.Text
-                                AzureTweet.TextAsHTML = STweet.TextAsHtml
-                                AzureTweet.Source = STweet.Source
-                                AzureTweet.CreatedDate = STweet.CreatedDate
-                                AzureTweet.FromUserScreenName = STweet.FromUserScreenName
-                                AzureTweet.ToUserScreenName = STweet.ToUserScreenName
-                                AzureTweet.IsoLanguageCode = STweet.IsoLanguageCode
-                                AzureTweet.ProfileImageURL = STweet.ProfileImageUrl
-                                AzureTweet.SinceID = STweet.SinceId
-                                AzureTweet.Location = STweet.Location
-                                AzureTweet.RawSource = STweet.RawSource
+                            '    '
+                            '    'Create the Table Service Entity to be stored
+                            '    Dim AzureTweet As New AzureStoreTweet(EventID, STweet.Id)
+                            '    AzureTweet.TwitterID = STweet.Id
+                            '    AzureTweet.EventID = EventID
+                            '    AzureTweet.Text = STweet.Text
+                            '    AzureTweet.TextAsHTML = STweet.TextAsHtml
+                            '    AzureTweet.Source = STweet.Source
+                            '    AzureTweet.CreatedDate = STweet.CreatedDate
+                            '    AzureTweet.FromUserScreenName = STweet.FromUserScreenName
+                            '    AzureTweet.ToUserScreenName = STweet.ToUserScreenName
+                            '    AzureTweet.IsoLanguageCode = STweet.IsoLanguageCode
+                            '    AzureTweet.ProfileImageURL = STweet.ProfileImageUrl
+                            '    AzureTweet.SinceID = STweet.SinceId
+                            '    AzureTweet.Location = STweet.Location
+                            '    AzureTweet.RawSource = STweet.RawSource
 
-                                '
-                                'Insert the entity
-                                AzureTweetStore.InsertEntity("tweetsV1", AzureTweet)
+                            '    '
+                            '    'Insert the entity
+                            '    AzureTweetStore.InsertEntity("tweetsV1", AzureTweet)
 
 
-                                '
-                                'If the entity inserted increment the tweet count in the Events Table.
-                                Dim EventData = From e In db.Events
-                                                Where e.ID = EventID
-                                                Select e
-                                For Each ev As [Event] In EventData
-                                    ev.NumberOfTweets += 1
-                                Next
-                                db.SubmitChanges()
+                            '    '
+                            '    'If the entity inserted increment the tweet count in the Events Table.
+                            '    Dim EventData = From e In db.Events
+                            '                    Where e.ID = EventID
+                            '                    Select e
+                            '    For Each ev As [Event] In EventData
+                            '        ev.NumberOfTweets += 1
+                            '    Next
+                            '    db.SubmitChanges()
 
-                            Catch ex As Exception
+                            'Catch ex As Exception
 
-                            End Try
+                            'End Try
 
                             '
                             'Pull out the images from the tweets and store URLs

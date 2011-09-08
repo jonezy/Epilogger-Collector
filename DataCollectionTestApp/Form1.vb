@@ -27,7 +27,7 @@ Public Class Form1
         Dim TH As New DataCollector.TwitterHelper
 
         TH.EventID = 186
-        TH.SearchTerms = "girl geek"
+        TH.SearchTerms = "#areyouseriousbro"
         TH.CollectionMode = 2
 
         TH.GetNewTweets()

@@ -33,3 +33,8 @@ D:\Projects\Epilogger DCS\Foursquare.NET\bin\Debug\FoursquareNET.pdb
 D:\Projects\Epilogger DCS\Foursquare.NET\obj\Debug\ResolveAssemblyReference.cache
 D:\Projects\Epilogger DCS\Foursquare.NET\obj\Debug\FoursquareNET.dll
 D:\Projects\Epilogger DCS\Foursquare.NET\obj\Debug\FoursquareNET.pdb
+Z:\Projects\ProjectsEpiloggerDCS\Foursquare.NET\bin\Debug\FoursquareNET.dll
+Z:\Projects\ProjectsEpiloggerDCS\Foursquare.NET\bin\Debug\FoursquareNET.pdb
+Z:\Projects\ProjectsEpiloggerDCS\Foursquare.NET\obj\Debug\ResolveAssemblyReference.cache
+Z:\Projects\ProjectsEpiloggerDCS\Foursquare.NET\obj\Debug\FoursquareNET.dll
+Z:\Projects\ProjectsEpiloggerDCS\Foursquare.NET\obj\Debug\FoursquareNET.pdb

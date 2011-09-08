@@ -97,3 +97,14 @@ D:\Projects\Epilogger DCS\LoggingReporting\LoggingReporting\obj\Debug\GenerateRe
 D:\Projects\Epilogger DCS\LoggingReporting\LoggingReporting\obj\Debug\LoggingReporting.dll
 D:\Projects\Epilogger DCS\LoggingReporting\LoggingReporting\obj\Debug\LoggingReporting.xml
 D:\Projects\Epilogger DCS\LoggingReporting\LoggingReporting\obj\Debug\LoggingReporting.pdb
+Z:\Projects\ProjectsEpiloggerDCS\LoggingReporting\LoggingReporting\bin\Debug\LoggingReporting.dll.config
+Z:\Projects\ProjectsEpiloggerDCS\LoggingReporting\LoggingReporting\bin\Debug\LoggingReporting.dll
+Z:\Projects\ProjectsEpiloggerDCS\LoggingReporting\LoggingReporting\bin\Debug\LoggingReporting.pdb
+Z:\Projects\ProjectsEpiloggerDCS\LoggingReporting\LoggingReporting\bin\Debug\LoggingReporting.xml
+Z:\Projects\ProjectsEpiloggerDCS\LoggingReporting\LoggingReporting\obj\Debug\ResolveAssemblyReference.cache
+Z:\Projects\ProjectsEpiloggerDCS\LoggingReporting\LoggingReporting\obj\Debug\LoggingReporting.Resources.resources
+Z:\Projects\ProjectsEpiloggerDCS\LoggingReporting\LoggingReporting\obj\Debug\GenerateResource.read.1.tlog
+Z:\Projects\ProjectsEpiloggerDCS\LoggingReporting\LoggingReporting\obj\Debug\GenerateResource.write.1.tlog
+Z:\Projects\ProjectsEpiloggerDCS\LoggingReporting\LoggingReporting\obj\Debug\LoggingReporting.dll
+Z:\Projects\ProjectsEpiloggerDCS\LoggingReporting\LoggingReporting\obj\Debug\LoggingReporting.xml
+Z:\Projects\ProjectsEpiloggerDCS\LoggingReporting\LoggingReporting\obj\Debug\LoggingReporting.pdb

@@ -31,11 +31,11 @@ Partial Public Class TweetsDataContext
   #Region "Extensibility Method Definitions"
   Partial Private Sub OnCreated()
   End Sub
-  Partial Private Sub InsertURL(instance As URL)
+  Partial Private Sub InsertEpiloggerImage(instance As EpiloggerImage)
     End Sub
-  Partial Private Sub UpdateURL(instance As URL)
+  Partial Private Sub UpdateEpiloggerImage(instance As EpiloggerImage)
     End Sub
-  Partial Private Sub DeleteURL(instance As URL)
+  Partial Private Sub DeleteEpiloggerImage(instance As EpiloggerImage)
     End Sub
   Partial Private Sub InsertVenue(instance As Venue)
     End Sub
@@ -43,23 +43,23 @@ Partial Public Class TweetsDataContext
     End Sub
   Partial Private Sub DeleteVenue(instance As Venue)
     End Sub
-  Partial Private Sub InsertEpiloggerImage(instance As EpiloggerImage)
+  Partial Private Sub InsertCheckIn(instance As CheckIn)
     End Sub
-  Partial Private Sub UpdateEpiloggerImage(instance As EpiloggerImage)
+  Partial Private Sub UpdateCheckIn(instance As CheckIn)
     End Sub
-  Partial Private Sub DeleteEpiloggerImage(instance As EpiloggerImage)
+  Partial Private Sub DeleteCheckIn(instance As CheckIn)
+    End Sub
+  Partial Private Sub InsertURL(instance As URL)
+    End Sub
+  Partial Private Sub UpdateURL(instance As URL)
+    End Sub
+  Partial Private Sub DeleteURL(instance As URL)
     End Sub
   Partial Private Sub InsertEpiloggerImageMetaData(instance As EpiloggerImageMetaData)
     End Sub
   Partial Private Sub UpdateEpiloggerImageMetaData(instance As EpiloggerImageMetaData)
     End Sub
   Partial Private Sub DeleteEpiloggerImageMetaData(instance As EpiloggerImageMetaData)
-    End Sub
-  Partial Private Sub InsertCheckIn(instance As CheckIn)
-    End Sub
-  Partial Private Sub UpdateCheckIn(instance As CheckIn)
-    End Sub
-  Partial Private Sub DeleteCheckIn(instance As CheckIn)
     End Sub
   Partial Private Sub InsertEvent(instance As [Event])
     End Sub
@@ -100,9 +100,9 @@ Partial Public Class TweetsDataContext
 		OnCreated
 	End Sub
 	
-	Public ReadOnly Property URLs() As System.Data.Linq.Table(Of URL)
+	Public ReadOnly Property EpiloggerImages() As System.Data.Linq.Table(Of EpiloggerImage)
 		Get
-			Return Me.GetTable(Of URL)
+			Return Me.GetTable(Of EpiloggerImage)
 		End Get
 	End Property
 	
@@ -112,21 +112,21 @@ Partial Public Class TweetsDataContext
 		End Get
 	End Property
 	
-	Public ReadOnly Property EpiloggerImages() As System.Data.Linq.Table(Of EpiloggerImage)
+	Public ReadOnly Property CheckIns() As System.Data.Linq.Table(Of CheckIn)
 		Get
-			Return Me.GetTable(Of EpiloggerImage)
+			Return Me.GetTable(Of CheckIn)
+		End Get
+	End Property
+	
+	Public ReadOnly Property URLs() As System.Data.Linq.Table(Of URL)
+		Get
+			Return Me.GetTable(Of URL)
 		End Get
 	End Property
 	
 	Public ReadOnly Property EpiloggerImageMetaDatas() As System.Data.Linq.Table(Of EpiloggerImageMetaData)
 		Get
 			Return Me.GetTable(Of EpiloggerImageMetaData)
-		End Get
-	End Property
-	
-	Public ReadOnly Property CheckIns() As System.Data.Linq.Table(Of CheckIn)
-		Get
-			Return Me.GetTable(Of CheckIn)
 		End Get
 	End Property
 	
@@ -143,8 +143,8 @@ Partial Public Class TweetsDataContext
 	End Property
 End Class
 
-<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.URLs")>  _
-Partial Public Class URL
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.Images")>  _
+Partial Public Class EpiloggerImage
 	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	
 	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
@@ -153,19 +153,23 @@ Partial Public Class URL
 	
 	Private _EventID As Integer
 	
-	Private _TweetID As Long
+	Private _AzureContainerPrefix As String
 	
-	Private _ShortURL As String
+	Private _Fullsize As String
 	
-	Private _URL As String
+	Private _Thumb As String
 	
-	Private _Type As String
+	Private _OriginalImageLink As String
+	
+	Private _DateTime As Date
 	
 	Private _DeleteVoteCount As System.Nullable(Of Integer)
 	
-	Private _Deleted As System.Nullable(Of Boolean)
+	Private _Deleted As Boolean
 	
-	Private _Tweet As EntityRef(Of Tweet)
+	Private _EpiloggerImageMetaDatas As EntitySet(Of EpiloggerImageMetaData)
+	
+	Private _Event As EntityRef(Of [Event])
 	
     #Region "Extensibility Method Definitions"
     Partial Private Sub OnLoaded()
@@ -182,27 +186,31 @@ Partial Public Class URL
     End Sub
     Partial Private Sub OnEventIDChanged()
     End Sub
-    Partial Private Sub OnTweetIDChanging(value As Long)
+    Partial Private Sub OnAzureContainerPrefixChanging(value As String)
     End Sub
-    Partial Private Sub OnTweetIDChanged()
+    Partial Private Sub OnAzureContainerPrefixChanged()
     End Sub
-    Partial Private Sub OnShortURLChanging(value As String)
+    Partial Private Sub OnFullsizeChanging(value As String)
     End Sub
-    Partial Private Sub OnShortURLChanged()
+    Partial Private Sub OnFullsizeChanged()
     End Sub
-    Partial Private Sub OnURLChanging(value As String)
+    Partial Private Sub OnThumbChanging(value As String)
     End Sub
-    Partial Private Sub OnURLChanged()
+    Partial Private Sub OnThumbChanged()
     End Sub
-    Partial Private Sub OnTypeChanging(value As String)
+    Partial Private Sub OnOriginalImageLinkChanging(value As String)
     End Sub
-    Partial Private Sub OnTypeChanged()
+    Partial Private Sub OnOriginalImageLinkChanged()
+    End Sub
+    Partial Private Sub OnDateTimeChanging(value As Date)
+    End Sub
+    Partial Private Sub OnDateTimeChanged()
     End Sub
     Partial Private Sub OnDeleteVoteCountChanging(value As System.Nullable(Of Integer))
     End Sub
     Partial Private Sub OnDeleteVoteCountChanged()
     End Sub
-    Partial Private Sub OnDeletedChanging(value As System.Nullable(Of Boolean))
+    Partial Private Sub OnDeletedChanging(value As Boolean)
     End Sub
     Partial Private Sub OnDeletedChanged()
     End Sub
@@ -210,7 +218,8 @@ Partial Public Class URL
 	
 	Public Sub New()
 		MyBase.New
-		Me._Tweet = CType(Nothing, EntityRef(Of Tweet))
+		Me._EpiloggerImageMetaDatas = New EntitySet(Of EpiloggerImageMetaData)(AddressOf Me.attach_EpiloggerImageMetaDatas, AddressOf Me.detach_EpiloggerImageMetaDatas)
+		Me._Event = CType(Nothing, EntityRef(Of [Event]))
 		OnCreated
 	End Sub
 	
@@ -239,6 +248,9 @@ Partial Public Class URL
 		Set
 			If ((Me._EventID = value)  _
 						= false) Then
+				If Me._Event.HasLoadedOrAssignedValue Then
+					Throw New System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException()
+				End If
 				Me.OnEventIDChanging(value)
 				Me.SendPropertyChanging
 				Me._EventID = value
@@ -248,70 +260,83 @@ Partial Public Class URL
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_TweetID", DbType:="BigInt NOT NULL")>  _
-	Public Property TweetID() As Long
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_AzureContainerPrefix", DbType:="NVarChar(50)")>  _
+	Public Property AzureContainerPrefix() As String
 		Get
-			Return Me._TweetID
+			Return Me._AzureContainerPrefix
 		End Get
 		Set
-			If ((Me._TweetID = value)  _
+			If (String.Equals(Me._AzureContainerPrefix, value) = false) Then
+				Me.OnAzureContainerPrefixChanging(value)
+				Me.SendPropertyChanging
+				Me._AzureContainerPrefix = value
+				Me.SendPropertyChanged("AzureContainerPrefix")
+				Me.OnAzureContainerPrefixChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Fullsize", DbType:="NVarChar(1000) NOT NULL", CanBeNull:=false)>  _
+	Public Property Fullsize() As String
+		Get
+			Return Me._Fullsize
+		End Get
+		Set
+			If (String.Equals(Me._Fullsize, value) = false) Then
+				Me.OnFullsizeChanging(value)
+				Me.SendPropertyChanging
+				Me._Fullsize = value
+				Me.SendPropertyChanged("Fullsize")
+				Me.OnFullsizeChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Thumb", DbType:="NVarChar(1000) NOT NULL", CanBeNull:=false)>  _
+	Public Property Thumb() As String
+		Get
+			Return Me._Thumb
+		End Get
+		Set
+			If (String.Equals(Me._Thumb, value) = false) Then
+				Me.OnThumbChanging(value)
+				Me.SendPropertyChanging
+				Me._Thumb = value
+				Me.SendPropertyChanged("Thumb")
+				Me.OnThumbChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_OriginalImageLink", DbType:="NVarChar(1000)")>  _
+	Public Property OriginalImageLink() As String
+		Get
+			Return Me._OriginalImageLink
+		End Get
+		Set
+			If (String.Equals(Me._OriginalImageLink, value) = false) Then
+				Me.OnOriginalImageLinkChanging(value)
+				Me.SendPropertyChanging
+				Me._OriginalImageLink = value
+				Me.SendPropertyChanged("OriginalImageLink")
+				Me.OnOriginalImageLinkChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_DateTime", DbType:="DateTime NOT NULL")>  _
+	Public Property DateTime() As Date
+		Get
+			Return Me._DateTime
+		End Get
+		Set
+			If ((Me._DateTime = value)  _
 						= false) Then
-				If Me._Tweet.HasLoadedOrAssignedValue Then
-					Throw New System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException()
-				End If
-				Me.OnTweetIDChanging(value)
+				Me.OnDateTimeChanging(value)
 				Me.SendPropertyChanging
-				Me._TweetID = value
-				Me.SendPropertyChanged("TweetID")
-				Me.OnTweetIDChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ShortURL", DbType:="NVarChar(1000)")>  _
-	Public Property ShortURL() As String
-		Get
-			Return Me._ShortURL
-		End Get
-		Set
-			If (String.Equals(Me._ShortURL, value) = false) Then
-				Me.OnShortURLChanging(value)
-				Me.SendPropertyChanging
-				Me._ShortURL = value
-				Me.SendPropertyChanged("ShortURL")
-				Me.OnShortURLChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_URL", DbType:="NVarChar(1000)")>  _
-	Public Property URL() As String
-		Get
-			Return Me._URL
-		End Get
-		Set
-			If (String.Equals(Me._URL, value) = false) Then
-				Me.OnURLChanging(value)
-				Me.SendPropertyChanging
-				Me._URL = value
-				Me.SendPropertyChanged("URL")
-				Me.OnURLChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Type", DbType:="NVarChar(500)")>  _
-	Public Property Type() As String
-		Get
-			Return Me._Type
-		End Get
-		Set
-			If (String.Equals(Me._Type, value) = false) Then
-				Me.OnTypeChanging(value)
-				Me.SendPropertyChanging
-				Me._Type = value
-				Me.SendPropertyChanged("Type")
-				Me.OnTypeChanged
+				Me._DateTime = value
+				Me.SendPropertyChanged("DateTime")
+				Me.OnDateTimeChanged
 			End If
 		End Set
 	End Property
@@ -332,13 +357,14 @@ Partial Public Class URL
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Deleted", DbType:="Bit")>  _
-	Public Property Deleted() As System.Nullable(Of Boolean)
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Deleted", DbType:="Bit NOT NULL")>  _
+	Public Property Deleted() As Boolean
 		Get
 			Return Me._Deleted
 		End Get
 		Set
-			If (Me._Deleted.Equals(value) = false) Then
+			If ((Me._Deleted = value)  _
+						= false) Then
 				Me.OnDeletedChanging(value)
 				Me.SendPropertyChanging
 				Me._Deleted = value
@@ -348,30 +374,40 @@ Partial Public Class URL
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="Tweet_URL", Storage:="_Tweet", ThisKey:="TweetID", OtherKey:="ID", IsForeignKey:=true)>  _
-	Public Property Tweet() As Tweet
+	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="EpiloggerImage_ImageMetaData", Storage:="_EpiloggerImageMetaDatas", ThisKey:="ID", OtherKey:="ImageID")>  _
+	Public Property EpiloggerImageMetaDatas() As EntitySet(Of EpiloggerImageMetaData)
 		Get
-			Return Me._Tweet.Entity
+			Return Me._EpiloggerImageMetaDatas
 		End Get
 		Set
-			Dim previousValue As Tweet = Me._Tweet.Entity
+			Me._EpiloggerImageMetaDatas.Assign(value)
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="Event_EpiloggerImage", Storage:="_Event", ThisKey:="EventID", OtherKey:="ID", IsForeignKey:=true)>  _
+	Public Property [Event]() As [Event]
+		Get
+			Return Me._Event.Entity
+		End Get
+		Set
+			Dim previousValue As [Event] = Me._Event.Entity
 			If ((Object.Equals(previousValue, value) = false)  _
-						OrElse (Me._Tweet.HasLoadedOrAssignedValue = false)) Then
+						OrElse (Me._Event.HasLoadedOrAssignedValue = false)) Then
 				Me.SendPropertyChanging
 				If ((previousValue Is Nothing)  _
 							= false) Then
-					Me._Tweet.Entity = Nothing
-					previousValue.URLs.Remove(Me)
+					Me._Event.Entity = Nothing
+					previousValue.EpiloggerImages.Remove(Me)
 				End If
-				Me._Tweet.Entity = value
+				Me._Event.Entity = value
 				If ((value Is Nothing)  _
 							= false) Then
-					value.URLs.Add(Me)
-					Me._TweetID = value.ID
+					value.EpiloggerImages.Add(Me)
+					Me._EventID = value.ID
 				Else
-					Me._TweetID = CType(Nothing, Long)
+					Me._EventID = CType(Nothing, Integer)
 				End If
-				Me.SendPropertyChanged("Tweet")
+				Me.SendPropertyChanged("[Event]")
 			End If
 		End Set
 	End Property
@@ -392,6 +428,16 @@ Partial Public Class URL
 					= false) Then
 			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
 		End If
+	End Sub
+	
+	Private Sub attach_EpiloggerImageMetaDatas(ByVal entity As EpiloggerImageMetaData)
+		Me.SendPropertyChanging
+		entity.EpiloggerImage = Me
+	End Sub
+	
+	Private Sub detach_EpiloggerImageMetaDatas(ByVal entity As EpiloggerImageMetaData)
+		Me.SendPropertyChanging
+		entity.EpiloggerImage = Nothing
 	End Sub
 End Class
 
@@ -678,534 +724,6 @@ Partial Public Class Venue
 	End Sub
 End Class
 
-<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.Images")>  _
-Partial Public Class EpiloggerImage
-	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
-	
-	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
-	
-	Private _ID As Integer
-	
-	Private _EventID As Integer
-	
-	Private _AzureContainerPrefix As String
-	
-	Private _Fullsize As String
-	
-	Private _Thumb As String
-	
-	Private _OriginalImageLink As String
-	
-	Private _DateTime As Date
-	
-	Private _DeleteVoteCount As System.Nullable(Of Integer)
-	
-	Private _Deleted As Boolean
-	
-	Private _ImageMetaDatas As EntitySet(Of EpiloggerImageMetaData)
-	
-    #Region "Extensibility Method Definitions"
-    Partial Private Sub OnLoaded()
-    End Sub
-    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
-    End Sub
-    Partial Private Sub OnCreated()
-    End Sub
-    Partial Private Sub OnIDChanging(value As Integer)
-    End Sub
-    Partial Private Sub OnIDChanged()
-    End Sub
-    Partial Private Sub OnEventIDChanging(value As Integer)
-    End Sub
-    Partial Private Sub OnEventIDChanged()
-    End Sub
-    Partial Private Sub OnAzureContainerPrefixChanging(value As String)
-    End Sub
-    Partial Private Sub OnAzureContainerPrefixChanged()
-    End Sub
-    Partial Private Sub OnFullsizeChanging(value As String)
-    End Sub
-    Partial Private Sub OnFullsizeChanged()
-    End Sub
-    Partial Private Sub OnThumbChanging(value As String)
-    End Sub
-    Partial Private Sub OnThumbChanged()
-    End Sub
-    Partial Private Sub OnOriginalImageLinkChanging(value As String)
-    End Sub
-    Partial Private Sub OnOriginalImageLinkChanged()
-    End Sub
-    Partial Private Sub OnDateTimeChanging(value As Date)
-    End Sub
-    Partial Private Sub OnDateTimeChanged()
-    End Sub
-    Partial Private Sub OnDeleteVoteCountChanging(value As System.Nullable(Of Integer))
-    End Sub
-    Partial Private Sub OnDeleteVoteCountChanged()
-    End Sub
-    Partial Private Sub OnDeletedChanging(value As Boolean)
-    End Sub
-    Partial Private Sub OnDeletedChanged()
-    End Sub
-    #End Region
-	
-	Public Sub New()
-		MyBase.New
-		Me._ImageMetaDatas = New EntitySet(Of EpiloggerImageMetaData)(AddressOf Me.attach_ImageMetaDatas, AddressOf Me.detach_ImageMetaDatas)
-		OnCreated
-	End Sub
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ID", AutoSync:=AutoSync.OnInsert, DbType:="Int NOT NULL IDENTITY", IsPrimaryKey:=true, IsDbGenerated:=true)>  _
-	Public Property ID() As Integer
-		Get
-			Return Me._ID
-		End Get
-		Set
-			If ((Me._ID = value)  _
-						= false) Then
-				Me.OnIDChanging(value)
-				Me.SendPropertyChanging
-				Me._ID = value
-				Me.SendPropertyChanged("ID")
-				Me.OnIDChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_EventID", DbType:="Int NOT NULL")>  _
-	Public Property EventID() As Integer
-		Get
-			Return Me._EventID
-		End Get
-		Set
-			If ((Me._EventID = value)  _
-						= false) Then
-				Me.OnEventIDChanging(value)
-				Me.SendPropertyChanging
-				Me._EventID = value
-				Me.SendPropertyChanged("EventID")
-				Me.OnEventIDChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_AzureContainerPrefix", DbType:="NVarChar(50)")>  _
-	Public Property AzureContainerPrefix() As String
-		Get
-			Return Me._AzureContainerPrefix
-		End Get
-		Set
-			If (String.Equals(Me._AzureContainerPrefix, value) = false) Then
-				Me.OnAzureContainerPrefixChanging(value)
-				Me.SendPropertyChanging
-				Me._AzureContainerPrefix = value
-				Me.SendPropertyChanged("AzureContainerPrefix")
-				Me.OnAzureContainerPrefixChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Fullsize", DbType:="NVarChar(1000) NOT NULL", CanBeNull:=false)>  _
-	Public Property Fullsize() As String
-		Get
-			Return Me._Fullsize
-		End Get
-		Set
-			If (String.Equals(Me._Fullsize, value) = false) Then
-				Me.OnFullsizeChanging(value)
-				Me.SendPropertyChanging
-				Me._Fullsize = value
-				Me.SendPropertyChanged("Fullsize")
-				Me.OnFullsizeChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Thumb", DbType:="NVarChar(1000) NOT NULL", CanBeNull:=false)>  _
-	Public Property Thumb() As String
-		Get
-			Return Me._Thumb
-		End Get
-		Set
-			If (String.Equals(Me._Thumb, value) = false) Then
-				Me.OnThumbChanging(value)
-				Me.SendPropertyChanging
-				Me._Thumb = value
-				Me.SendPropertyChanged("Thumb")
-				Me.OnThumbChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_OriginalImageLink", DbType:="NVarChar(1000)")>  _
-	Public Property OriginalImageLink() As String
-		Get
-			Return Me._OriginalImageLink
-		End Get
-		Set
-			If (String.Equals(Me._OriginalImageLink, value) = false) Then
-				Me.OnOriginalImageLinkChanging(value)
-				Me.SendPropertyChanging
-				Me._OriginalImageLink = value
-				Me.SendPropertyChanged("OriginalImageLink")
-				Me.OnOriginalImageLinkChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_DateTime", DbType:="DateTime NOT NULL")>  _
-	Public Property DateTime() As Date
-		Get
-			Return Me._DateTime
-		End Get
-		Set
-			If ((Me._DateTime = value)  _
-						= false) Then
-				Me.OnDateTimeChanging(value)
-				Me.SendPropertyChanging
-				Me._DateTime = value
-				Me.SendPropertyChanged("DateTime")
-				Me.OnDateTimeChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_DeleteVoteCount", DbType:="Int")>  _
-	Public Property DeleteVoteCount() As System.Nullable(Of Integer)
-		Get
-			Return Me._DeleteVoteCount
-		End Get
-		Set
-			If (Me._DeleteVoteCount.Equals(value) = false) Then
-				Me.OnDeleteVoteCountChanging(value)
-				Me.SendPropertyChanging
-				Me._DeleteVoteCount = value
-				Me.SendPropertyChanged("DeleteVoteCount")
-				Me.OnDeleteVoteCountChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Deleted", DbType:="Bit NOT NULL")>  _
-	Public Property Deleted() As Boolean
-		Get
-			Return Me._Deleted
-		End Get
-		Set
-			If ((Me._Deleted = value)  _
-						= false) Then
-				Me.OnDeletedChanging(value)
-				Me.SendPropertyChanging
-				Me._Deleted = value
-				Me.SendPropertyChanged("Deleted")
-				Me.OnDeletedChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="EpiloggerImage_EpiloggerImageMetaData", Storage:="_ImageMetaDatas", ThisKey:="ID", OtherKey:="ImageID")>  _
-	Public Property EpiloggerImageMetaDatas() As EntitySet(Of EpiloggerImageMetaData)
-		Get
-			Return Me._ImageMetaDatas
-		End Get
-		Set
-			Me._ImageMetaDatas.Assign(value)
-		End Set
-	End Property
-	
-	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
-	
-	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
-	
-	Protected Overridable Sub SendPropertyChanging()
-		If ((Me.PropertyChangingEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
-		End If
-	End Sub
-	
-	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
-		If ((Me.PropertyChangedEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
-		End If
-	End Sub
-	
-	Private Sub attach_ImageMetaDatas(ByVal entity As EpiloggerImageMetaData)
-		Me.SendPropertyChanging
-		entity.EpiloggerImage = Me
-	End Sub
-	
-	Private Sub detach_ImageMetaDatas(ByVal entity As EpiloggerImageMetaData)
-		Me.SendPropertyChanging
-		entity.EpiloggerImage = Nothing
-	End Sub
-End Class
-
-<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.ImageMetaData")>  _
-Partial Public Class EpiloggerImageMetaData
-	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
-	
-	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
-	
-	Private _ID As Integer
-	
-	Private _ImageID As Integer
-	
-	Private _EventID As Integer
-	
-	Private _UserID As System.Nullable(Of System.Guid)
-	
-	Private _ImageSource As String
-	
-	Private _TwitterID As System.Nullable(Of Long)
-	
-	Private _TwitterName As String
-	
-	Private _EpiloggerImage As EntityRef(Of EpiloggerImage)
-	
-	Private _Event As EntityRef(Of [Event])
-	
-    #Region "Extensibility Method Definitions"
-    Partial Private Sub OnLoaded()
-    End Sub
-    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
-    End Sub
-    Partial Private Sub OnCreated()
-    End Sub
-    Partial Private Sub OnIDChanging(value As Integer)
-    End Sub
-    Partial Private Sub OnIDChanged()
-    End Sub
-    Partial Private Sub OnImageIDChanging(value As Integer)
-    End Sub
-    Partial Private Sub OnImageIDChanged()
-    End Sub
-    Partial Private Sub OnEventIDChanging(value As Integer)
-    End Sub
-    Partial Private Sub OnEventIDChanged()
-    End Sub
-    Partial Private Sub OnUserIDChanging(value As System.Nullable(Of System.Guid))
-    End Sub
-    Partial Private Sub OnUserIDChanged()
-    End Sub
-    Partial Private Sub OnImageSourceChanging(value As String)
-    End Sub
-    Partial Private Sub OnImageSourceChanged()
-    End Sub
-    Partial Private Sub OnTwitterIDChanging(value As System.Nullable(Of Long))
-    End Sub
-    Partial Private Sub OnTwitterIDChanged()
-    End Sub
-    Partial Private Sub OnTwitterNameChanging(value As String)
-    End Sub
-    Partial Private Sub OnTwitterNameChanged()
-    End Sub
-    #End Region
-	
-	Public Sub New()
-		MyBase.New
-		Me._EpiloggerImage = CType(Nothing, EntityRef(Of EpiloggerImage))
-		Me._Event = CType(Nothing, EntityRef(Of [Event]))
-		OnCreated
-	End Sub
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ID", AutoSync:=AutoSync.OnInsert, DbType:="Int NOT NULL IDENTITY", IsPrimaryKey:=true, IsDbGenerated:=true)>  _
-	Public Property ID() As Integer
-		Get
-			Return Me._ID
-		End Get
-		Set
-			If ((Me._ID = value)  _
-						= false) Then
-				Me.OnIDChanging(value)
-				Me.SendPropertyChanging
-				Me._ID = value
-				Me.SendPropertyChanged("ID")
-				Me.OnIDChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ImageID", DbType:="Int NOT NULL")>  _
-	Public Property ImageID() As Integer
-		Get
-			Return Me._ImageID
-		End Get
-		Set
-			If ((Me._ImageID = value)  _
-						= false) Then
-				If Me._EpiloggerImage.HasLoadedOrAssignedValue Then
-					Throw New System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException()
-				End If
-				Me.OnImageIDChanging(value)
-				Me.SendPropertyChanging
-				Me._ImageID = value
-				Me.SendPropertyChanged("ImageID")
-				Me.OnImageIDChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_EventID", DbType:="Int NOT NULL")>  _
-	Public Property EventID() As Integer
-		Get
-			Return Me._EventID
-		End Get
-		Set
-			If ((Me._EventID = value)  _
-						= false) Then
-				If Me._Event.HasLoadedOrAssignedValue Then
-					Throw New System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException()
-				End If
-				Me.OnEventIDChanging(value)
-				Me.SendPropertyChanging
-				Me._EventID = value
-				Me.SendPropertyChanged("EventID")
-				Me.OnEventIDChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_UserID", DbType:="UniqueIdentifier")>  _
-	Public Property UserID() As System.Nullable(Of System.Guid)
-		Get
-			Return Me._UserID
-		End Get
-		Set
-			If (Me._UserID.Equals(value) = false) Then
-				Me.OnUserIDChanging(value)
-				Me.SendPropertyChanging
-				Me._UserID = value
-				Me.SendPropertyChanged("UserID")
-				Me.OnUserIDChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ImageSource", DbType:="NVarChar(100)")>  _
-	Public Property ImageSource() As String
-		Get
-			Return Me._ImageSource
-		End Get
-		Set
-			If (String.Equals(Me._ImageSource, value) = false) Then
-				Me.OnImageSourceChanging(value)
-				Me.SendPropertyChanging
-				Me._ImageSource = value
-				Me.SendPropertyChanged("ImageSource")
-				Me.OnImageSourceChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_TwitterID", DbType:="BigInt")>  _
-	Public Property TwitterID() As System.Nullable(Of Long)
-		Get
-			Return Me._TwitterID
-		End Get
-		Set
-			If (Me._TwitterID.Equals(value) = false) Then
-				Me.OnTwitterIDChanging(value)
-				Me.SendPropertyChanging
-				Me._TwitterID = value
-				Me.SendPropertyChanged("TwitterID")
-				Me.OnTwitterIDChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_TwitterName", DbType:="NVarChar(100)")>  _
-	Public Property TwitterName() As String
-		Get
-			Return Me._TwitterName
-		End Get
-		Set
-			If (String.Equals(Me._TwitterName, value) = false) Then
-				Me.OnTwitterNameChanging(value)
-				Me.SendPropertyChanging
-				Me._TwitterName = value
-				Me.SendPropertyChanged("TwitterName")
-				Me.OnTwitterNameChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="EpiloggerImage_EpiloggerImageMetaData", Storage:="_EpiloggerImage", ThisKey:="ImageID", OtherKey:="ID", IsForeignKey:=true)>  _
-	Public Property EpiloggerImage() As EpiloggerImage
-		Get
-			Return Me._EpiloggerImage.Entity
-		End Get
-		Set
-			Dim previousValue As EpiloggerImage = Me._EpiloggerImage.Entity
-			If ((Object.Equals(previousValue, value) = false)  _
-						OrElse (Me._EpiloggerImage.HasLoadedOrAssignedValue = false)) Then
-				Me.SendPropertyChanging
-				If ((previousValue Is Nothing)  _
-							= false) Then
-					Me._EpiloggerImage.Entity = Nothing
-					previousValue.EpiloggerImageMetaDatas.Remove(Me)
-				End If
-				Me._EpiloggerImage.Entity = value
-				If ((value Is Nothing)  _
-							= false) Then
-					value.EpiloggerImageMetaDatas.Add(Me)
-					Me._ImageID = value.ID
-				Else
-					Me._ImageID = CType(Nothing, Integer)
-				End If
-				Me.SendPropertyChanged("EpiloggerImage")
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="Event_EpiloggerImageMetaData", Storage:="_Event", ThisKey:="EventID", OtherKey:="ID", IsForeignKey:=true)>  _
-	Public Property [Event]() As [Event]
-		Get
-			Return Me._Event.Entity
-		End Get
-		Set
-			Dim previousValue As [Event] = Me._Event.Entity
-			If ((Object.Equals(previousValue, value) = false)  _
-						OrElse (Me._Event.HasLoadedOrAssignedValue = false)) Then
-				Me.SendPropertyChanging
-				If ((previousValue Is Nothing)  _
-							= false) Then
-					Me._Event.Entity = Nothing
-					previousValue.EpiloggerImageMetaDatas.Remove(Me)
-				End If
-				Me._Event.Entity = value
-				If ((value Is Nothing)  _
-							= false) Then
-					value.EpiloggerImageMetaDatas.Add(Me)
-					Me._EventID = value.ID
-				Else
-					Me._EventID = CType(Nothing, Integer)
-				End If
-				Me.SendPropertyChanged("[Event]")
-			End If
-		End Set
-	End Property
-	
-	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
-	
-	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
-	
-	Protected Overridable Sub SendPropertyChanging()
-		If ((Me.PropertyChangingEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
-		End If
-	End Sub
-	
-	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
-		If ((Me.PropertyChangedEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
-		End If
-	End Sub
-End Class
-
 <Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.CheckIns")>  _
 Partial Public Class CheckIn
 	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
@@ -1448,6 +966,600 @@ Partial Public Class CheckIn
 	End Sub
 End Class
 
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.URLs")>  _
+Partial Public Class URL
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _ID As Integer
+	
+	Private _EventID As Integer
+	
+	Private _TweetID As Long
+	
+	Private _ShortURL As String
+	
+	Private _FullURL As String
+	
+	Private _Type As String
+	
+	Private _DateTime As System.Nullable(Of Date)
+	
+	Private _DeleteVoteCount As System.Nullable(Of Integer)
+	
+	Private _Deleted As System.Nullable(Of Boolean)
+	
+	Private _Event As EntityRef(Of [Event])
+	
+	Private _Tweet As EntityRef(Of Tweet)
+	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnIDChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnIDChanged()
+    End Sub
+    Partial Private Sub OnEventIDChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnEventIDChanged()
+    End Sub
+    Partial Private Sub OnTweetIDChanging(value As Long)
+    End Sub
+    Partial Private Sub OnTweetIDChanged()
+    End Sub
+    Partial Private Sub OnShortURLChanging(value As String)
+    End Sub
+    Partial Private Sub OnShortURLChanged()
+    End Sub
+    Partial Private Sub OnFullURLChanging(value As String)
+    End Sub
+    Partial Private Sub OnFullURLChanged()
+    End Sub
+    Partial Private Sub OnTypeChanging(value As String)
+    End Sub
+    Partial Private Sub OnTypeChanged()
+    End Sub
+    Partial Private Sub OnDateTimeChanging(value As System.Nullable(Of Date))
+    End Sub
+    Partial Private Sub OnDateTimeChanged()
+    End Sub
+    Partial Private Sub OnDeleteVoteCountChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnDeleteVoteCountChanged()
+    End Sub
+    Partial Private Sub OnDeletedChanging(value As System.Nullable(Of Boolean))
+    End Sub
+    Partial Private Sub OnDeletedChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		Me._Event = CType(Nothing, EntityRef(Of [Event]))
+		Me._Tweet = CType(Nothing, EntityRef(Of Tweet))
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ID", AutoSync:=AutoSync.OnInsert, DbType:="Int NOT NULL IDENTITY", IsPrimaryKey:=true, IsDbGenerated:=true)>  _
+	Public Property ID() As Integer
+		Get
+			Return Me._ID
+		End Get
+		Set
+			If ((Me._ID = value)  _
+						= false) Then
+				Me.OnIDChanging(value)
+				Me.SendPropertyChanging
+				Me._ID = value
+				Me.SendPropertyChanged("ID")
+				Me.OnIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_EventID", DbType:="Int NOT NULL")>  _
+	Public Property EventID() As Integer
+		Get
+			Return Me._EventID
+		End Get
+		Set
+			If ((Me._EventID = value)  _
+						= false) Then
+				If Me._Event.HasLoadedOrAssignedValue Then
+					Throw New System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException()
+				End If
+				Me.OnEventIDChanging(value)
+				Me.SendPropertyChanging
+				Me._EventID = value
+				Me.SendPropertyChanged("EventID")
+				Me.OnEventIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_TweetID", DbType:="BigInt NOT NULL")>  _
+	Public Property TweetID() As Long
+		Get
+			Return Me._TweetID
+		End Get
+		Set
+			If ((Me._TweetID = value)  _
+						= false) Then
+				If Me._Tweet.HasLoadedOrAssignedValue Then
+					Throw New System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException()
+				End If
+				Me.OnTweetIDChanging(value)
+				Me.SendPropertyChanging
+				Me._TweetID = value
+				Me.SendPropertyChanged("TweetID")
+				Me.OnTweetIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ShortURL", DbType:="NVarChar(1000)")>  _
+	Public Property ShortURL() As String
+		Get
+			Return Me._ShortURL
+		End Get
+		Set
+			If (String.Equals(Me._ShortURL, value) = false) Then
+				Me.OnShortURLChanging(value)
+				Me.SendPropertyChanging
+				Me._ShortURL = value
+				Me.SendPropertyChanged("ShortURL")
+				Me.OnShortURLChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_FullURL", DbType:="NVarChar(1000)")>  _
+	Public Property FullURL() As String
+		Get
+			Return Me._FullURL
+		End Get
+		Set
+			If (String.Equals(Me._FullURL, value) = false) Then
+				Me.OnFullURLChanging(value)
+				Me.SendPropertyChanging
+				Me._FullURL = value
+				Me.SendPropertyChanged("FullURL")
+				Me.OnFullURLChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Type", DbType:="NVarChar(500)")>  _
+	Public Property Type() As String
+		Get
+			Return Me._Type
+		End Get
+		Set
+			If (String.Equals(Me._Type, value) = false) Then
+				Me.OnTypeChanging(value)
+				Me.SendPropertyChanging
+				Me._Type = value
+				Me.SendPropertyChanged("Type")
+				Me.OnTypeChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_DateTime", DbType:="DateTime")>  _
+	Public Property DateTime() As System.Nullable(Of Date)
+		Get
+			Return Me._DateTime
+		End Get
+		Set
+			If (Me._DateTime.Equals(value) = false) Then
+				Me.OnDateTimeChanging(value)
+				Me.SendPropertyChanging
+				Me._DateTime = value
+				Me.SendPropertyChanged("DateTime")
+				Me.OnDateTimeChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_DeleteVoteCount", DbType:="Int")>  _
+	Public Property DeleteVoteCount() As System.Nullable(Of Integer)
+		Get
+			Return Me._DeleteVoteCount
+		End Get
+		Set
+			If (Me._DeleteVoteCount.Equals(value) = false) Then
+				Me.OnDeleteVoteCountChanging(value)
+				Me.SendPropertyChanging
+				Me._DeleteVoteCount = value
+				Me.SendPropertyChanged("DeleteVoteCount")
+				Me.OnDeleteVoteCountChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Deleted", DbType:="Bit")>  _
+	Public Property Deleted() As System.Nullable(Of Boolean)
+		Get
+			Return Me._Deleted
+		End Get
+		Set
+			If (Me._Deleted.Equals(value) = false) Then
+				Me.OnDeletedChanging(value)
+				Me.SendPropertyChanging
+				Me._Deleted = value
+				Me.SendPropertyChanged("Deleted")
+				Me.OnDeletedChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="Event_URL", Storage:="_Event", ThisKey:="EventID", OtherKey:="ID", IsForeignKey:=true)>  _
+	Public Property [Event]() As [Event]
+		Get
+			Return Me._Event.Entity
+		End Get
+		Set
+			Dim previousValue As [Event] = Me._Event.Entity
+			If ((Object.Equals(previousValue, value) = false)  _
+						OrElse (Me._Event.HasLoadedOrAssignedValue = false)) Then
+				Me.SendPropertyChanging
+				If ((previousValue Is Nothing)  _
+							= false) Then
+					Me._Event.Entity = Nothing
+					previousValue.URLs.Remove(Me)
+				End If
+				Me._Event.Entity = value
+				If ((value Is Nothing)  _
+							= false) Then
+					value.URLs.Add(Me)
+					Me._EventID = value.ID
+				Else
+					Me._EventID = CType(Nothing, Integer)
+				End If
+				Me.SendPropertyChanged("[Event]")
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="Tweet_URL", Storage:="_Tweet", ThisKey:="TweetID", OtherKey:="ID", IsForeignKey:=true)>  _
+	Public Property Tweet() As Tweet
+		Get
+			Return Me._Tweet.Entity
+		End Get
+		Set
+			Dim previousValue As Tweet = Me._Tweet.Entity
+			If ((Object.Equals(previousValue, value) = false)  _
+						OrElse (Me._Tweet.HasLoadedOrAssignedValue = false)) Then
+				Me.SendPropertyChanging
+				If ((previousValue Is Nothing)  _
+							= false) Then
+					Me._Tweet.Entity = Nothing
+					previousValue.URLs.Remove(Me)
+				End If
+				Me._Tweet.Entity = value
+				If ((value Is Nothing)  _
+							= false) Then
+					value.URLs.Add(Me)
+					Me._TweetID = value.ID
+				Else
+					Me._TweetID = CType(Nothing, Long)
+				End If
+				Me.SendPropertyChanged("Tweet")
+			End If
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.ImageMetaData")>  _
+Partial Public Class EpiloggerImageMetaData
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _ID As Integer
+	
+	Private _ImageID As Integer
+	
+	Private _EventID As Integer
+	
+	Private _UserID As System.Nullable(Of System.Guid)
+	
+	Private _ImageSource As String
+	
+	Private _TwitterID As System.Nullable(Of Long)
+	
+	Private _TwitterName As String
+	
+	Private _DateTime As System.Nullable(Of Date)
+	
+	Private _EpiloggerImage As EntityRef(Of EpiloggerImage)
+	
+	Private _Event As EntityRef(Of [Event])
+	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnIDChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnIDChanged()
+    End Sub
+    Partial Private Sub OnImageIDChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnImageIDChanged()
+    End Sub
+    Partial Private Sub OnEventIDChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnEventIDChanged()
+    End Sub
+    Partial Private Sub OnUserIDChanging(value As System.Nullable(Of System.Guid))
+    End Sub
+    Partial Private Sub OnUserIDChanged()
+    End Sub
+    Partial Private Sub OnImageSourceChanging(value As String)
+    End Sub
+    Partial Private Sub OnImageSourceChanged()
+    End Sub
+    Partial Private Sub OnTwitterIDChanging(value As System.Nullable(Of Long))
+    End Sub
+    Partial Private Sub OnTwitterIDChanged()
+    End Sub
+    Partial Private Sub OnTwitterNameChanging(value As String)
+    End Sub
+    Partial Private Sub OnTwitterNameChanged()
+    End Sub
+    Partial Private Sub OnDateTimeChanging(value As System.Nullable(Of Date))
+    End Sub
+    Partial Private Sub OnDateTimeChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		Me._EpiloggerImage = CType(Nothing, EntityRef(Of EpiloggerImage))
+		Me._Event = CType(Nothing, EntityRef(Of [Event]))
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ID", AutoSync:=AutoSync.OnInsert, DbType:="Int NOT NULL IDENTITY", IsPrimaryKey:=true, IsDbGenerated:=true)>  _
+	Public Property ID() As Integer
+		Get
+			Return Me._ID
+		End Get
+		Set
+			If ((Me._ID = value)  _
+						= false) Then
+				Me.OnIDChanging(value)
+				Me.SendPropertyChanging
+				Me._ID = value
+				Me.SendPropertyChanged("ID")
+				Me.OnIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ImageID", DbType:="Int NOT NULL")>  _
+	Public Property ImageID() As Integer
+		Get
+			Return Me._ImageID
+		End Get
+		Set
+			If ((Me._ImageID = value)  _
+						= false) Then
+				If Me._EpiloggerImage.HasLoadedOrAssignedValue Then
+					Throw New System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException()
+				End If
+				Me.OnImageIDChanging(value)
+				Me.SendPropertyChanging
+				Me._ImageID = value
+				Me.SendPropertyChanged("ImageID")
+				Me.OnImageIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_EventID", DbType:="Int NOT NULL")>  _
+	Public Property EventID() As Integer
+		Get
+			Return Me._EventID
+		End Get
+		Set
+			If ((Me._EventID = value)  _
+						= false) Then
+				If Me._Event.HasLoadedOrAssignedValue Then
+					Throw New System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException()
+				End If
+				Me.OnEventIDChanging(value)
+				Me.SendPropertyChanging
+				Me._EventID = value
+				Me.SendPropertyChanged("EventID")
+				Me.OnEventIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_UserID", DbType:="UniqueIdentifier")>  _
+	Public Property UserID() As System.Nullable(Of System.Guid)
+		Get
+			Return Me._UserID
+		End Get
+		Set
+			If (Me._UserID.Equals(value) = false) Then
+				Me.OnUserIDChanging(value)
+				Me.SendPropertyChanging
+				Me._UserID = value
+				Me.SendPropertyChanged("UserID")
+				Me.OnUserIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ImageSource", DbType:="NVarChar(100)")>  _
+	Public Property ImageSource() As String
+		Get
+			Return Me._ImageSource
+		End Get
+		Set
+			If (String.Equals(Me._ImageSource, value) = false) Then
+				Me.OnImageSourceChanging(value)
+				Me.SendPropertyChanging
+				Me._ImageSource = value
+				Me.SendPropertyChanged("ImageSource")
+				Me.OnImageSourceChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_TwitterID", DbType:="BigInt")>  _
+	Public Property TwitterID() As System.Nullable(Of Long)
+		Get
+			Return Me._TwitterID
+		End Get
+		Set
+			If (Me._TwitterID.Equals(value) = false) Then
+				Me.OnTwitterIDChanging(value)
+				Me.SendPropertyChanging
+				Me._TwitterID = value
+				Me.SendPropertyChanged("TwitterID")
+				Me.OnTwitterIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_TwitterName", DbType:="NVarChar(100)")>  _
+	Public Property TwitterName() As String
+		Get
+			Return Me._TwitterName
+		End Get
+		Set
+			If (String.Equals(Me._TwitterName, value) = false) Then
+				Me.OnTwitterNameChanging(value)
+				Me.SendPropertyChanging
+				Me._TwitterName = value
+				Me.SendPropertyChanged("TwitterName")
+				Me.OnTwitterNameChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_DateTime", DbType:="DateTime")>  _
+	Public Property DateTime() As System.Nullable(Of Date)
+		Get
+			Return Me._DateTime
+		End Get
+		Set
+			If (Me._DateTime.Equals(value) = false) Then
+				Me.OnDateTimeChanging(value)
+				Me.SendPropertyChanging
+				Me._DateTime = value
+				Me.SendPropertyChanged("DateTime")
+				Me.OnDateTimeChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="EpiloggerImage_ImageMetaData", Storage:="_EpiloggerImage", ThisKey:="ImageID", OtherKey:="ID", IsForeignKey:=true)>  _
+	Public Property EpiloggerImage() As EpiloggerImage
+		Get
+			Return Me._EpiloggerImage.Entity
+		End Get
+		Set
+			Dim previousValue As EpiloggerImage = Me._EpiloggerImage.Entity
+			If ((Object.Equals(previousValue, value) = false)  _
+						OrElse (Me._EpiloggerImage.HasLoadedOrAssignedValue = false)) Then
+				Me.SendPropertyChanging
+				If ((previousValue Is Nothing)  _
+							= false) Then
+					Me._EpiloggerImage.Entity = Nothing
+					previousValue.EpiloggerImageMetaDatas.Remove(Me)
+				End If
+				Me._EpiloggerImage.Entity = value
+				If ((value Is Nothing)  _
+							= false) Then
+					value.EpiloggerImageMetaDatas.Add(Me)
+					Me._ImageID = value.ID
+				Else
+					Me._ImageID = CType(Nothing, Integer)
+				End If
+				Me.SendPropertyChanged("EpiloggerImage")
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="Event_EpiloggerImageMetaData", Storage:="_Event", ThisKey:="EventID", OtherKey:="ID", IsForeignKey:=true)>  _
+	Public Property [Event]() As [Event]
+		Get
+			Return Me._Event.Entity
+		End Get
+		Set
+			Dim previousValue As [Event] = Me._Event.Entity
+			If ((Object.Equals(previousValue, value) = false)  _
+						OrElse (Me._Event.HasLoadedOrAssignedValue = false)) Then
+				Me.SendPropertyChanging
+				If ((previousValue Is Nothing)  _
+							= false) Then
+					Me._Event.Entity = Nothing
+					previousValue.EpiloggerImageMetaDatas.Remove(Me)
+				End If
+				Me._Event.Entity = value
+				If ((value Is Nothing)  _
+							= false) Then
+					value.EpiloggerImageMetaDatas.Add(Me)
+					Me._EventID = value.ID
+				Else
+					Me._EventID = CType(Nothing, Integer)
+				End If
+				Me.SendPropertyChanged("[Event]")
+			End If
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+End Class
+
 <Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.Events")>  _
 Partial Public Class [Event]
 	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
@@ -1494,13 +1606,19 @@ Partial Public Class [Event]
 	
 	Private _EventStatus As String
 	
-	Private _LastTweetID As Long
+	Private _FacebookPageURL As String
+	
+	Private _TwitterAccount As String
 	
 	Private _IsActive As Boolean
 	
-	Private _EpiloggerImageMetaDatas As EntitySet(Of EpiloggerImageMetaData)
+	Private _EpiloggerImages As EntitySet(Of EpiloggerImage)
 	
 	Private _CheckIns As EntitySet(Of CheckIn)
+	
+	Private _URLs As EntitySet(Of URL)
+	
+	Private _EpiloggerImageMetaDatas As EntitySet(Of EpiloggerImageMetaData)
 	
 	Private _Tweets As EntitySet(Of Tweet)
 	
@@ -1593,9 +1711,13 @@ Partial Public Class [Event]
     End Sub
     Partial Private Sub OnEventStatusChanged()
     End Sub
-    Partial Private Sub OnLastTweetIDChanging(value As Long)
+    Partial Private Sub OnFacebookPageURLChanging(value As String)
     End Sub
-    Partial Private Sub OnLastTweetIDChanged()
+    Partial Private Sub OnFacebookPageURLChanged()
+    End Sub
+    Partial Private Sub OnTwitterAccountChanging(value As String)
+    End Sub
+    Partial Private Sub OnTwitterAccountChanged()
     End Sub
     Partial Private Sub OnIsActiveChanging(value As Boolean)
     End Sub
@@ -1605,8 +1727,10 @@ Partial Public Class [Event]
 	
 	Public Sub New()
 		MyBase.New
-		Me._EpiloggerImageMetaDatas = New EntitySet(Of EpiloggerImageMetaData)(AddressOf Me.attach_EpiloggerImageMetaDatas, AddressOf Me.detach_EpiloggerImageMetaDatas)
+		Me._EpiloggerImages = New EntitySet(Of EpiloggerImage)(AddressOf Me.attach_EpiloggerImages, AddressOf Me.detach_EpiloggerImages)
 		Me._CheckIns = New EntitySet(Of CheckIn)(AddressOf Me.attach_CheckIns, AddressOf Me.detach_CheckIns)
+		Me._URLs = New EntitySet(Of URL)(AddressOf Me.attach_URLs, AddressOf Me.detach_URLs)
+		Me._EpiloggerImageMetaDatas = New EntitySet(Of EpiloggerImageMetaData)(AddressOf Me.attach_EpiloggerImageMetaDatas, AddressOf Me.detach_EpiloggerImageMetaDatas)
 		Me._Tweets = New EntitySet(Of Tweet)(AddressOf Me.attach_Tweets, AddressOf Me.detach_Tweets)
 		Me._Venue = CType(Nothing, EntityRef(Of Venue))
 		OnCreated
@@ -1939,19 +2063,34 @@ Partial Public Class [Event]
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_LastTweetID", DbType:="BigInt NOT NULL")>  _
-	Public Property LastTweetID() As Long
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_FacebookPageURL", DbType:="NVarChar(500)")>  _
+	Public Property FacebookPageURL() As String
 		Get
-			Return Me._LastTweetID
+			Return Me._FacebookPageURL
 		End Get
 		Set
-			If ((Me._LastTweetID = value)  _
-						= false) Then
-				Me.OnLastTweetIDChanging(value)
+			If (String.Equals(Me._FacebookPageURL, value) = false) Then
+				Me.OnFacebookPageURLChanging(value)
 				Me.SendPropertyChanging
-				Me._LastTweetID = value
-				Me.SendPropertyChanged("LastTweetID")
-				Me.OnLastTweetIDChanged
+				Me._FacebookPageURL = value
+				Me.SendPropertyChanged("FacebookPageURL")
+				Me.OnFacebookPageURLChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_TwitterAccount", DbType:="NVarChar(100)")>  _
+	Public Property TwitterAccount() As String
+		Get
+			Return Me._TwitterAccount
+		End Get
+		Set
+			If (String.Equals(Me._TwitterAccount, value) = false) Then
+				Me.OnTwitterAccountChanging(value)
+				Me.SendPropertyChanging
+				Me._TwitterAccount = value
+				Me.SendPropertyChanged("TwitterAccount")
+				Me.OnTwitterAccountChanged
 			End If
 		End Set
 	End Property
@@ -1973,13 +2112,13 @@ Partial Public Class [Event]
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="Event_EpiloggerImageMetaData", Storage:="_EpiloggerImageMetaDatas", ThisKey:="ID", OtherKey:="EventID")>  _
-	Public Property EpiloggerImageMetaDatas() As EntitySet(Of EpiloggerImageMetaData)
+	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="Event_EpiloggerImage", Storage:="_EpiloggerImages", ThisKey:="ID", OtherKey:="EventID")>  _
+	Public Property EpiloggerImages() As EntitySet(Of EpiloggerImage)
 		Get
-			Return Me._EpiloggerImageMetaDatas
+			Return Me._EpiloggerImages
 		End Get
 		Set
-			Me._EpiloggerImageMetaDatas.Assign(value)
+			Me._EpiloggerImages.Assign(value)
 		End Set
 	End Property
 	
@@ -1990,6 +2129,26 @@ Partial Public Class [Event]
 		End Get
 		Set
 			Me._CheckIns.Assign(value)
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="Event_URL", Storage:="_URLs", ThisKey:="ID", OtherKey:="EventID")>  _
+	Public Property URLs() As EntitySet(Of URL)
+		Get
+			Return Me._URLs
+		End Get
+		Set
+			Me._URLs.Assign(value)
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="Event_EpiloggerImageMetaData", Storage:="_EpiloggerImageMetaDatas", ThisKey:="ID", OtherKey:="EventID")>  _
+	Public Property EpiloggerImageMetaDatas() As EntitySet(Of EpiloggerImageMetaData)
+		Get
+			Return Me._EpiloggerImageMetaDatas
+		End Get
+		Set
+			Me._EpiloggerImageMetaDatas.Assign(value)
 		End Set
 	End Property
 	
@@ -2049,12 +2208,12 @@ Partial Public Class [Event]
 		End If
 	End Sub
 	
-	Private Sub attach_EpiloggerImageMetaDatas(ByVal entity As EpiloggerImageMetaData)
+	Private Sub attach_EpiloggerImages(ByVal entity As EpiloggerImage)
 		Me.SendPropertyChanging
 		entity.[Event] = Me
 	End Sub
 	
-	Private Sub detach_EpiloggerImageMetaDatas(ByVal entity As EpiloggerImageMetaData)
+	Private Sub detach_EpiloggerImages(ByVal entity As EpiloggerImage)
 		Me.SendPropertyChanging
 		entity.[Event] = Nothing
 	End Sub
@@ -2065,6 +2224,26 @@ Partial Public Class [Event]
 	End Sub
 	
 	Private Sub detach_CheckIns(ByVal entity As CheckIn)
+		Me.SendPropertyChanging
+		entity.[Event] = Nothing
+	End Sub
+	
+	Private Sub attach_URLs(ByVal entity As URL)
+		Me.SendPropertyChanging
+		entity.[Event] = Me
+	End Sub
+	
+	Private Sub detach_URLs(ByVal entity As URL)
+		Me.SendPropertyChanging
+		entity.[Event] = Nothing
+	End Sub
+	
+	Private Sub attach_EpiloggerImageMetaDatas(ByVal entity As EpiloggerImageMetaData)
+		Me.SendPropertyChanging
+		entity.[Event] = Me
+	End Sub
+	
+	Private Sub detach_EpiloggerImageMetaDatas(ByVal entity As EpiloggerImageMetaData)
 		Me.SendPropertyChanging
 		entity.[Event] = Nothing
 	End Sub
@@ -2122,9 +2301,9 @@ Partial Public Class Tweet
 	
 	Private _Deleted As System.Nullable(Of Boolean)
 	
-	Private _URLs As EntitySet(Of URL)
-	
 	Private _CheckIns As EntitySet(Of CheckIn)
+	
+	Private _URLs As EntitySet(Of URL)
 	
 	Private _Event As EntityRef(Of [Event])
 	
@@ -2211,8 +2390,8 @@ Partial Public Class Tweet
 	
 	Public Sub New()
 		MyBase.New
-		Me._URLs = New EntitySet(Of URL)(AddressOf Me.attach_URLs, AddressOf Me.detach_URLs)
 		Me._CheckIns = New EntitySet(Of CheckIn)(AddressOf Me.attach_CheckIns, AddressOf Me.detach_CheckIns)
+		Me._URLs = New EntitySet(Of URL)(AddressOf Me.attach_URLs, AddressOf Me.detach_URLs)
 		Me._Event = CType(Nothing, EntityRef(Of [Event]))
 		OnCreated
 	End Sub
@@ -2286,7 +2465,7 @@ Partial Public Class Tweet
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_TextAsHTML", DbType:="NVarChar(1500)")>  _
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_TextAsHTML", DbType:="NVarChar(MAX)")>  _
 	Public Property TextAsHTML() As String
 		Get
 			Return Me._TextAsHTML
@@ -2510,16 +2689,6 @@ Partial Public Class Tweet
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="Tweet_URL", Storage:="_URLs", ThisKey:="ID", OtherKey:="TweetID")>  _
-	Public Property URLs() As EntitySet(Of URL)
-		Get
-			Return Me._URLs
-		End Get
-		Set
-			Me._URLs.Assign(value)
-		End Set
-	End Property
-	
 	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="Tweet_CheckIn", Storage:="_CheckIns", ThisKey:="ID", OtherKey:="TweetID")>  _
 	Public Property CheckIns() As EntitySet(Of CheckIn)
 		Get
@@ -2527,6 +2696,16 @@ Partial Public Class Tweet
 		End Get
 		Set
 			Me._CheckIns.Assign(value)
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="Tweet_URL", Storage:="_URLs", ThisKey:="ID", OtherKey:="TweetID")>  _
+	Public Property URLs() As EntitySet(Of URL)
+		Get
+			Return Me._URLs
+		End Get
+		Set
+			Me._URLs.Assign(value)
 		End Set
 	End Property
 	
@@ -2576,22 +2755,22 @@ Partial Public Class Tweet
 		End If
 	End Sub
 	
-	Private Sub attach_URLs(ByVal entity As URL)
-		Me.SendPropertyChanging
-		entity.Tweet = Me
-	End Sub
-	
-	Private Sub detach_URLs(ByVal entity As URL)
-		Me.SendPropertyChanging
-		entity.Tweet = Nothing
-	End Sub
-	
 	Private Sub attach_CheckIns(ByVal entity As CheckIn)
 		Me.SendPropertyChanging
 		entity.Tweet = Me
 	End Sub
 	
 	Private Sub detach_CheckIns(ByVal entity As CheckIn)
+		Me.SendPropertyChanging
+		entity.Tweet = Nothing
+	End Sub
+	
+	Private Sub attach_URLs(ByVal entity As URL)
+		Me.SendPropertyChanging
+		entity.Tweet = Me
+	End Sub
+	
+	Private Sub detach_URLs(ByVal entity As URL)
 		Me.SendPropertyChanging
 		entity.Tweet = Nothing
 	End Sub

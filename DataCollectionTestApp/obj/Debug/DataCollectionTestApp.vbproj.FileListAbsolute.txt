@@ -214,3 +214,29 @@ D:\Projects\Epilogger DCS\DataCollectionTestApp\obj\Debug\DataCollectionTestApp.
 D:\Projects\Epilogger DCS\DataCollectionTestApp\obj\Debug\DataCollectionTestApp.Resources.resources
 D:\Projects\Epilogger DCS\DataCollectionTestApp\obj\Debug\GenerateResource.read.1.tlog
 D:\Projects\Epilogger DCS\DataCollectionTestApp\obj\Debug\GenerateResource.write.1.tlog
+Z:\Projects\ProjectsEpiloggerDCS\DataCollectionTestApp\bin\Debug\DataCollectionTestApp.exe.config
+Z:\Projects\ProjectsEpiloggerDCS\DataCollectionTestApp\obj\Debug\DataCollectionTestApp.exe
+Z:\Projects\ProjectsEpiloggerDCS\DataCollectionTestApp\obj\Debug\DataCollectionTestApp.xml
+Z:\Projects\ProjectsEpiloggerDCS\DataCollectionTestApp\obj\Debug\DataCollectionTestApp.pdb
+Z:\Projects\ProjectsEpiloggerDCS\DataCollectionTestApp\bin\Debug\DataCollectionTestApp.exe
+Z:\Projects\ProjectsEpiloggerDCS\DataCollectionTestApp\bin\Debug\DataCollectionTestApp.pdb
+Z:\Projects\ProjectsEpiloggerDCS\DataCollectionTestApp\bin\Debug\DataCollectionTestApp.xml
+Z:\Projects\ProjectsEpiloggerDCS\DataCollectionTestApp\bin\Debug\DataCollector.dll
+Z:\Projects\ProjectsEpiloggerDCS\DataCollectionTestApp\bin\Debug\SharpSquare.dll
+Z:\Projects\ProjectsEpiloggerDCS\DataCollectionTestApp\bin\Debug\Microsoft.WindowsAzure.StorageClient.dll
+Z:\Projects\ProjectsEpiloggerDCS\DataCollectionTestApp\bin\Debug\LoggingReporting.dll
+Z:\Projects\ProjectsEpiloggerDCS\DataCollectionTestApp\bin\Debug\FlickrNet.dll
+Z:\Projects\ProjectsEpiloggerDCS\DataCollectionTestApp\bin\Debug\TweetSharp.dll
+Z:\Projects\ProjectsEpiloggerDCS\DataCollectionTestApp\bin\Debug\Newtonsoft.Json.dll
+Z:\Projects\ProjectsEpiloggerDCS\DataCollectionTestApp\bin\Debug\Hammock.ClientProfile.dll
+Z:\Projects\ProjectsEpiloggerDCS\DataCollectionTestApp\bin\Debug\DataCollector.pdb
+Z:\Projects\ProjectsEpiloggerDCS\DataCollectionTestApp\bin\Debug\DataCollector.xml
+Z:\Projects\ProjectsEpiloggerDCS\DataCollectionTestApp\bin\Debug\LoggingReporting.pdb
+Z:\Projects\ProjectsEpiloggerDCS\DataCollectionTestApp\bin\Debug\LoggingReporting.xml
+Z:\Projects\ProjectsEpiloggerDCS\DataCollectionTestApp\bin\Debug\TweetSharp.pdb
+Z:\Projects\ProjectsEpiloggerDCS\DataCollectionTestApp\bin\Debug\Newtonsoft.Json.xml
+Z:\Projects\ProjectsEpiloggerDCS\DataCollectionTestApp\obj\Debug\ResolveAssemblyReference.cache
+Z:\Projects\ProjectsEpiloggerDCS\DataCollectionTestApp\obj\Debug\DataCollectionTestApp.Form1.resources
+Z:\Projects\ProjectsEpiloggerDCS\DataCollectionTestApp\obj\Debug\DataCollectionTestApp.Resources.resources
+Z:\Projects\ProjectsEpiloggerDCS\DataCollectionTestApp\obj\Debug\GenerateResource.read.1.tlog
+Z:\Projects\ProjectsEpiloggerDCS\DataCollectionTestApp\obj\Debug\GenerateResource.write.1.tlog

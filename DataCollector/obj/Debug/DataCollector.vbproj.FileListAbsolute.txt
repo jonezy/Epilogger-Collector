@@ -254,3 +254,39 @@ D:\Projects\Epilogger DCS\DataCollector\obj\Debug\GenerateResource.write.1.tlog
 D:\Projects\Epilogger DCS\DataCollector\obj\Debug\DataCollector.dll
 D:\Projects\Epilogger DCS\DataCollector\obj\Debug\DataCollector.xml
 D:\Projects\Epilogger DCS\DataCollector\obj\Debug\DataCollector.pdb
+Z:\Projects\ProjectsEpiloggerDCS\DataCollector\bin\Debug\Generated\_TwitterService.Blocks.json
+Z:\Projects\ProjectsEpiloggerDCS\DataCollector\bin\Debug\Generated\_TwitterService.DirectMessages.json
+Z:\Projects\ProjectsEpiloggerDCS\DataCollector\bin\Debug\Generated\_TwitterService.Users.json
+Z:\Projects\ProjectsEpiloggerDCS\DataCollector\bin\Debug\Generated\_TwitterService.Friendships.json
+Z:\Projects\ProjectsEpiloggerDCS\DataCollector\bin\Debug\Generated\_TwitterService.SavedSearches.json
+Z:\Projects\ProjectsEpiloggerDCS\DataCollector\bin\Debug\Generated\_TwitterService.Search.json
+Z:\Projects\ProjectsEpiloggerDCS\DataCollector\bin\Debug\Generated\_TwitterService.Lists.json
+Z:\Projects\ProjectsEpiloggerDCS\DataCollector\bin\Debug\Generated\_TwitterService.FriendsFollowers.json
+Z:\Projects\ProjectsEpiloggerDCS\DataCollector\bin\Debug\Generated\_TwitterService.Trends.json
+Z:\Projects\ProjectsEpiloggerDCS\DataCollector\bin\Debug\Generated\_TwitterService.Tweets.json
+Z:\Projects\ProjectsEpiloggerDCS\DataCollector\bin\Debug\Generated\_TwitterService.Account.json
+Z:\Projects\ProjectsEpiloggerDCS\DataCollector\bin\Debug\Generated\_TwitterService.Favorites.json
+Z:\Projects\ProjectsEpiloggerDCS\DataCollector\bin\Debug\Generated\_TwitterService.Timelines.json
+Z:\Projects\ProjectsEpiloggerDCS\DataCollector\bin\Debug\Generated\_TwitterService.Notifications.json
+Z:\Projects\ProjectsEpiloggerDCS\DataCollector\bin\Debug\DataCollector.dll.config
+Z:\Projects\ProjectsEpiloggerDCS\DataCollector\bin\Debug\DataCollector.dll
+Z:\Projects\ProjectsEpiloggerDCS\DataCollector\bin\Debug\DataCollector.pdb
+Z:\Projects\ProjectsEpiloggerDCS\DataCollector\bin\Debug\DataCollector.xml
+Z:\Projects\ProjectsEpiloggerDCS\DataCollector\bin\Debug\FlickrNet.dll
+Z:\Projects\ProjectsEpiloggerDCS\DataCollector\bin\Debug\Hammock.ClientProfile.dll
+Z:\Projects\ProjectsEpiloggerDCS\DataCollector\bin\Debug\LoggingReporting.dll
+Z:\Projects\ProjectsEpiloggerDCS\DataCollector\bin\Debug\Microsoft.WindowsAzure.StorageClient.dll
+Z:\Projects\ProjectsEpiloggerDCS\DataCollector\bin\Debug\Newtonsoft.Json.dll
+Z:\Projects\ProjectsEpiloggerDCS\DataCollector\bin\Debug\SharpSquare.dll
+Z:\Projects\ProjectsEpiloggerDCS\DataCollector\bin\Debug\TweetSharp.dll
+Z:\Projects\ProjectsEpiloggerDCS\DataCollector\bin\Debug\LoggingReporting.pdb
+Z:\Projects\ProjectsEpiloggerDCS\DataCollector\bin\Debug\LoggingReporting.xml
+Z:\Projects\ProjectsEpiloggerDCS\DataCollector\bin\Debug\TweetSharp.pdb
+Z:\Projects\ProjectsEpiloggerDCS\DataCollector\bin\Debug\Newtonsoft.Json.xml
+Z:\Projects\ProjectsEpiloggerDCS\DataCollector\obj\Debug\ResolveAssemblyReference.cache
+Z:\Projects\ProjectsEpiloggerDCS\DataCollector\obj\Debug\DataCollector.Resources.resources
+Z:\Projects\ProjectsEpiloggerDCS\DataCollector\obj\Debug\GenerateResource.read.1.tlog
+Z:\Projects\ProjectsEpiloggerDCS\DataCollector\obj\Debug\GenerateResource.write.1.tlog
+Z:\Projects\ProjectsEpiloggerDCS\DataCollector\obj\Debug\DataCollector.dll
+Z:\Projects\ProjectsEpiloggerDCS\DataCollector\obj\Debug\DataCollector.xml
+Z:\Projects\ProjectsEpiloggerDCS\DataCollector\obj\Debug\DataCollector.pdb

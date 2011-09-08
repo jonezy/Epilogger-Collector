@@ -112,3 +112,22 @@ D:\bin\lib\4.0\TweetSharp.pdb
 D:\Projects\Epilogger DCS\TweetSharpSource\obj\Debug\ResolveAssemblyReference.cache
 D:\Projects\Epilogger DCS\TweetSharpSource\obj\Debug\TweetSharp.dll
 D:\Projects\Epilogger DCS\TweetSharpSource\obj\Debug\TweetSharp.pdb
+Z:\bin\lib\4.0\Generated\_TwitterService.Blocks.json
+Z:\bin\lib\4.0\Generated\_TwitterService.DirectMessages.json
+Z:\bin\lib\4.0\Generated\_TwitterService.Users.json
+Z:\bin\lib\4.0\Generated\_TwitterService.Friendships.json
+Z:\bin\lib\4.0\Generated\_TwitterService.SavedSearches.json
+Z:\bin\lib\4.0\Generated\_TwitterService.Search.json
+Z:\bin\lib\4.0\Generated\_TwitterService.Lists.json
+Z:\bin\lib\4.0\Generated\_TwitterService.FriendsFollowers.json
+Z:\bin\lib\4.0\Generated\_TwitterService.Trends.json
+Z:\bin\lib\4.0\Generated\_TwitterService.Tweets.json
+Z:\bin\lib\4.0\Generated\_TwitterService.Account.json
+Z:\bin\lib\4.0\Generated\_TwitterService.Favorites.json
+Z:\bin\lib\4.0\Generated\_TwitterService.Timelines.json
+Z:\bin\lib\4.0\Generated\_TwitterService.Notifications.json
+Z:\bin\lib\4.0\TweetSharp.dll
+Z:\bin\lib\4.0\TweetSharp.pdb
+Z:\Projects\ProjectsEpiloggerDCS\TweetSharpSource\obj\Debug\ResolveAssemblyReference.cache
+Z:\Projects\ProjectsEpiloggerDCS\TweetSharpSource\obj\Debug\TweetSharp.dll
+Z:\Projects\ProjectsEpiloggerDCS\TweetSharpSource\obj\Debug\TweetSharp.pdb

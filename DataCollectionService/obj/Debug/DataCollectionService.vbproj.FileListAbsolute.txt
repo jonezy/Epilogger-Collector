@@ -183,3 +183,30 @@ D:\Projects\Epilogger DCS\DataCollectionService\obj\Debug\GenerateResource.write
 D:\Projects\Epilogger DCS\DataCollectionService\obj\Debug\DataCollectionService.exe
 D:\Projects\Epilogger DCS\DataCollectionService\obj\Debug\DataCollectionService.xml
 D:\Projects\Epilogger DCS\DataCollectionService\obj\Debug\DataCollectionService.pdb
+Z:\Projects\ProjectsEpiloggerDCS\DataCollectionService\bin\Debug\DataCollectionService.exe.config
+Z:\Projects\ProjectsEpiloggerDCS\DataCollectionService\bin\Debug\DataCollectionService.exe
+Z:\Projects\ProjectsEpiloggerDCS\DataCollectionService\bin\Debug\DataCollectionService.pdb
+Z:\Projects\ProjectsEpiloggerDCS\DataCollectionService\bin\Debug\DataCollectionService.xml
+Z:\Projects\ProjectsEpiloggerDCS\DataCollectionService\bin\Debug\DataCollector.dll
+Z:\Projects\ProjectsEpiloggerDCS\DataCollectionService\bin\Debug\LoggingReporting.dll
+Z:\Projects\ProjectsEpiloggerDCS\DataCollectionService\bin\Debug\Microsoft.WindowsAzure.StorageClient.dll
+Z:\Projects\ProjectsEpiloggerDCS\DataCollectionService\bin\Debug\SharpSquare.dll
+Z:\Projects\ProjectsEpiloggerDCS\DataCollectionService\bin\Debug\FlickrNet.dll
+Z:\Projects\ProjectsEpiloggerDCS\DataCollectionService\bin\Debug\TweetSharp.dll
+Z:\Projects\ProjectsEpiloggerDCS\DataCollectionService\bin\Debug\Newtonsoft.Json.dll
+Z:\Projects\ProjectsEpiloggerDCS\DataCollectionService\bin\Debug\Hammock.ClientProfile.dll
+Z:\Projects\ProjectsEpiloggerDCS\DataCollectionService\bin\Debug\LoggingReporting.pdb
+Z:\Projects\ProjectsEpiloggerDCS\DataCollectionService\bin\Debug\LoggingReporting.xml
+Z:\Projects\ProjectsEpiloggerDCS\DataCollectionService\bin\Debug\DataCollector.pdb
+Z:\Projects\ProjectsEpiloggerDCS\DataCollectionService\bin\Debug\DataCollector.xml
+Z:\Projects\ProjectsEpiloggerDCS\DataCollectionService\bin\Debug\TweetSharp.pdb
+Z:\Projects\ProjectsEpiloggerDCS\DataCollectionService\bin\Debug\Newtonsoft.Json.xml
+Z:\Projects\ProjectsEpiloggerDCS\DataCollectionService\obj\Debug\ResolveAssemblyReference.cache
+Z:\Projects\ProjectsEpiloggerDCS\DataCollectionService\obj\Debug\DataCollectionService.Resources.resources
+Z:\Projects\ProjectsEpiloggerDCS\DataCollectionService\obj\Debug\DataCollectionService.ProjectInstaller.resources
+Z:\Projects\ProjectsEpiloggerDCS\DataCollectionService\obj\Debug\DataCollectionService.DataCollectionService.resources
+Z:\Projects\ProjectsEpiloggerDCS\DataCollectionService\obj\Debug\GenerateResource.read.1.tlog
+Z:\Projects\ProjectsEpiloggerDCS\DataCollectionService\obj\Debug\GenerateResource.write.1.tlog
+Z:\Projects\ProjectsEpiloggerDCS\DataCollectionService\obj\Debug\DataCollectionService.exe
+Z:\Projects\ProjectsEpiloggerDCS\DataCollectionService\obj\Debug\DataCollectionService.xml
+Z:\Projects\ProjectsEpiloggerDCS\DataCollectionService\obj\Debug\DataCollectionService.pdb

@@ -319,7 +319,8 @@ Public Class TwitterHelper
                                                  .UserID = System.Guid.Empty, _
                                                  .ImageSource = "twitter", _
                                                  .TwitterID = STweet.Id, _
-                                                 .TwitterName = STweet.FromUserScreenName}
+                                                 .TwitterName = STweet.FromUserScreenName,
+                                                 .DateTime = STweet.CreatedDate}
                                                 db.EpiloggerImageMetaDatas.InsertOnSubmit(LIMD)
                                             Next
                                         Else
@@ -353,7 +354,8 @@ Public Class TwitterHelper
                                                  .UserID = System.Guid.Empty, _
                                                  .ImageSource = "twitter", _
                                                  .TwitterID = LTweet.TwitterID, _
-                                                 .TwitterName = STweet.FromUserScreenName}
+                                                 .TwitterName = STweet.FromUserScreenName,
+                                                 .DateTime = STweet.CreatedDate}
                                             db.EpiloggerImageMetaDatas.InsertOnSubmit(LIMD)
                                         End If
                                     Else
@@ -375,7 +377,8 @@ Public Class TwitterHelper
                                             {.TweetID = LTweet.ID, _
                                                 .EventID = EventID, _
                                                 .ShortURL = TheURL.ToString,
-                                                .URL = UnShortenedURL.ToString}
+                                                .FullURL = UnShortenedURL.ToString,
+                                                .DateTime = STweet.CreatedDate}
 
                                         db.URLs.InsertOnSubmit(LURL)
                                     End If

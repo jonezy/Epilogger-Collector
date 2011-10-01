@@ -10,10 +10,10 @@ Public Class Form1
     Dim DataCollector As New DataCollector.DataCollector
 
     Private Sub Form1_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
-        BeforeEventTimer.Enabled = False
-        ActiveEventTimer.Enabled = False
-        AfterEventWiki.Enabled = False
-        Timer1.Enabled = False
+        'BeforeEventTimer.Enabled = False
+        'ActiveEventTimer.Enabled = False
+        'AfterEventWiki.Enabled = False
+        'Timer1.Enabled = False
     End Sub
 
     Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
@@ -24,13 +24,26 @@ Public Class Form1
         '
         'This is my code to Manually fill an event it also back fills with a slight code adjustment to the TweetCollector code
 
-        Dim TH As New DataCollector.TwitterHelper
+        'Dim TH As New DataCollector.TwitterHelper
 
-        TH.EventID = 186
-        TH.SearchTerms = "#areyouseriousbro"
-        TH.CollectionMode = 2
+        'TH.EventID = 186
+        'TH.SearchTerms = "#areyouseriousbro"
+        'TH.CollectionMode = 2
 
-        TH.GetNewTweets()
+        'TH.GetNewTweets()
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

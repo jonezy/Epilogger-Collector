@@ -189,8 +189,16 @@ Public Class TwitterHelper
                 Dim TheEvent As [Event] = db.Events.Where(Function(e) e.ID = EventID).FirstOrDefault
                 For Each STweet As TweetSharp.TwitterSearchStatus In RelaventTweetResults.Statuses
                     '
-                    'Check the the tweet CreatedDaet is withint our Collection Start and End Dates.
-                    If STweet.CreatedDate >= TheEvent.CollectionStartDateTime And STweet.CreatedDate <= TheEvent.CollectionEndDateTime Then
+                    'Check the the tweet CreatedDate is within our Collection Start and End Dates.
+                    'EndDate is nullable
+
+                    Dim EndDateTime As DateTime
+                    If TheEvent.CollectionEndDateTime.HasValue Then
+                        EndDateTime = TheEvent.CollectionEndDateTime
+                    Else
+                        EndDateTime = DateTime.Parse("2200-01-01 00:00:00")
+                    End If
+                    If STweet.CreatedDate >= TheEvent.CollectionStartDateTime And STweet.CreatedDate <= EndDateTime Then
 
                         '
                         'Insert the Tweet into the DB - Local SQL

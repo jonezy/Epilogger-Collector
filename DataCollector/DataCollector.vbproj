@@ -66,9 +66,11 @@
     <Reference Include="FlickrNet">
       <HintPath>..\Flickr.net\FlickrNet.dll</HintPath>
     </Reference>
+    <Reference Include="Hammock, Version=1.0.0.0, Culture=neutral, PublicKeyToken=c148cfba29ed1a4d, processorArchitecture=MSIL">
+      <HintPath>..\packages\Hammock.1.2.6\lib\net40\Hammock.dll</HintPath>
+    </Reference>
     <Reference Include="Hammock.ClientProfile, Version=1.0.0.0, Culture=neutral, PublicKeyToken=c148cfba29ed1a4d, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\TweetSharp\Hammock.ClientProfile.dll</HintPath>
+      <HintPath>..\packages\Hammock.1.2.6\lib\4.0\Hammock.ClientProfile.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.WindowsAzure.ServiceRuntime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -78,11 +80,12 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Program Files\Windows Azure SDK\v1.4\bin\Microsoft.WindowsAzure.StorageClient.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=4.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+    <Reference Include="Newtonsoft.Json, Version=4.0.3.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\TweetSharp\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.4.0.3\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="SharpSquare">
+    <Reference Include="SharpSquare, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\bin\SharpSquare.dll</HintPath>
     </Reference>
     <Reference Include="System" />
@@ -144,6 +147,7 @@
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Tweets.dbml.layout">
       <DependentUpon>Tweets.dbml</DependentUpon>
     </None>
@@ -189,13 +193,16 @@
       <Project>{DDFF71A8-8BB2-4ED9-A67F-CE8E1AA7E833}</Project>
       <Name>LoggingReporting</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TweetSharpSource\TweetSharp.csproj">
+    <ProjectReference Include="..\TweetSharp\net40\TweetSharp.Next\TweetSharp.csproj">
       <Project>{10BFAA13-B836-4B37-B2D3-D4FEB3F3C484}</Project>
       <Name>TweetSharp</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="response.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

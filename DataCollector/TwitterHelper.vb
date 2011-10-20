@@ -98,6 +98,7 @@ Public Class TwitterHelper
 
         Dim db As New TweetsDataContext
         Dim service As New TwitterService()
+
         'Dim AzureTweetStore As New AzureTableHelper(My.Settings.AzureTableStorageConnectionString, False)
 
         '

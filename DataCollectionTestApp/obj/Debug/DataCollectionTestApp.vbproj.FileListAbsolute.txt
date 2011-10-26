@@ -282,3 +282,5 @@ C:\Projects\EpiloggerDCS\DataCollectionTestApp\bin\Debug\Generated\_TwitterServi
 C:\Projects\EpiloggerDCS\DataCollectionTestApp\bin\Debug\Generated\_TwitterService.Favorites.json
 C:\Projects\EpiloggerDCS\DataCollectionTestApp\bin\Debug\Generated\_TwitterService.Timelines.json
 C:\Projects\EpiloggerDCS\DataCollectionTestApp\bin\Debug\Generated\_TwitterService.Notifications.json
+Z:\Projects\ProjectsEpiloggerDCS\DataCollectionTestApp\bin\Debug\Newtonsoft.Json.pdb
+Z:\Projects\ProjectsEpiloggerDCS\DataCollectionTestApp\bin\Debug\Hammock.ClientProfile.pdb

@@ -329,3 +329,7 @@ C:\Projects\EpiloggerDCS\DataCollector\bin\Debug\Generated\_TwitterService.Accou
 C:\Projects\EpiloggerDCS\DataCollector\bin\Debug\Generated\_TwitterService.Favorites.json
 C:\Projects\EpiloggerDCS\DataCollector\bin\Debug\Generated\_TwitterService.Timelines.json
 C:\Projects\EpiloggerDCS\DataCollector\bin\Debug\Generated\_TwitterService.Notifications.json
+Z:\Projects\ProjectsEpiloggerDCS\DataCollector\bin\Debug\Hammock.dll
+Z:\Projects\ProjectsEpiloggerDCS\DataCollector\bin\Debug\Hammock.pdb
+Z:\Projects\ProjectsEpiloggerDCS\DataCollector\bin\Debug\Hammock.ClientProfile.pdb
+Z:\Projects\ProjectsEpiloggerDCS\DataCollector\bin\Debug\Newtonsoft.Json.pdb

@@ -372,7 +372,7 @@ Public Class TwitterHelper
                                         'Check if there is a reference to Foursquare in the URL, if there is. It's probably a check in! woohoo.
                                         If UnShortenedURL.ToString.Contains("4sq") Or TheURL.ToString.Contains("4sq") Or _
                                             UnShortenedURL.ToString.Contains("foursquare") Or TheURL.ToString.Contains("foursquare") Then
-                                            If STweet.Text.Contains("I'm at") Then
+                                            If STweet.Text.Contains("(@") Then
                                                 '
                                                 '4sq check in
                                                 Dim LCheckin As New CheckIn With {.CheckInDateTime = LTweet.CreatedDate, .EventID = EventID, .TweetID = LTweet.ID, .FourSquareCheckInURL = UnShortenedURL.ToString}
@@ -390,8 +390,8 @@ Public Class TwitterHelper
                                                 .DateTime = STweet.CreatedDate}
 
                                         db.URLs.InsertOnSubmit(LURL)
-                                    End If
-                                    db.SubmitChanges()
+                                        End If
+                                        db.SubmitChanges()
                                 Catch ex As Exception
                                     Console.WriteLine(ex)
                                 End Try

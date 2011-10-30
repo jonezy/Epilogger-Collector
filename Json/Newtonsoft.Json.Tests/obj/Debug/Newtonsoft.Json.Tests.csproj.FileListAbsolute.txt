@@ -1,0 +1,11 @@
+C:\Projects\EpiloggerDCS\Json\Newtonsoft.Json.Tests\bin\Debug\Net\bunny_pancake.jpg
+C:\Projects\EpiloggerDCS\Json\Newtonsoft.Json.Tests\bin\Debug\Net\Newtonsoft.Json.Tests.dll
+C:\Projects\EpiloggerDCS\Json\Newtonsoft.Json.Tests\bin\Debug\Net\Newtonsoft.Json.Tests.pdb
+C:\Projects\EpiloggerDCS\Json\Newtonsoft.Json.Tests\bin\Debug\Net\Newtonsoft.Json.dll
+C:\Projects\EpiloggerDCS\Json\Newtonsoft.Json.Tests\bin\Debug\Net\nunit.framework.dll
+C:\Projects\EpiloggerDCS\Json\Newtonsoft.Json.Tests\bin\Debug\Net\Newtonsoft.Json.pdb
+C:\Projects\EpiloggerDCS\Json\Newtonsoft.Json.Tests\bin\Debug\Net\Newtonsoft.Json.xml
+C:\Projects\EpiloggerDCS\Json\Newtonsoft.Json.Tests\bin\Debug\Net\nunit.framework.xml
+C:\Projects\EpiloggerDCS\Json\Newtonsoft.Json.Tests\obj\Debug\ResolveAssemblyReference.cache
+C:\Projects\EpiloggerDCS\Json\Newtonsoft.Json.Tests\obj\Debug\Newtonsoft.Json.Tests.dll
+C:\Projects\EpiloggerDCS\Json\Newtonsoft.Json.Tests\obj\Debug\Newtonsoft.Json.Tests.pdb

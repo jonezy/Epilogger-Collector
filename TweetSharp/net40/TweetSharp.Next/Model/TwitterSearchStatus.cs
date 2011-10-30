@@ -316,20 +316,21 @@ namespace TweetSharp
 #if !Smartphone && !NET20
         [DataMember]
 #endif
-        public virtual TwitterEntities Entities
-        {
-            get { return _entities ?? (_entities = Text.ParseTwitterageToEntities()); }
-            set
-            {
-                if (_entities == value)
-                {
-                    return;
-                }
+        public virtual TwitterEntities Entities { get; set; }
+        //public virtual TwitterEntities Entities
+        //{
+        //    get { return _entities ?? (_entities = Text.ParseTwitterageToEntities()); }
+        //    set
+        //    {
+        //        if (_entities == value)
+        //        {
+        //            return;
+        //        }
 
-                _entities = value;
-                OnPropertyChanged("Entities");
-            }
-        }
+        //        _entities = value;
+        //        OnPropertyChanged("Entities");
+        //    }
+        //}
 
         #region IComparable<TwitterSearchStatus> Members
 

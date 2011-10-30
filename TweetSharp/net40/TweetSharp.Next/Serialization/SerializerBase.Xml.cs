@@ -87,7 +87,7 @@ namespace TweetSharp.Serialization
                 var media = entities["media"];
                 if (media != null)
                 {
-                    DeserializeHashtags(results, media);
+                    DeserializeMedia(results, media);
                 }
             }
 
@@ -240,8 +240,8 @@ namespace TweetSharp.Serialization
                 var array = JArray.Parse(inner.ToString());
 
                 foreach (var mmedia in from item in array
-                                        let indices = ParseEntityIndices(item)
-                                        select ParseMedia(indices, item))
+                                       let indices = ParseEntityIndices(item)
+                                       select ParseMedia(indices, item))
                 {
                     results.Media.Add(mmedia);
                 }

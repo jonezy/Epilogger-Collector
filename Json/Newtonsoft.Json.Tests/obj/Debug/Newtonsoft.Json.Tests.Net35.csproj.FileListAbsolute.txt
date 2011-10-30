@@ -1,0 +1,11 @@
+C:\Projects\Json40r3\Source\Src\Newtonsoft.Json.Tests\bin\Debug\Net35\bunny_pancake.jpg
+C:\Projects\Json40r3\Source\Src\Newtonsoft.Json.Tests\bin\Debug\Net35\Newtonsoft.Json.Tests.dll
+C:\Projects\Json40r3\Source\Src\Newtonsoft.Json.Tests\bin\Debug\Net35\Newtonsoft.Json.Tests.pdb
+C:\Projects\Json40r3\Source\Src\Newtonsoft.Json.Tests\bin\Debug\Net35\Newtonsoft.Json.dll
+C:\Projects\Json40r3\Source\Src\Newtonsoft.Json.Tests\bin\Debug\Net35\nunit.framework.dll
+C:\Projects\Json40r3\Source\Src\Newtonsoft.Json.Tests\bin\Debug\Net35\Newtonsoft.Json.pdb
+C:\Projects\Json40r3\Source\Src\Newtonsoft.Json.Tests\bin\Debug\Net35\Newtonsoft.Json.xml
+C:\Projects\Json40r3\Source\Src\Newtonsoft.Json.Tests\bin\Debug\Net35\nunit.framework.xml
+C:\Projects\Json40r3\Source\Src\Newtonsoft.Json.Tests\obj\Debug\ResolveAssemblyReference.cache
+C:\Projects\Json40r3\Source\Src\Newtonsoft.Json.Tests\obj\Debug\Newtonsoft.Json.Tests.dll
+C:\Projects\Json40r3\Source\Src\Newtonsoft.Json.Tests\obj\Debug\Newtonsoft.Json.Tests.pdb

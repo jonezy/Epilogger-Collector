@@ -53,6 +53,9 @@ namespace TweetSharp
         // Simon Whatley's # Regex: http://www.simonwhatley.co.uk/parsing-twitter-usernames-hashtags-and-urls-with-javascript
         private static readonly Regex _parseHashtags = new Regex("[#]+[A-Za-z0-9-_]+", Options);
 
+        private static readonly Regex _parseMediaUrls =
+            new Regex(@"\b(([\w-]+://?|www[.])[^\s()<>]+(?:\([\w\d]+\)|([^\p{P}\s]|/)))", Options);
+
         public static string ParseTwitterageToHtml(this string input)
         {
             if (input.IsNullOrBlank())
@@ -96,35 +99,48 @@ namespace TweetSharp
                 yield break;
             }
 
-            foreach (Match match in _parseUrls.Matches(input))
-            {
-                var value = match.Value;
 
-                //Uri uri;
-                //try
-                //{
-                //    uri = new Uri(value);
-                //}
-                //catch (UriFormatException)
-                //{
-                //    continue;
-                //}
-
-                var media = new TwitterMedia
-                    {
-                        MediaURL = "",
-                        //AvailableSizes = uri.ToString(),
-                        Indices = new List<int>(new[] { match.Index, match.Index + match.Value.Length })
-                    };
+            //var media = new TwitterMedia
+            //{
+            //    MediaURL = input,
+            //    //AvailableSizes = uri.ToString(),
+            //    //Indices = new List<int>(new[] { match.Index, match.Index + match.Value.Length })
+            //};
 
 
-                //if (!match.Value.EndsWith("/") && media.Value.EndsWith("/"))
-                //{
-                //    url.Value = url.Value.Substring(0, url.Value.Length - 1);
-                //}
+            //foreach (Match match in _parseMediaUrls.Matches(input))
+            //{
+            //    var value = match.Value;
 
-                yield return media;
-            }
+            //    Uri uri;
+            //    try
+            //    {
+            //        uri = new Uri(value)
+            //    }
+            //    catch (UriFormatException)
+            //    {
+            //        continue;
+            //    }
+
+            //    var media = new TwitterMedia
+            //        {
+            //            MediaURL = "input",
+            //            //AvailableSizes = uri.ToString(),
+            //            Indices = new List<int>(new[] { match.Index, match.Index + match.Value.Length })
+            //        };
+
+
+            //    //if (!match.Value.EndsWith("/") && media.Value.EndsWith("/"))
+            //    //{
+            //    //    url.Value = url.Value.Substring(0, url.Value.Length - 1);
+            //    //}
+
+            //    yield return media;
+            //}
+            //yield return media;
+
+
+            yield break;
         }
 
 

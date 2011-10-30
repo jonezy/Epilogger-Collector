@@ -1,0 +1,8 @@
+C:\Projects\Json40r3\Source\Src\Newtonsoft.Json\bin\Debug\Net35\Newtonsoft.Json.xml
+C:\Projects\Json40r3\Source\Src\Newtonsoft.Json\bin\Debug\Net35\Newtonsoft.Json.dll
+C:\Projects\Json40r3\Source\Src\Newtonsoft.Json\bin\Debug\Net35\Newtonsoft.Json.pdb
+C:\Projects\Json40r3\Source\Src\Newtonsoft.Json\bin\Debug\Net35\Newtonsoft.Json.dll.CodeAnalysisLog.xml
+C:\Projects\Json40r3\Source\Src\Newtonsoft.Json\bin\Debug\Net35\Newtonsoft.Json.dll.lastcodeanalysissucceeded
+C:\Projects\Json40r3\Source\Src\Newtonsoft.Json\obj\Debug\ResolveAssemblyReference.cache
+C:\Projects\Json40r3\Source\Src\Newtonsoft.Json\obj\Debug\Newtonsoft.Json.dll
+C:\Projects\Json40r3\Source\Src\Newtonsoft.Json\obj\Debug\Newtonsoft.Json.pdb

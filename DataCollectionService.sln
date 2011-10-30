@@ -11,9 +11,9 @@ Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "DataCollectionTestApp", "Da
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "DataCollectionServiceSetup", "DataCollectionServiceSetup\DataCollectionServiceSetup.vdproj", "{62256DA1-67D2-4844-9BF7-273F8DEF4537}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Foursquare.NET", "Foursquare.NET\Foursquare.NET.csproj", "{D574AA4E-A213-4CD2-A3C8-8B9A2D549E31}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TweetSharp", "TweetSharp\net40\TweetSharp.Next\TweetSharp.csproj", "{10BFAA13-B836-4B37-B2D3-D4FEB3F3C484}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Newtonsoft.Json", "Json\Newtonsoft.Json\Newtonsoft.Json.csproj", "{A9AE40FF-1A21-414A-9FE7-3BE13644CC6D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -61,18 +61,18 @@ Global
 		{62256DA1-67D2-4844-9BF7-273F8DEF4537}.Release|Any CPU.ActiveCfg = Release
 		{62256DA1-67D2-4844-9BF7-273F8DEF4537}.Release|x64.ActiveCfg = Release
 		{62256DA1-67D2-4844-9BF7-273F8DEF4537}.Release|x64.Build.0 = Release
-		{D574AA4E-A213-4CD2-A3C8-8B9A2D549E31}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D574AA4E-A213-4CD2-A3C8-8B9A2D549E31}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D574AA4E-A213-4CD2-A3C8-8B9A2D549E31}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{D574AA4E-A213-4CD2-A3C8-8B9A2D549E31}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D574AA4E-A213-4CD2-A3C8-8B9A2D549E31}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D574AA4E-A213-4CD2-A3C8-8B9A2D549E31}.Release|x64.ActiveCfg = Release|Any CPU
 		{10BFAA13-B836-4B37-B2D3-D4FEB3F3C484}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{10BFAA13-B836-4B37-B2D3-D4FEB3F3C484}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{10BFAA13-B836-4B37-B2D3-D4FEB3F3C484}.Debug|x64.ActiveCfg = Debug|Any CPU
 		{10BFAA13-B836-4B37-B2D3-D4FEB3F3C484}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{10BFAA13-B836-4B37-B2D3-D4FEB3F3C484}.Release|Any CPU.Build.0 = Release|Any CPU
 		{10BFAA13-B836-4B37-B2D3-D4FEB3F3C484}.Release|x64.ActiveCfg = Release|Any CPU
+		{A9AE40FF-1A21-414A-9FE7-3BE13644CC6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9AE40FF-1A21-414A-9FE7-3BE13644CC6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9AE40FF-1A21-414A-9FE7-3BE13644CC6D}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{A9AE40FF-1A21-414A-9FE7-3BE13644CC6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9AE40FF-1A21-414A-9FE7-3BE13644CC6D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A9AE40FF-1A21-414A-9FE7-3BE13644CC6D}.Release|x64.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

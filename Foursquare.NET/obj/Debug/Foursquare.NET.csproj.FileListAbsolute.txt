@@ -38,8 +38,3 @@ Z:\Projects\ProjectsEpiloggerDCS\Foursquare.NET\bin\Debug\FoursquareNET.pdb
 Z:\Projects\ProjectsEpiloggerDCS\Foursquare.NET\obj\Debug\ResolveAssemblyReference.cache
 Z:\Projects\ProjectsEpiloggerDCS\Foursquare.NET\obj\Debug\FoursquareNET.dll
 Z:\Projects\ProjectsEpiloggerDCS\Foursquare.NET\obj\Debug\FoursquareNET.pdb
-C:\Projects\EpiloggerDCS\Foursquare.NET\bin\Debug\FoursquareNET.dll
-C:\Projects\EpiloggerDCS\Foursquare.NET\bin\Debug\FoursquareNET.pdb
-C:\Projects\EpiloggerDCS\Foursquare.NET\obj\Debug\ResolveAssemblyReference.cache
-C:\Projects\EpiloggerDCS\Foursquare.NET\obj\Debug\FoursquareNET.dll
-C:\Projects\EpiloggerDCS\Foursquare.NET\obj\Debug\FoursquareNET.pdb

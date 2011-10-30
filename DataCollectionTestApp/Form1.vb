@@ -19,15 +19,15 @@ Public Class Form1
     Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
 
         Dim DataCollector As New DataCollector.DataCollector
-        DataCollector.UpdateCollectionModes()
+        'DataCollector.UpdateCollectionModes()
 
         '
         'This is my code to Manually fill an event it also back fills with a slight code adjustment to the TweetCollector code
 
         Dim TH As New DataCollector.TwitterHelper
 
-        TH.EventID = 133
-        TH.SearchTerms = "epilogger"
+        TH.EventID = 299
+        TH.SearchTerms = "Halloween OR #Halloween OR Happy Halloween"
         TH.CollectionMode = 2
 
         TH.GetNewTweets()

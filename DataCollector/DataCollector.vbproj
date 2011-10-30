@@ -66,9 +66,6 @@
     <Reference Include="FlickrNet">
       <HintPath>..\Flickr.net\FlickrNet.dll</HintPath>
     </Reference>
-    <Reference Include="Hammock, Version=1.0.0.0, Culture=neutral, PublicKeyToken=c148cfba29ed1a4d, processorArchitecture=MSIL">
-      <HintPath>..\packages\Hammock.1.2.6\lib\net40\Hammock.dll</HintPath>
-    </Reference>
     <Reference Include="Hammock.ClientProfile, Version=1.0.0.0, Culture=neutral, PublicKeyToken=c148cfba29ed1a4d, processorArchitecture=MSIL">
       <HintPath>..\packages\Hammock.1.2.6\lib\4.0\Hammock.ClientProfile.dll</HintPath>
     </Reference>
@@ -80,27 +77,13 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Program Files\Windows Azure SDK\v1.4\bin\Microsoft.WindowsAzure.StorageClient.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=4.0.3.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Newtonsoft.Json.4.0.3\lib\net40\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="SharpSquare, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\bin\SharpSquare.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Data.Linq" />
-    <Reference Include="System.Data.Services" />
-    <Reference Include="System.Data.Services.Client" />
-    <Reference Include="System.ServiceModel" />
-    <Reference Include="System.ServiceModel.Activation" />
-    <Reference Include="System.ServiceModel.Web" />
-    <Reference Include="System.Web.Extensions" />
-    <Reference Include="System.Web.Routing" />
-    <Reference Include="System.Web.Services" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Import Include="Microsoft.VisualBasic" />
@@ -203,6 +186,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="response.txt" />
+    <Content Include="TextFile1.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

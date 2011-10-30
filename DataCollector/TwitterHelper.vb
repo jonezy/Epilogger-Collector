@@ -236,53 +236,72 @@ Public Class TwitterHelper
                             End Try
 
 
-
                             '
-                            'Now also store the Tweets into Azure Table storage, this will aid in transistion
+                            '********** Pull out the Images stored directly on Twitter! :)
+                            For Each p As TwitterMedia In STweet.Entities.Media
+                                Try
+                                    '
+                                    'Check to see if this image has already been stored, if it has reuse the stored image and add another meta data record to it. 
+                                    'If it hasn't store it.
+                                    Dim TheURL As String = p.MediaURL
+                                    Dim PImage As IEnumerable(Of EpiloggerImage) = db.EpiloggerImages.Where(Function(e) e.OriginalImageLink = TheURL)
 
-                            'For the purposes of storing tweets for Epilogger, here is what we're going to do;
-                            '- PartitionKey = EventID (From SQL)
-                            '- RowKey = TweetID (From Twitter)
-                            'Try
-                            '    '
-                            '    'Create the table - Already created, just throws an exception, take out for speed.
-                            '    'AzureTweetStore.CreateTable("tweets")
+                                    If PImage.Count > 0 Then
+                                        For Each pI As EpiloggerImage In PImage
+                                            '
+                                            'Insert metadata for image
+                                            Dim LIMD As New EpiloggerImageMetaData With
+                                            {.ImageID = pI.ID, _
+                                             .EventID = EventID, _
+                                             .UserID = System.Guid.Empty, _
+                                             .ImageSource = "twitter", _
+                                             .TwitterID = STweet.Id, _
+                                             .TwitterName = STweet.FromUserScreenName,
+                                             .DateTime = STweet.CreatedDate}
+                                            db.EpiloggerImageMetaDatas.InsertOnSubmit(LIMD)
+                                        Next
+                                    Else
+                                        '
+                                        'Insert image
+                                        '
+                                        'Get a MemStream from the Image URL, upload to Azure.
+                                        Dim FullImageStream As New IO.MemoryStream(New System.Net.WebClient().DownloadData(p.MediaURL))
+                                        Dim FullAzureURL As Uri = StoreImage("twitter-" & EventID & "-" & LTweet.ID & ".jpg", "twitterphotos-full", FullImageStream)
 
-                            '    '
-                            '    'Create the Table Service Entity to be stored
-                            '    Dim AzureTweet As New AzureStoreTweet(EventID, STweet.Id)
-                            '    AzureTweet.TwitterID = STweet.Id
-                            '    AzureTweet.EventID = EventID
-                            '    AzureTweet.Text = STweet.Text
-                            '    AzureTweet.TextAsHTML = STweet.TextAsHtml
-                            '    AzureTweet.Source = STweet.Source
-                            '    AzureTweet.CreatedDate = STweet.CreatedDate
-                            '    AzureTweet.FromUserScreenName = STweet.FromUserScreenName
-                            '    AzureTweet.ToUserScreenName = STweet.ToUserScreenName
-                            '    AzureTweet.IsoLanguageCode = STweet.IsoLanguageCode
-                            '    AzureTweet.ProfileImageURL = STweet.ProfileImageUrl
-                            '    AzureTweet.SinceID = STweet.SinceId
-                            '    AzureTweet.Location = STweet.Location
-                            '    AzureTweet.RawSource = STweet.RawSource
+                                        'Dim ThumbImageStream As New IO.MemoryStream(New System.Net.WebClient().DownloadData(p.MediaURL))
+                                        'Dim ThumbAzureURL As Uri = StoreImage("twitter-" & EventID & "-" & LTweet.ID & ".jpg", "twitterphotos-thumb", ThumbImageStream)
 
-                            '    '
-                            '    'Insert the entity
-                            '    AzureTweetStore.InsertEntity("tweetsV1", AzureTweet)
+                                        '
+                                        'Store the Info in the DB
+                                        Dim LImage As New EpiloggerImage With
+                                            {.EventID = EventID, _
+                                             .AzureContainerPrefix = "twitterphotos", _
+                                             .Fullsize = FullAzureURL.AbsoluteUri, _
+                                             .Thumb = FullAzureURL.AbsoluteUri, _
+                                             .OriginalImageLink = p.DisplayURL, _
+                                             .DateTime = STweet.CreatedDate, _
+                                             .DeleteVoteCount = 0, _
+                                             .Deleted = False}
+                                        db.EpiloggerImages.InsertOnSubmit(LImage)
+                                        db.SubmitChanges()
 
+                                        Dim LIMD As New EpiloggerImageMetaData With
+                                            {.ImageID = LImage.ID, _
+                                             .EventID = EventID, _
+                                             .UserID = System.Guid.Empty, _
+                                             .ImageSource = "twitter", _
+                                             .TwitterID = LTweet.TwitterID, _
+                                             .TwitterName = STweet.FromUserScreenName,
+                                             .DateTime = STweet.CreatedDate}
+                                        db.EpiloggerImageMetaDatas.InsertOnSubmit(LIMD)
+                                        db.SubmitChanges()
+                                    End If
 
-                            '    '
-                            '    'If the entity inserted increment the tweet count in the Events Table.
-                            '    Dim EventData = From e In db.Events
-                            '                    Where e.ID = EventID
-                            '                    Select e
-                            '    For Each ev As [Event] In EventData
-                            '        ev.NumberOfTweets += 1
-                            '    Next
-                            '    db.SubmitChanges()
+                                Catch ex As Exception
+                                    Console.WriteLine(ex)
+                                End Try
+                            Next
 
-                            'Catch ex As Exception
-
-                            'End Try
 
                             '
                             'Pull out the images from the tweets and store URLs
@@ -293,8 +312,14 @@ Public Class TwitterHelper
                                     Dim FullImagesURL As Uri
                                     Dim ThumbImagesURL As Uri
                                     If l.ExpandedValue IsNot Nothing Then
+                                        If Not l.ExpandedValue.Contains("http://") Then
+                                            l.ExpandedValue = "http://" & l.ExpandedValue
+                                        End If
                                         TheURL = New Uri(l.ExpandedValue)
                                     Else
+                                        If Not l.Value.Contains("http://") Then
+                                            l.Value = "http://" & l.Value
+                                        End If
                                         TheURL = New Uri(l.Value)
                                     End If
 
@@ -390,8 +415,8 @@ Public Class TwitterHelper
                                                 .DateTime = STweet.CreatedDate}
 
                                         db.URLs.InsertOnSubmit(LURL)
-                                        End If
-                                        db.SubmitChanges()
+                                    End If
+                                    db.SubmitChanges()
                                 Catch ex As Exception
                                     Console.WriteLine(ex)
                                 End Try
@@ -465,14 +490,6 @@ Public Class TwitterHelper
 
 
     End Function
-
-
-
-
-
-
-
-
 
 
 
@@ -691,4 +708,7 @@ Public Class TwitterHelper
     '                {.WallID = WallID, .TweetID = LTweet.ID}
     '    db.WallToTweetMappings.InsertOnSubmit(TMap)
     'End If
+
+
+
 End Class

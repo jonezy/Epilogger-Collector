@@ -137,7 +137,7 @@ namespace TweetSharp
 #if !Smartphone && !NET20
         [DataMember]
 #endif
-        public virtual TwitterEntityType Type { get; protected set; }
+        public virtual TwitterEntityType EntityType { get; protected set; }
 
 #if !Smartphone && !NET20
         [DataMember]
@@ -168,7 +168,7 @@ namespace TweetSharp
 #if !Smartphone && !NET20
     [DataContract]
 #endif
-    [JsonObject(MemberSerialization.OptIn)]
+    //[JsonObject(MemberSerialization.OptIn)]
     public class TwitterMedia : TwitterEntity
     {
 
@@ -214,11 +214,11 @@ namespace TweetSharp
 #endif
         public virtual string ExpandedURL { get; set; }
 
-        [JsonProperty("sizes")]
-#if !Smartphone && !NET20
-        [DataMember]
-#endif
-        public virtual TwitterMediaSize AvailableSizes { get; set; }
+//        [JsonProperty("sizes")]
+//#if !Smartphone && !NET20
+//        [DataMember]
+//#endif
+//        public virtual TwitterMediaSize AvailableSizes { get; set; }
 
         [JsonProperty("type")]
 #if !Smartphone && !NET20
@@ -226,11 +226,6 @@ namespace TweetSharp
 #endif
         public virtual string MediaType { get; set; }
 
-        [JsonProperty("indices")]
-#if !Smartphone && !NET20
-        [DataMember]
-#endif
-        public virtual IList<int> Indices { get; set; }
 
         public TwitterMedia()
         {
@@ -239,7 +234,7 @@ namespace TweetSharp
 
         private void Initialize()
         {
-            Type = TwitterEntityType.Media;
+            EntityType = TwitterEntityType.Media;
         }
     }
 
@@ -278,7 +273,7 @@ namespace TweetSharp
 
         private void Initialize()
         {
-            Type = TwitterEntityType.Url;
+            EntityType = TwitterEntityType.Url;
         }
     }
 
@@ -311,7 +306,7 @@ namespace TweetSharp
 
         public TwitterMention()
         {
-            Type = TwitterEntityType.Mention;
+            EntityType = TwitterEntityType.Mention;
         }
     }
 
@@ -337,7 +332,7 @@ namespace TweetSharp
 
         private void Initialize()
         {
-            Type = TwitterEntityType.HashTag;
+            EntityType = TwitterEntityType.HashTag;
         }
     }
 }

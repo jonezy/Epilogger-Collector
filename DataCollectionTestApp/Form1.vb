@@ -24,13 +24,59 @@ Public Class Form1
         '
         'This is my code to Manually fill an event it also back fills with a slight code adjustment to the TweetCollector code
 
+        'Dim TH As New DataCollector.TwitterHelper
+
+        'TH.EventID = 314
+        'TH.SearchTerms = "MovemberCA OR 'Movember Canada' until:2011-11-02"
+        'TH.CollectionMode = 2
+
+        'TH.GetNewTweets()
+
+
+
+
+
+
+        '
+        'Back dating loop, uses date ranges to get better data out of twitter.
+        Dim MyDate As Date = Date.Parse("2011-09-15")
         Dim TH As New DataCollector.TwitterHelper
+        TH.EventID = 314
+        Do
+            TH.SearchTerms = "MovemberCA OR (Movember AND Canada) since:" & String.Format("{0:yyyy-MM-dd}", MyDate.AddDays(-1)) & " until:" & String.Format("{0:yyyy-MM-dd}", MyDate)
+            TH.CollectionMode = 2
 
-        TH.EventID = 299
-        TH.SearchTerms = "Halloween OR #Halloween OR Happy Halloween"
-        TH.CollectionMode = 2
+            TH.GetNewTweets()
 
-        TH.GetNewTweets()
+            MyDate = MyDate.AddDays(1)
+        Loop Until MyDate > DateTime.Now
+
+        Dim hi As String = ""
+
+
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

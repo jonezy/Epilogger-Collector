@@ -270,17 +270,3 @@ C:\Projects\EpiloggerDCS\DataCollectionTestApp\obj\Debug\GenerateResource.write.
 C:\Projects\EpiloggerDCS\DataCollectionTestApp\obj\Debug\DataCollectionTestApp.exe
 C:\Projects\EpiloggerDCS\DataCollectionTestApp\obj\Debug\DataCollectionTestApp.xml
 C:\Projects\EpiloggerDCS\DataCollectionTestApp\obj\Debug\DataCollectionTestApp.pdb
-C:\Projects\EpiloggerDCS\DataCollectionTestApp\bin\Debug\Generated\_TwitterService.Blocks.json
-C:\Projects\EpiloggerDCS\DataCollectionTestApp\bin\Debug\Generated\_TwitterService.DirectMessages.json
-C:\Projects\EpiloggerDCS\DataCollectionTestApp\bin\Debug\Generated\_TwitterService.Users.json
-C:\Projects\EpiloggerDCS\DataCollectionTestApp\bin\Debug\Generated\_TwitterService.Friendships.json
-C:\Projects\EpiloggerDCS\DataCollectionTestApp\bin\Debug\Generated\_TwitterService.SavedSearches.json
-C:\Projects\EpiloggerDCS\DataCollectionTestApp\bin\Debug\Generated\_TwitterService.Search.json
-C:\Projects\EpiloggerDCS\DataCollectionTestApp\bin\Debug\Generated\_TwitterService.Lists.json
-C:\Projects\EpiloggerDCS\DataCollectionTestApp\bin\Debug\Generated\_TwitterService.FriendsFollowers.json
-C:\Projects\EpiloggerDCS\DataCollectionTestApp\bin\Debug\Generated\_TwitterService.Trends.json
-C:\Projects\EpiloggerDCS\DataCollectionTestApp\bin\Debug\Generated\_TwitterService.Tweets.json
-C:\Projects\EpiloggerDCS\DataCollectionTestApp\bin\Debug\Generated\_TwitterService.Account.json
-C:\Projects\EpiloggerDCS\DataCollectionTestApp\bin\Debug\Generated\_TwitterService.Favorites.json
-C:\Projects\EpiloggerDCS\DataCollectionTestApp\bin\Debug\Generated\_TwitterService.Timelines.json
-C:\Projects\EpiloggerDCS\DataCollectionTestApp\bin\Debug\Generated\_TwitterService.Notifications.json

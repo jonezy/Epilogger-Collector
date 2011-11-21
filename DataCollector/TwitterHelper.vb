@@ -45,6 +45,7 @@ Public Class TwitterHelper
     Public Property EventID As Integer
     Public Property SearchTerms As String
     Public Property CollectionMode As Integer
+    Public Property UseLastTweetID As Boolean
 
     Public Function ExecQueryReturnDR(ByVal Query As String, ByVal conn As SqlConnection) As SqlDataReader
 
@@ -105,8 +106,6 @@ Public Class TwitterHelper
         'Get the last TwitterID for the seach. This way we only get new tweets.
         Dim LastTweetID As Long = 0
 
-        
-
 
         '
         'Can't use ATS to get the last record inserted. So instead of reversing the row keys (), I'm going to store the LastTwitterID in the Events Table too and query that.
@@ -116,12 +115,16 @@ Public Class TwitterHelper
         '
         'UNDEPRICATED - CB Aug 26, 2011 - This code is no longer used. Tweets have been moved to Azure Table Storage. All code will now reference that.
         'This gets the lsat TwitterID so we only search from there going forward.
-        Dim myreader As SqlDataReader
-        myreader = ExecQueryReturnDR("Select top 1 TwitterID from Tweets Where EventID=" & EventID & " order by ID Desc", MyConnection)
-        While myreader.Read()
-            LastTweetID = myreader("TwitterID")
-        End While
-        myreader.Close()
+
+        If Me.UseLastTweetID Then
+            Dim myreader As SqlDataReader
+            myreader = ExecQueryReturnDR("Select top 1 TwitterID from Tweets Where EventID=" & EventID & " order by ID Desc", MyConnection)
+            While myreader.Read()
+                LastTweetID = myreader("TwitterID")
+            End While
+            myreader.Close()
+        End If
+        
 
 
         '
@@ -711,4 +714,7 @@ Public Class TwitterHelper
 
 
 
+    Public Sub New()
+        Me.UseLastTweetID = True
+    End Sub
 End Class

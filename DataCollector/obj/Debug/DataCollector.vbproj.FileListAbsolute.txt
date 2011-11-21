@@ -290,8 +290,6 @@ Z:\Projects\ProjectsEpiloggerDCS\DataCollector\obj\Debug\GenerateResource.write.
 Z:\Projects\ProjectsEpiloggerDCS\DataCollector\obj\Debug\DataCollector.dll
 Z:\Projects\ProjectsEpiloggerDCS\DataCollector\obj\Debug\DataCollector.xml
 Z:\Projects\ProjectsEpiloggerDCS\DataCollector\obj\Debug\DataCollector.pdb
-Z:\Projects\ProjectsEpiloggerDCS\DataCollector\bin\Debug\Hammock.dll
-Z:\Projects\ProjectsEpiloggerDCS\DataCollector\bin\Debug\Hammock.pdb
 Z:\Projects\ProjectsEpiloggerDCS\DataCollector\bin\Debug\Hammock.ClientProfile.pdb
 Z:\Projects\ProjectsEpiloggerDCS\DataCollector\bin\Debug\Newtonsoft.Json.pdb
 C:\Projects\EpiloggerDCS\DataCollector\bin\Debug\Generated\_TwitterService.Blocks.json

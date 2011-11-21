@@ -5,3 +5,10 @@ C:\Projects\EpiloggerDCS\Json\Newtonsoft.Json\bin\Debug\Net\Newtonsoft.Json.dll.
 C:\Projects\EpiloggerDCS\Json\Newtonsoft.Json\obj\Debug\ResolveAssemblyReference.cache
 C:\Projects\EpiloggerDCS\Json\Newtonsoft.Json\obj\Debug\Newtonsoft.Json.dll
 C:\Projects\EpiloggerDCS\Json\Newtonsoft.Json\obj\Debug\Newtonsoft.Json.pdb
+Z:\Projects\ProjectsEpiloggerDCS\Json\Newtonsoft.Json\bin\Debug\Net\Newtonsoft.Json.dll
+Z:\Projects\ProjectsEpiloggerDCS\Json\Newtonsoft.Json\bin\Debug\Net\Newtonsoft.Json.pdb
+Z:\Projects\ProjectsEpiloggerDCS\Json\Newtonsoft.Json\bin\Debug\Net\Newtonsoft.Json.dll.CodeAnalysisLog.xml
+Z:\Projects\ProjectsEpiloggerDCS\Json\Newtonsoft.Json\bin\Debug\Net\Newtonsoft.Json.dll.lastcodeanalysissucceeded
+Z:\Projects\ProjectsEpiloggerDCS\Json\Newtonsoft.Json\obj\Debug\ResolveAssemblyReference.cache
+Z:\Projects\ProjectsEpiloggerDCS\Json\Newtonsoft.Json\obj\Debug\Newtonsoft.Json.dll
+Z:\Projects\ProjectsEpiloggerDCS\Json\Newtonsoft.Json\obj\Debug\Newtonsoft.Json.pdb

@@ -26,6 +26,7 @@ Partial Class Form1
         Me.BeforeEventTimer = New System.Windows.Forms.Timer(Me.components)
         Me.ActiveEventTimer = New System.Windows.Forms.Timer(Me.components)
         Me.AfterEventWiki = New System.Windows.Forms.Timer(Me.components)
+        Me.StatusLabel = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'Button1
@@ -66,11 +67,20 @@ Partial Class Form1
         Me.AfterEventWiki.Enabled = True
         Me.AfterEventWiki.Interval = 300000
         '
+        'StatusLabel
+        '
+        Me.StatusLabel.AutoSize = True
+        Me.StatusLabel.Location = New System.Drawing.Point(27, 103)
+        Me.StatusLabel.Name = "StatusLabel"
+        Me.StatusLabel.Size = New System.Drawing.Size(0, 13)
+        Me.StatusLabel.TabIndex = 2
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(292, 151)
+        Me.Controls.Add(Me.StatusLabel)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.Button1)
         Me.Name = "Form1"
@@ -85,5 +95,6 @@ Partial Class Form1
     Friend WithEvents BeforeEventTimer As System.Windows.Forms.Timer
     Friend WithEvents ActiveEventTimer As System.Windows.Forms.Timer
     Friend WithEvents AfterEventWiki As System.Windows.Forms.Timer
+    Friend WithEvents StatusLabel As System.Windows.Forms.Label
 
 End Class

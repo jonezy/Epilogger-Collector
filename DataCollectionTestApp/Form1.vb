@@ -39,15 +39,15 @@ Public Class Form1
 
         '
         'Back dating loop, uses date ranges to get better data out of twitter.
-        Dim MyDate As Date = Date.Parse("2011-09-01")
+        Dim MyDate As Date = Date.Parse("2011-11-20")
         Dim TH As New DataCollector.TwitterHelper
-        TH.EventID = 133
+        TH.EventID = 316
         TH.UseLastTweetID = False
         Do
             StatusLabel.Text = "Processing: epilogger since:" & String.Format("{0:yyyy-MM-dd}", MyDate.AddDays(-1)) & " until:" & String.Format("{0:yyyy-MM-dd}", MyDate)
             StatusLabel.Update()
 
-            TH.SearchTerms = "epilogger since:" & String.Format("{0:yyyy-MM-dd}", MyDate.AddDays(-1)) & " until:" & String.Format("{0:yyyy-MM-dd}", MyDate)
+            TH.SearchTerms = "mogasmto OR mogasm OR mogasmtoronto OR mogasm2011 since:" & String.Format("{0:yyyy-MM-dd}", MyDate.AddDays(-1)) & " until:" & String.Format("{0:yyyy-MM-dd}", MyDate)
             TH.CollectionMode = 2
 
             TH.GetNewTweets()
